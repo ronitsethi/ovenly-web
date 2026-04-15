@@ -1,0 +1,305 @@
+/* ============================================
+   OVEN'LY — GLOBAL DESIGN SYSTEM
+   Brand Colors: Cherry Berry Red #A51627
+   Blush Pink #FFCCD4 · Cream #FCECEB
+   Fonts: Cormorant Garamond (display) + Montserrat (body)
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Brand Colors */
+  --cherry-red:     #A51627;
+  --cherry-red-dark: #8B1220;
+  --cherry-red-light: #C41E34;
+  --blush-pink:     #FFCCD4;
+  --powder-pink:    #FFDEE5;
+  --sugar-cream:    #FCECEB;
+  --icing-white:    #FFFFFF;
+  --cocoa-brown:    #754015;
+  --caramel-brown:  #A56A3A;
+  --pastry-gold:    #F9E2B1;
+  --raspberry-pink: #EE5483;
+  --apricot-gold:   #FFCF83;
+  
+  /* Typography */
+  --font-display:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Spacing */
+  --section-pad: clamp(3rem, 8vw, 6rem);
+  --container-max: 480px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 100px;
+
+  /* Elevation */
+  --shadow-soft: 0 4px 24px rgba(165, 22, 39, 0.08);
+  --shadow-card: 0 8px 40px rgba(165, 22, 39, 0.12);
+  --shadow-pop:  0 16px 64px rgba(165, 22, 39, 0.18);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-fast: 200ms;
+  --dur-med: 350ms;
+  --dur-slow: 600ms;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: #2a1015;
+  background-color: var(--icing-white);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--sugar-cream); }
+::-webkit-scrollbar-thumb { background: var(--cherry-red); border-radius: 2px; }
+
+/* ============ TYPOGRAPHY UTILITIES ============ */
+.display-xl {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.8rem, 10vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 7vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  line-height: 1.2;
+}
+
+.label-caps {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ============ LAYOUT ============ */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--cherry-red);
+  color: var(--icing-white);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.9rem 2rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-fast) var(--ease-out);
+  box-shadow: 0 4px 20px rgba(165, 22, 39, 0.3);
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--cherry-red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(165, 22, 39, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--cherry-red);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--cherry-red);
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  background: var(--cherry-red);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ============ SPARKLE DECORATION ============ */
+.sparkle {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: var(--cherry-red);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ============ SECTION DIVIDER ============ */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cherry-red), transparent);
+  opacity: 0.3;
+}
+
+/* ============ FADE-IN ANIMATION ============ */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.fade-up {
+  animation: fadeUp 0.7s var(--ease-out) both;
+}
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(165, 22, 39, 0.08);
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+
+.nav.scrolled {
+  box-shadow: 0 4px 24px rgba(165, 22, 39, 0.1);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+.nav-logo {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #2a1015;
+  text-decoration: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-pill);
+  transition: all var(--dur-fast) var(--ease-out);
+}
+
+.nav-link:hover {
+  color: var(--cherry-red);
+  background: var(--sugar-cream);
+}
+
+.nav-link.active {
+  color: var(--cherry-red);
+  font-weight: 600;
+}
+
+.nav-order-btn {
+  background: var(--cherry-red);
+  color: white !important;
+  padding: 0.45rem 1rem !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 2px 12px rgba(165, 22, 39, 0.25);
+}
+
+.nav-order-btn:hover {
+  background: var(--cherry-red-dark);
+  color: white !important;
+  transform: none;
+}
+
+/* ============ PAGE WRAPPER ============ */
+.page {
+  padding-top: 70px;
+  min-height: 100vh;
+}
