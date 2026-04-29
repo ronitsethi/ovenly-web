@@ -31,7 +31,7 @@ export default function ProductPage() {
   }, [handle])
 
   if (loading) return <main className="page product-page"><div className="product-loading"><div className="product-spinner"/><p>Loading…</p></div></main>
-  if (!product) return <main className="page product-page"><div className="product-not-found"><span>🍰</span><h1>Product not found</h1><Link to="/menu" className="btn-primary">Back to Menu</Link></div></main>
+  if (!product) return <main className="page product-page"><div className="product-not-found"><h1>Product not found</h1><Link to="/menu" className="btn-primary">Back to Menu</Link></div></main>
 
   const images = product.images?.edges?.map(e => e.node) || []
   const variants = product.variants?.edges?.map(e => e.node) || []
@@ -43,7 +43,7 @@ export default function ProductPage() {
       <div className="product-layout"><div className="container"><div className="product-grid">
         <div className="product-gallery">
           <div className="product-main-img">
-            {images[activeImage] ? <img src={images[activeImage].url} alt={images[activeImage].altText || product.title}/> : <div className="product-img-placeholder">🎂</div>}
+            {images[activeImage] ? <img src={images[activeImage].url} alt={images[activeImage].altText || product.title}/> : <div className="product-img-placeholder"></div>}
           </div>
           {images.length > 1 && <div className="product-thumbs">{images.map((img, i) => <button key={img.id} className={`product-thumb${i === activeImage ? ' active' : ''}`} onClick={() => setActiveImage(i)}><img src={img.url} alt=""/></button>)}</div>}
         </div>
@@ -59,7 +59,7 @@ export default function ProductPage() {
             <div className="product-variant-options">{variants.map(v => <button key={v.id} className={`product-variant-btn${v.id === selectedVariant?.id ? ' selected' : ''}${!v.availableForSale ? ' sold-out' : ''}`} onClick={() => setSelectedVariant(v)} disabled={!v.availableForSale}><span>{v.title !== 'Default Title' ? v.title : v.selectedOptions?.[0]?.value}</span><span className="pv-price">{fmt(v.price.amount)}</span></button>)}</div>
           </div>}
           <button className="btn-primary product-add-btn" onClick={() => selectedVariant && addToCart(selectedVariant.id)} disabled={!product.availableForSale || cartLoading} id="product-add-to-cart">
-            {!product.availableForSale ? 'Sold Out' : cartLoading ? 'Adding…' : 'Add to Cart ✦'}
+            {!product.availableForSale ? 'Sold Out' : cartLoading ? 'Adding…' : 'Add to Cart'}
           </button>
           {product.descriptionHtml && <div className="product-description"><h3 className="product-desc-title">Description</h3><div className="product-desc-body" dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}/></div>}
           {product.tags?.length > 0 && <div className="product-tags">{product.tags.map(t => <span key={t} className="product-tag">{t}</span>)}</div>}

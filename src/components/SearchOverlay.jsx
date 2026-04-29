@@ -74,7 +74,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
       <div className="search-backdrop" onClick={onClose} />
       <div className="search-panel">
         <div className="search-input-wrap">
-          <span className="search-icon-input" aria-hidden="true">🔍</span>
+          <span className="search-icon-input" aria-hidden="true"></span>
           <input
             ref={inputRef}
             type="search"
@@ -101,7 +101,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
 
           {!isSearching && query.length >= 2 && results.length === 0 && (
             <div className="search-no-results">
-              <span className="search-no-icon">🍰</span>
+              <span className="search-no-icon"></span>
               <p>No results for "{query}"</p>
               <p className="search-no-hint">Try "chocolate", "cupcakes", or "brownies"</p>
             </div>
@@ -120,7 +120,7 @@ export default function SearchOverlay({ isOpen, onClose }) {
                       {product.image ? (
                         <img src={product.image.url} alt={product.image.altText || product.title} />
                       ) : (
-                        <span className="search-result-placeholder">🍰</span>
+                        <span className="search-result-placeholder"></span>
                       )}
                     </div>
                     <div className="search-result-info">

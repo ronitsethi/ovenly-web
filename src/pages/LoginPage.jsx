@@ -40,7 +40,7 @@ export default function LoginPage() {
             <p className="login-sub">Sign in to track orders, save favourites, and reorder your favourite treats.</p>
           </div>
           <button className="btn-primary login-shopify-btn" onClick={login} id="login-btn">
-            Sign in with Shopify ✦
+            Sign in with Shopify
           </button>
           <p className="login-note">
             You'll be redirected to Shopify's secure login page.
@@ -48,7 +48,7 @@ export default function LoginPage() {
           </p>
           <div className="login-divider"><span>or</span></div>
           <a href="tel:+919140223957" className="btn-outline login-call-btn">
-            📞 Call us to order
+            Call us to order
           </a>
         </div>
       </div>

@@ -17,12 +17,12 @@ const galleryImages = [
 ]
 
 const offerings = [
-  { emoji: '🎂', title: 'Celebration Cakes', desc: 'Custom & signature designs. Belgian chocolate, red velvet, cheesecakes & more — for every occasion.' },
-  { emoji: '🧁', title: 'Cupcakes', desc: 'Beautifully crafted boxes of 4 or 6. From Belgian chocolate to vanilla & blueberry.' },
-  { emoji: '🍫', title: 'Brownies & Cookies', desc: 'Brookies, chocochip, biscoff s\'mores, nutella deep dish — baked fresh to order.' },
-  { emoji: '🥐', title: 'Tea Cakes', desc: 'Orange chiffon, carrot cake, banana bread, marble cake & more wholesome loaves.' },
-  { emoji: '🥛', title: 'Tubs & Jars', desc: 'Dessert tubs in tiramisu, banoffee, ferrero rocher & indulgent jars in 350ml sizes.' },
-  { emoji: '🍩', title: 'Berliners & Macarons', desc: 'Pillowy filled berliners and French-style macarons in seasonal flavours.' },
+  { title: 'Celebration Cakes', desc: 'Custom & signature designs. Belgian chocolate, red velvet, cheesecakes & more — for every occasion.' },
+  { title: 'Cupcakes', desc: 'Beautifully crafted boxes of 4 or 6. From Belgian chocolate to vanilla & blueberry.' },
+  { title: 'Brownies & Cookies', desc: 'Brookies, chocochip, biscoff s\'mores, nutella deep dish — baked fresh to order.' },
+  { title: 'Tea Cakes', desc: 'Orange chiffon, carrot cake, banana bread, marble cake & more wholesome loaves.' },
+  { title: 'Tubs & Jars', desc: 'Dessert tubs in tiramisu, banoffee, ferrero rocher & indulgent jars in 350ml sizes.' },
+  { title: 'Berliners & Macarons', desc: 'Pillowy filled berliners and French-style macarons in seasonal flavours.' },
 ]
 
 export default function LandingPage() {
@@ -63,7 +63,7 @@ export default function LandingPage() {
 
           <div className="hero-cta fade-up" style={{ animationDelay: '0.5s' }}>
             <Link to="/menu" className="btn-primary" id="hero-order-btn">
-              Order Now ✦
+              Order Now
             </Link>
             <a href="tel:+919140223957" className="btn-outline" id="hero-call-btn">
               Call Us
@@ -135,7 +135,6 @@ export default function LandingPage() {
           <div className="offerings-grid">
             {offerings.map((item, i) => (
               <div className="offering-card" key={i}>
-                <div className="offering-emoji" aria-hidden="true">{item.emoji}</div>
                 <h3 className="offering-title">{item.title}</h3>
                 <p className="offering-desc">{item.desc}</p>
               </div>
@@ -174,7 +173,7 @@ export default function LandingPage() {
             Desserts that<br /><em>sparkle just like you!</em>
           </h2>
           <Link to="/menu" className="btn-primary cta-btn" id="cta-order-btn">
-            Browse the Menu ✦
+            Browse the Menu
           </Link>
         </div>
       </section>

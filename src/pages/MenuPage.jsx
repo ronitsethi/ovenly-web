@@ -41,25 +41,10 @@ const fallbackMenuData = [
 ]
 
 // Category emoji map for Shopify collections
-const categoryEmojis = {
-  cakes: '🎂', cake: '🎂',
-  'bento cakes': '🎁', 'bento-cakes': '🎁',
-  cheesecake: '🍰', cheesecakes: '🍰',
-  cupcakes: '🧁', cupcake: '🧁',
-  brownies: '🍫', brownie: '🍫',
-  cookies: '🍪', cookie: '🍪',
-  tubs: '🥛', tub: '🥛',
-  jars: '🫙', jar: '🫙',
-  berliners: '🍩', berliner: '🍩',
-  macarons: '🫐', macaron: '🫐',
-  'tea cakes': '🍞', 'tea-cakes': '🍞',
-  'pudding bowls': '🍮', 'pudding-bowls': '🍮',
-  'bento cheesecakes': '🧀', 'bento-cheesecakes': '🧀',
-}
+const categoryEmojis = {}
 
-function getEmoji(title) {
-  const key = title.toLowerCase().trim()
-  return categoryEmojis[key] || '✦'
+function getEmoji() {
+  return ''
 }
 
 function formatPrice(amount) {
@@ -178,7 +163,7 @@ export default function MenuPage() {
                 aria-selected={activeCategory === col.handle}
                 id={`tab-${col.handle}`}
               >
-                {getEmoji(col.title)} {col.title}
+          {col.title}
               </button>
             ))}
           </div>
@@ -190,7 +175,7 @@ export default function MenuPage() {
             <section key={col.handle} className="menu-section" id={col.handle} aria-labelledby={`heading-${col.handle}`}>
               <div className="container">
                 <div className="menu-section-header">
-                  <div className="menu-section-emoji" aria-hidden="true">{getEmoji(col.title)}</div>
+
                   <div>
                     <h2 className="display-md menu-section-title" id={`heading-${col.handle}`}>
                       {col.title}
@@ -267,7 +252,7 @@ export default function MenuPage() {
       <>
         {usingFallback && (
           <div className="menu-fallback-notice">
-            <p>📋 Showing our standard menu. Online ordering coming soon!</p>
+            <p>Showing our standard menu. Online ordering coming soon!</p>
           </div>
         )}
 
@@ -289,7 +274,7 @@ export default function MenuPage() {
                 role="tab"
                 aria-selected={activeCategory === cat.id}
               >
-                {cat.emoji} {cat.category}
+                {cat.category}
               </button>
             ))}
           </div>
@@ -300,7 +285,7 @@ export default function MenuPage() {
             <section key={cat.id} className="menu-section" id={cat.id}>
               <div className="container">
                 <div className="menu-section-header">
-                  <div className="menu-section-emoji" aria-hidden="true">{cat.emoji}</div>
+
                   <div>
                     <h2 className="display-md menu-section-title">{cat.category}</h2>
                     {cat.note && <p className="menu-section-note">{cat.note}</p>}
@@ -375,7 +360,7 @@ export default function MenuPage() {
       <section className="menu-order-cta">
         <div className="container">
           <p className="label-caps" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '0.5rem' }}>
-            ✦ Ready to celebrate?
+            Ready to celebrate?
           </p>
           <p className="menu-cta-text">
             {usingFallback
@@ -383,7 +368,7 @@ export default function MenuPage() {
               : 'Add items to your cart or call us for custom orders'}
           </p>
           <a href="tel:+919140223957" className="btn-primary menu-cta-btn" id="menu-call-btn">
-            📞 +91 91402 23957
+            +91 91402 23957
           </a>
           <p className="menu-note">All prices are for signature standard designs. Custom cakes priced on request.</p>
         </div>
@@ -464,7 +449,7 @@ export default function MenuPage() {
                   onClick={handleDrawerAddToCart}
                   disabled={!dp.availableForSale || cartLoading}
                 >
-                  {!dp.availableForSale ? 'Sold Out' : cartLoading ? 'Adding…' : 'Add to Cart ✦'}
+                  {!dp.availableForSale ? 'Sold Out' : cartLoading ? 'Adding…' : 'Add to Cart'}
                 </button>
                 <Link to={`/product/${dp.handle}`} className="pdrawer-detail-link" onClick={() => setDrawerProduct(null)}>
                   View full details →

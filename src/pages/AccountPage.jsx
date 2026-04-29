@@ -38,9 +38,9 @@ export default function AccountPage() {
             <h2 className="account-section-title">Order History</h2>
             {orders.length === 0 ? (
               <div className="account-empty">
-                <span>🧁</span>
+
                 <p>No orders yet — time to treat yourself!</p>
-                <Link to="/menu" className="btn-primary">Browse Menu ✦</Link>
+                <Link to="/menu" className="btn-primary">Browse Menu</Link>
               </div>
             ) : (
               <div className="orders-list">

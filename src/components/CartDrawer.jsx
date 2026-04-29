@@ -36,7 +36,7 @@ export default function CartDrawer() {
         {/* Header */}
         <div className="cart-header">
           <h2 className="cart-title">
-            <span className="cart-title-icon">🛒</span>
+
             Your Cart
             {totalQuantity > 0 && (
               <span className="cart-count-badge">{totalQuantity}</span>
@@ -55,7 +55,7 @@ export default function CartDrawer() {
         <div className="cart-body">
           {lines.length === 0 ? (
             <div className="cart-empty">
-              <div className="cart-empty-icon">🧁</div>
+
               <p className="cart-empty-title">Your cart is empty</p>
               <p className="cart-empty-sub">
                 Add some delicious treats from our menu!
@@ -64,7 +64,7 @@ export default function CartDrawer() {
                 className="btn-primary cart-empty-btn"
                 onClick={() => setIsCartOpen(false)}
               >
-                Browse Menu ✦
+                Browse Menu
               </button>
             </div>
           ) : (
@@ -75,7 +75,7 @@ export default function CartDrawer() {
                     {line.image ? (
                       <img src={line.image.url} alt={line.image.altText || line.productTitle} />
                     ) : (
-                      <div className="cart-item-placeholder">🍰</div>
+                      <div className="cart-item-placeholder"></div>
                     )}
                   </div>
                   <div className="cart-item-info">
@@ -145,7 +145,7 @@ export default function CartDrawer() {
               onClick={checkout}
               disabled={isLoading}
             >
-              {isLoading ? 'Processing…' : 'Checkout ✦'}
+              {isLoading ? 'Processing…' : 'Checkout'}
             </button>
           </div>
         )}
