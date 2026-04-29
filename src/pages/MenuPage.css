@@ -533,7 +533,7 @@ button.variant-pill:hover:not(:disabled):not(.selected) {
   transition: all 0.2s var(--ease-out);
   min-width: 72px;
 }
-.pdrawer-variant-btn:hover:not(:disabled) {
+.pdrawer-variant-btn:hover:not(:disabled):not(.selected) {
   border-color: var(--cherry-red);
   background: rgba(252, 236, 235, 0.4);
 }
