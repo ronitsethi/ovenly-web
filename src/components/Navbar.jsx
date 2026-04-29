@@ -25,13 +25,7 @@ export default function Navbar() {
             <img src="/Logo.png" alt="Oven'ly Logo" className="nav-logo" />
           </Link>
           <div className="nav-links">
-            <NavLink
-              to="/"
-              className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
-              end
-            >
-              Home
-            </NavLink>
+
             <NavLink
               to="/menu"
               className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
