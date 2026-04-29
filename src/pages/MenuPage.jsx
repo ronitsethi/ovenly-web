@@ -102,8 +102,13 @@ export default function MenuPage() {
             }
           })
         )
-        // Filter out empty collections
-        setCollections(withProducts.filter(c => c.products.length > 0))
+        // Filter out empty collections, then pin Bestsellers to the front
+        const nonempty = withProducts.filter(c => c.products.length > 0)
+        const isBestsellers = c => c.handle === 'bestsellers' || c.title.toLowerCase() === 'bestsellers'
+        setCollections([
+          ...nonempty.filter(isBestsellers),
+          ...nonempty.filter(c => !isBestsellers(c)),
+        ])
       }
     } catch (err) {
       console.error('Failed to load catalog:', err)
