@@ -47,7 +47,7 @@
 /* ── CATEGORY TABS ────────────────────────── */
 .category-tabs-wrap {
   position: sticky;
-  top: 70px;
+  top: 110px;
   z-index: 50;
   background: var(--icing-white);
   border-bottom: 1px solid rgba(165, 22, 39, 0.1);

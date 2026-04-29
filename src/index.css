@@ -32,7 +32,7 @@
 
   /* Spacing */
   --section-pad: clamp(3rem, 8vw, 6rem);
-  --container-max: 480px;
+  --container-max: 680px;
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
