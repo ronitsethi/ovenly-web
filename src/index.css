@@ -250,7 +250,7 @@ body {
 }
 
 .nav-logo {
-  height: 44px;
+  height: 77px;
   width: auto;
   object-fit: contain;
 }
@@ -300,6 +300,6 @@ body {
 
 /* ============ PAGE WRAPPER ============ */
 .page {
-  padding-top: 70px;
+  padding-top: 110px;
   min-height: 100vh;
 }
