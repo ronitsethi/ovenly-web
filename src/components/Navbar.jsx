@@ -19,7 +19,7 @@ export default function Navbar() {
     <>
       <nav className={`nav${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
-          <Link to="/" className="nav-logo-link" aria-label="Oven'ly Home">
+          <Link to="/menu" className="nav-logo-link" aria-label="Oven'ly Menu">
             <img src="/Logo.png" alt="Oven'ly Logo" className="nav-logo" />
           </Link>
           <div className="nav-links">
