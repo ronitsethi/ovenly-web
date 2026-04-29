@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
-import { useCustomer } from '../context/CustomerContext'
 import SearchOverlay from './SearchOverlay'
 import './Navbar.css'
 
@@ -9,7 +8,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const { totalQuantity, setIsCartOpen, notification } = useCart()
-  const { isLoggedIn } = useCustomer()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -46,19 +44,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Account */}
-            <Link
-              to={isLoggedIn ? '/account' : '/login'}
-              className="nav-icon-btn"
-              aria-label={isLoggedIn ? 'My account' : 'Login'}
-              id="nav-account-btn"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              {isLoggedIn && <span className="nav-logged-dot" />}
-            </Link>
+
 
             {/* Cart */}
             <button
