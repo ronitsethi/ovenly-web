@@ -303,3 +303,58 @@ body {
   padding-top: 110px;
   min-height: 100vh;
 }
+
+/* ============ FOOTER (global) ============ */
+.footer {
+  background: #1c0a0c;
+  padding: 2.5rem 0 2rem;
+  text-align: center;
+}
+
+.footer-logo {
+  height: 52px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+  font-size: 0.6rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.footer-link:hover {
+  color: var(--blush-pink);
+}
+
+.footer-dot {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+}
+
+.footer-copy {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
