@@ -71,13 +71,6 @@ export default function CartDrawer() {
             <ul className="cart-items">
               {lines.map(line => (
                 <li key={line.id} className="cart-item">
-                  <div className="cart-item-image">
-                    {line.image ? (
-                      <img src={line.image.url} alt={line.image.altText || line.productTitle} />
-                    ) : (
-                      <div className="cart-item-placeholder"></div>
-                    )}
-                  </div>
                   <div className="cart-item-info">
                     <p className="cart-item-name">{line.productTitle}</p>
                     {line.variantTitle !== 'Default Title' && (
