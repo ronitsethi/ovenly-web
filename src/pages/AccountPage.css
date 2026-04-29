@@ -1,0 +1,76 @@
+/* ============================================
+   ACCOUNT PAGE
+   ============================================ */
+.account-page { min-height: 100vh; display: flex; flex-direction: column; }
+
+.account-loading {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 1rem;
+}
+.account-spinner {
+  width: 28px; height: 28px; border: 3px solid var(--blush-pink);
+  border-top-color: var(--cherry-red); border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.account-container { flex: 1; padding: var(--section-pad) 0; }
+
+.account-header {
+  display: flex; align-items: center; gap: 1rem;
+  padding-bottom: 1.5rem; border-bottom: 1px solid rgba(165,22,39,0.08);
+  margin-bottom: 2rem; flex-wrap: wrap;
+}
+
+.account-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--cherry-red); color: white;
+  font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.account-name { color: #2a1015; }
+.account-email { font-size: 0.8rem; color: #8a6a6a; }
+.account-logout { margin-left: auto; font-size: 0.7rem; padding: 0.4rem 1rem; }
+
+.account-section { margin-bottom: 2rem; }
+.account-section-title {
+  font-family: var(--font-display); font-size: 1.3rem; font-weight: 600;
+  color: #2a1015; margin-bottom: 1rem;
+}
+
+.account-empty {
+  text-align: center; padding: 2rem; background: var(--sugar-cream);
+  border-radius: var(--radius-md);
+}
+.account-empty span { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+.account-empty p { font-size: 0.88rem; color: #5a3a3a; margin-bottom: 1rem; }
+
+.orders-list { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.order-card {
+  padding: 1rem 1.25rem; background: white; border-radius: var(--radius-md);
+  border: 1px solid rgba(165,22,39,0.08); transition: box-shadow 0.2s;
+}
+.order-card:hover { box-shadow: var(--shadow-soft); }
+
+.order-top {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 0.5rem;
+}
+.order-name { font-weight: 600; font-size: 0.88rem; color: #2a1015; }
+.order-date { font-size: 0.75rem; color: #8a6a6a; }
+
+.order-bottom { display: flex; justify-content: space-between; align-items: center; }
+.order-total {
+  font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+  color: var(--cherry-red);
+}
+.order-status {
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-pill);
+}
+.order-status.fulfilled, .order-status.delivered { background: #dcfce7; color: #166534; }
+.order-status.processing, .order-status.pending { background: #fef3c7; color: #92400e; }
+.order-status.cancelled { background: #fee2e2; color: #991b1b; }

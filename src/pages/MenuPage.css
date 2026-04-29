@@ -282,3 +282,318 @@
   font-style: italic;
   line-height: 1.5;
 }
+
+/* ── SHOPIFY PRODUCT CARDS ───────────────── */
+.shopify-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-item-img-link {
+  display: block;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+
+.menu-item-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--icing-white);
+}
+.menu-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-out);
+}
+.menu-item-card:hover .menu-item-img img {
+  transform: scale(1.05);
+}
+
+.menu-item-link {
+  text-decoration: none;
+  color: inherit;
+}
+.menu-item-link:hover .menu-item-name {
+  color: var(--cherry-red);
+}
+
+/* Variant pills — selectable */
+.variant-pill.selected {
+  background: var(--cherry-red);
+  border-color: var(--cherry-red);
+}
+.variant-pill.selected .variant-size,
+.variant-pill.selected .variant-price {
+  color: white;
+}
+.variant-pill.sold-out {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+button.variant-pill {
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s var(--ease-out);
+}
+button.variant-pill:hover:not(:disabled):not(.selected) {
+  border-color: var(--cherry-red);
+  background: rgba(252, 236, 235, 0.5);
+}
+
+/* Add to cart button */
+.menu-add-btn {
+  margin-top: 0.85rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  background: var(--cherry-red);
+  color: white;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s var(--ease-spring);
+  box-shadow: 0 2px 12px rgba(165, 22, 39, 0.2);
+}
+.menu-add-btn:hover:not(:disabled) {
+  background: var(--cherry-red-dark);
+  transform: translateY(-1px);
+}
+.menu-add-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Loading state */
+.menu-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  gap: 1rem;
+}
+.menu-loading p {
+  font-size: 0.85rem;
+  color: #8a6a6a;
+}
+.menu-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--blush-pink);
+  border-top-color: var(--cherry-red);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Fallback notice */
+.menu-fallback-notice {
+  background: var(--sugar-cream);
+  border: 1px solid rgba(165, 22, 39, 0.1);
+  border-radius: var(--radius-md);
+  margin: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+.menu-fallback-notice p {
+  font-size: 0.78rem;
+  color: #5a3a3a;
+  font-weight: 500;
+}
+
+/* Make shopify cards look tappable */
+.shopify-card {
+  cursor: pointer;
+}
+.shopify-card .menu-item-img {
+  margin-bottom: 0.75rem;
+}
+
+/* ── PRODUCT BOTTOM DRAWER ───────────────── */
+.pdrawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(42, 16, 21, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes pdrawerUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.pdrawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 201;
+  background: var(--icing-white);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: 0 -8px 40px rgba(165, 22, 39, 0.15);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: pdrawerUp 0.35s var(--ease-spring);
+}
+
+/* Swipe handle */
+.pdrawer-handle {
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem 0 0.25rem;
+  cursor: pointer;
+}
+.pdrawer-handle-bar {
+  width: 36px;
+  height: 4px;
+  background: rgba(165, 22, 39, 0.15);
+  border-radius: 2px;
+}
+
+/* Body */
+.pdrawer-body {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 1.25rem 0.75rem;
+  overflow-y: auto;
+}
+
+.pdrawer-img {
+  width: 110px;
+  height: 110px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--sugar-cream);
+}
+.pdrawer-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdrawer-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdrawer-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2a1015;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+}
+
+.pdrawer-desc {
+  font-size: 0.75rem;
+  color: #6a3040;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.pdrawer-price {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cherry-red);
+  margin-bottom: 0.75rem;
+}
+
+/* Variant buttons */
+.pdrawer-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pdrawer-variant-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 0.45rem 0.75rem;
+  border: 1.5px solid rgba(165, 22, 39, 0.15);
+  border-radius: var(--radius-md);
+  background: white;
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s var(--ease-out);
+  min-width: 72px;
+}
+.pdrawer-variant-btn:hover:not(:disabled) {
+  border-color: var(--cherry-red);
+  background: rgba(252, 236, 235, 0.4);
+}
+.pdrawer-variant-btn.selected {
+  border-color: var(--cherry-red);
+  background: var(--cherry-red);
+  color: white;
+}
+.pdrawer-variant-btn.sold-out {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pdrawer-v-name {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--caramel-brown);
+}
+.pdrawer-v-price {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cherry-red);
+}
+.pdrawer-variant-btn.selected .pdrawer-v-name,
+.pdrawer-variant-btn.selected .pdrawer-v-price {
+  color: white;
+}
+
+/* Footer */
+.pdrawer-footer {
+  padding: 0.75rem 1.25rem 1.25rem;
+  border-top: 1px solid rgba(165, 22, 39, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pdrawer-add-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.8rem;
+  padding: 0.9rem 2rem;
+}
+.pdrawer-add-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.pdrawer-detail-link {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--cherry-red);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.pdrawer-detail-link:hover {
+  opacity: 0.7;
+}
