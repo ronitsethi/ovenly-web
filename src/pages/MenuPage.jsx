@@ -89,7 +89,11 @@ export default function MenuPage() {
         setCollections(Object.entries(grouped).map(([type, data]) => ({
           handle: type.toLowerCase().replace(/\s+/g, '-'),
           title: type,
-          products: data.products,
+          products: data.products.sort((a, b) => {
+            const priceA = parseFloat(a.priceRange?.minVariantPrice?.amount || 0)
+            const priceB = parseFloat(b.priceRange?.minVariantPrice?.amount || 0)
+            return priceA - priceB
+          }),
         })))
       } else {
         // Fetch products for each collection
@@ -98,7 +102,11 @@ export default function MenuPage() {
             const cpData = await shopifyFetch(COLLECTION_PRODUCTS_QUERY, { handle: col.handle })
             return {
               ...col,
-              products: cpData?.collection?.products?.edges?.map(e => e.node) || [],
+              products: (cpData?.collection?.products?.edges?.map(e => e.node) || []).sort((a, b) => {
+                const priceA = parseFloat(a.priceRange?.minVariantPrice?.amount || 0)
+                const priceB = parseFloat(b.priceRange?.minVariantPrice?.amount || 0)
+                return priceA - priceB
+              }),
             }
           })
         )
