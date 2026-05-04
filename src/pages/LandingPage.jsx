@@ -82,9 +82,6 @@ function Hero() {
       <div className="lp-hero-photo fade-up" style={{ animationDelay: '0.35s' }}>
         <div className="lp-hero-photo-frame">
           <img src="/images/img5.jpg" alt="Anniversary cake with pink roses" />
-          <div className="lp-hero-photo-tag">
-            <span className="label-caps">No. 5 — Floral · Belgian White</span>
-          </div>
         </div>
         <div className="lp-hero-stamp" aria-hidden="true">
           <svg viewBox="0 0 120 120">
