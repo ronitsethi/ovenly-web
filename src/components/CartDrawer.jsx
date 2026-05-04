@@ -1,3 +1,4 @@
+import { useState, useRef } from 'react'
 import { useCart } from '../context/CartContext'
 import './CartDrawer.css'
 
@@ -9,9 +10,20 @@ export default function CartDrawer() {
     isLoading,
     updateQuantity,
     removeItem,
+    updateNote,
     checkout,
     totalQuantity,
   } = useCart()
+
+  const [noteOpen, setNoteOpen] = useState(false)
+  const [noteValue, setNoteValue] = useState('')
+  const noteInitialized = useRef(false)
+
+  // Sync note from cart on first load
+  if (cart?.note && !noteInitialized.current) {
+    setNoteValue(cart.note)
+    noteInitialized.current = true
+  }
 
   const lines = cart?.lines || []
   const subtotal = cart?.cost?.subtotalAmount
@@ -118,6 +130,30 @@ export default function CartDrawer() {
         {/* Footer — only show if items exist */}
         {lines.length > 0 && (
           <div className="cart-footer">
+            {/* Special Instructions */}
+            <div className="cart-special-instructions">
+              <button
+                className="cart-si-toggle"
+                onClick={() => setNoteOpen(!noteOpen)}
+                aria-expanded={noteOpen}
+              >
+                <span>Special Instructions</span>
+                <span className={`cart-si-chevron${noteOpen ? ' open' : ''}`}>+</span>
+              </button>
+              {noteOpen && (
+                <div className="cart-si-body">
+                  <textarea
+                    className="cart-si-textarea"
+                    placeholder="E.g. message on cake, allergies, delivery notes…"
+                    value={noteValue}
+                    onChange={(e) => setNoteValue(e.target.value)}
+                    onBlur={() => updateNote(noteValue)}
+                    rows={3}
+                  />
+                </div>
+              )}
+            </div>
+
             <div className="cart-totals">
               {subtotal && (
                 <div className="cart-total-row">

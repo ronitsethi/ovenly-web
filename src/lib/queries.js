@@ -440,6 +440,22 @@ export const CART_LINES_REMOVE_MUTATION = `
   }
 `
 
+/** Update cart note (special instructions) */
+export const CART_NOTE_UPDATE_MUTATION = `
+  mutation CartNoteUpdate($cartId: ID!, $note: String!) {
+    cartNoteUpdate(cartId: $cartId, note: $note) {
+      cart {
+        id
+        note
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`
+
 /* ============================================================
    SEARCH QUERY
    ============================================================ */

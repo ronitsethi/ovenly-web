@@ -379,19 +379,7 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <img src="/Logo.png" alt="Oven'ly" className="footer-logo" />
-          <p className="footer-tagline label-caps">Crafted with love</p>
-          <div className="footer-links">
-            <a href="tel:+919140223957" className="footer-link">+91 91402 23957</a>
-            <span className="footer-dot">·</span>
-            <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
-          </div>
-          <p className="footer-copy">© 2026 Oven'ly. All prices inclusive of GST.</p>
-        </div>
-      </footer>
+
 
       {/* ── PRODUCT BOTTOM DRAWER ────────────── */}
       {drawerProduct && (() => {

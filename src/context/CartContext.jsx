@@ -9,6 +9,7 @@ import {
   CART_LINES_ADD_MUTATION,
   CART_LINES_UPDATE_MUTATION,
   CART_LINES_REMOVE_MUTATION,
+  CART_NOTE_UPDATE_MUTATION,
 } from '../lib/queries'
 
 const CartContext = createContext(null)
@@ -19,6 +20,7 @@ const CART_QUERY = `
       id
       checkoutUrl
       totalQuantity
+      note
       cost {
         totalAmount { amount currencyCode }
         subtotalAmount { amount currencyCode }
@@ -48,6 +50,7 @@ function parseCart(cart) {
   if (!cart) return null
   return {
     id: cart.id,
+    note: cart.note || '',
     checkoutUrl: cart.checkoutUrl,
     totalQuantity: cart.totalQuantity || 0,
     cost: cart.cost,
@@ -174,6 +177,19 @@ export function CartProvider({ children }) {
     }
   }, [cart])
 
+  const updateNote = useCallback(async (note) => {
+    if (!cart) return
+    try {
+      await shopifyFetch(CART_NOTE_UPDATE_MUTATION, {
+        cartId: cart.id,
+        note,
+      })
+      setCart(prev => prev ? { ...prev, note } : prev)
+    } catch (err) {
+      console.error('Update note error:', err)
+    }
+  }, [cart])
+
   const checkout = useCallback(() => {
     if (cart?.checkoutUrl) {
       window.location.href = cart.checkoutUrl
@@ -192,6 +208,7 @@ export function CartProvider({ children }) {
         addToCart,
         updateQuantity,
         removeItem,
+        updateNote,
         checkout,
         totalQuantity,
         notification,

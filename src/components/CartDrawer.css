@@ -339,3 +339,65 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+/* Special Instructions */
+.cart-special-instructions {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(165, 22, 39, 0.1);
+  padding-bottom: 0.85rem;
+}
+
+.cart-si-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2a1015;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+.cart-si-toggle:hover {
+  color: var(--cherry-red);
+}
+
+.cart-si-chevron {
+  font-size: 1.1rem;
+  font-weight: 400;
+  transition: transform 0.25s ease;
+}
+.cart-si-chevron.open {
+  transform: rotate(45deg);
+}
+
+.cart-si-body {
+  padding-top: 0.6rem;
+}
+
+.cart-si-textarea {
+  width: 100%;
+  border: 1px solid rgba(165, 22, 39, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #2a1015;
+  background: white;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.cart-si-textarea::placeholder {
+  color: #b09090;
+  font-style: italic;
+}
+.cart-si-textarea:focus {
+  border-color: var(--cherry-red);
+}
