@@ -344,7 +344,7 @@
 }
 .lp-cta-eyebrow { color: var(--blush-pink); margin-bottom: 0.85rem; }
 .lp-cta-headline { color: #fff; margin-bottom: 1.75rem; position: relative; }
-.lp-cta-headline em { color: #fff; }
+.landing-page .lp-cta-headline em { color: #fff; }
 .lp-cta-btn {
   display: inline-flex; align-items: center; gap: 0.55rem;
   background: #fff; color: var(--cherry-red);
