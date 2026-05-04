@@ -95,8 +95,7 @@ function Hero() {
               <textPath href="#lp-stamp-circ">CRAFTED WITH LOVE · OVEN'LY · CRAFTED WITH LOVE · OVEN'LY · </textPath>
             </text>
             <circle cx="60" cy="60" r="18" fill="#A51627"/>
-            <text x="60" y="62" textAnchor="middle" fontSize="10" fontFamily="Cormorant Garamond" fill="#FFCCD4" fontStyle="italic">since</text>
-            <text x="60" y="74" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4">'24</text>
+            <text x="60" y="64" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4" fontStyle="italic">Est. '21</text>
           </svg>
         </div>
       </div>
