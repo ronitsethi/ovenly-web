@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
 
@@ -20,14 +20,7 @@ const galleryImages = [
   { src: '/images/img12.jpg', alt: 'Signature bakes' },
 ]
 
-const offerings = [
-  { n: '01', title: 'Celebration Cakes',   desc: 'Custom & signature designs. Belgian chocolate, red velvet, cheesecakes & more — for every occasion.', img: '/images/img5.jpg'  },
-  { n: '02', title: 'Cupcakes',            desc: 'Beautifully crafted boxes of four or six. From Belgian chocolate to vanilla & blueberry.',              img: '/images/img10.jpg' },
-  { n: '03', title: 'Brownies & Cookies',  desc: "Brookies, chocochip, biscoff s'mores, nutella deep dish — baked fresh to order.",                       img: '/images/img1.jpg'  },
-  { n: '04', title: 'Tea Cakes',           desc: 'Orange chiffon, carrot cake, banana bread, marble cake & more wholesome loaves.',                         img: '/images/img4.jpg'  },
-  { n: '05', title: 'Tubs & Jars',         desc: 'Dessert tubs in tiramisu, banoffee, ferrero rocher & indulgent jars in 350ml sizes.',                     img: '/images/img8.jpg'  },
-  { n: '06', title: 'Berliners & Macarons',desc: 'Pillowy filled berliners and French-style macarons in seasonal flavours.',                                img: '/images/img11.jpg' },
-]
+
 
 // ────────────────────────────────────────────────────────────
 // Inline icons
@@ -207,60 +200,7 @@ function StorySection() {
   )
 }
 
-// ────────────────────────────────────────────────────────────
-// Offerings — interactive list with featured photo
-// ────────────────────────────────────────────────────────────
-function OfferingsSection() {
-  const [activeIdx, setActiveIdx] = useState(0)
-  const active = offerings[activeIdx]
 
-  return (
-    <section className="lp-offerings" aria-labelledby="lp-offer-h">
-      <div className="container">
-        <div className="lp-section-head">
-          <div className="divider">
-            <div className="divider-line"></div>
-            <span className="label-caps lp-section-eyebrow">What We Make · 02</span>
-            <div className="divider-line"></div>
-          </div>
-          <h2 className="display-lg" id="lp-offer-h">
-            Something for<br/><em>every craving.</em>
-          </h2>
-        </div>
-
-        {/* Featured offering photo */}
-        <div className="lp-offer-feature">
-          <div className="lp-offer-feature-photo">
-            <img src={active.img} alt={active.title} loading="lazy" key={active.n}/>
-            <span className="lp-offer-feature-num">{active.n}</span>
-          </div>
-          <h3 className="display-md lp-offer-feature-title">{active.title}</h3>
-          <p className="lp-offer-feature-desc">{active.desc}</p>
-        </div>
-
-        {/* Offering list */}
-        <ul className="lp-offer-list">
-          {offerings.map((item, i) => (
-            <li
-              key={item.n}
-              className={`lp-offer-row${i === activeIdx ? ' is-active' : ''}`}
-              onClick={() => setActiveIdx(i)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={e => e.key === 'Enter' && setActiveIdx(i)}
-            >
-              <span className="lp-offer-row-n">{item.n}</span>
-              <span className="lp-offer-row-title">{item.title}</span>
-              <span className="lp-offer-row-arrow">
-                <IconArrow width="16" height="16"/>
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
 
 // ────────────────────────────────────────────────────────────
 // Who Are We — letter from the founders
@@ -421,7 +361,7 @@ export default function LandingPage() {
       <Hero/>
       <Marquee/>
       <StorySection/>
-      <OfferingsSection/>
+
       <WhoAreWeSection/>
       <GallerySection/>
       <OccasionsStrip/>
