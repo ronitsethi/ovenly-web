@@ -6,18 +6,18 @@ import './LandingPage.css'
 // Data
 // ────────────────────────────────────────────────────────────
 const galleryImages = [
-  { src: '/images/img1.jpg',  alt: 'Boxed cookies' },
-  { src: '/images/img2.jpg',  alt: 'Branded packaging' },
-  { src: '/images/img3.jpg',  alt: 'Premium cake' },
-  { src: '/images/img4.jpg',  alt: 'Artisan confection' },
-  { src: '/images/img5.jpg',  alt: 'Anniversary cake' },
-  { src: '/images/img6.jpg',  alt: 'Beautiful dessert' },
-  { src: '/images/img7.jpg',  alt: 'Fresh bakery' },
-  { src: '/images/img8.jpg',  alt: 'Tiramisu tubs' },
-  { src: '/images/img9.jpg',  alt: 'Custom cake' },
-  { src: '/images/img10.jpg', alt: 'Cupcakes' },
-  { src: '/images/img11.jpg', alt: 'Macarons' },
-  { src: '/images/img12.jpg', alt: 'Signature bakes' },
+  { src: '/images/gallery1.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery2.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery3.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery4.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery5.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery6.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery7.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery8.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery9.jpg',  alt: 'Oven\'ly creation' },
+  { src: '/images/gallery10.jpg', alt: 'Oven\'ly creation' },
+  { src: '/images/gallery11.jpg', alt: 'Oven\'ly creation' },
+  { src: '/images/gallery12.jpg', alt: 'Oven\'ly creation' },
 ]
 
 
@@ -81,7 +81,7 @@ function Hero() {
 
       <div className="lp-hero-photo fade-up" style={{ animationDelay: '0.35s' }}>
         <div className="lp-hero-photo-frame">
-          <img src="/images/img5.jpg" alt="Anniversary cake with pink roses" />
+          <img src="/images/hero-cake.jpg" alt="Anniversary cake with pink roses" />
         </div>
         <div className="lp-hero-stamp" aria-hidden="true">
           <svg viewBox="0 0 120 120">
