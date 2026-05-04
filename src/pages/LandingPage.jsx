@@ -59,29 +59,16 @@ function Hero() {
     <section className="lp-hero" aria-label="Hero">
       <div className="lp-hero-decor" aria-hidden="true">
         <div className="lp-hero-arc" />
-        <span className="lp-hero-spark lp-hero-spark--a"><Sparkle size={18} color="#A51627"/></span>
-        <span className="lp-hero-spark lp-hero-spark--b"><Sparkle size={10} color="#754015"/></span>
-        <span className="lp-hero-spark lp-hero-spark--c"><Sparkle size={14} color="#EE5483"/></span>
       </div>
 
       <div className="container">
-        <div className="lp-hero-badge fade-up" style={{ animationDelay: '0.05s' }}>
-          <span className="sparkle"></span>
-          <span className="label-caps">Crafted With Love · Est. India</span>
-          <span className="sparkle"></span>
-        </div>
-
         <h1 className="lp-hero-headline display-xl fade-up" style={{ animationDelay: '0.15s' }}>
           Dazzling <em>desserts</em><br/>
-          for every <span className="lp-underline">occasion
-            <svg viewBox="0 0 200 14" preserveAspectRatio="none">
-              <path d="M2 9 Q 50 -2 100 6 T 198 7" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-            </svg>
-          </span>.
+          for every occasion.
         </h1>
 
         <p className="lp-hero-sub fade-up" style={{ animationDelay: '0.3s' }}>
-          A small kitchen with big sparkle. Premium handcrafted bakes — Belgian chocolate, house-made compotes, freshly whipped creams — because your moments deserve to <em>shine</em>.
+          Handcrafted desserts made with the finest ingredients and thoughtful details — designed to make every celebration truly special.
         </p>
 
         <div className="lp-hero-cta fade-up" style={{ animationDelay: '0.45s' }}>
@@ -89,14 +76,7 @@ function Hero() {
           <a href="tel:+919140223957" className="btn-outline"><IconPhone width="14" height="14"/> Call Us</a>
         </div>
 
-        <div className="lp-hero-meta fade-up" style={{ animationDelay: '0.6s' }}>
-          <div className="lp-hero-rating">
-            <div className="lp-stars" aria-hidden="true">
-              <IconStar width="12" height="12"/><IconStar width="12" height="12"/><IconStar width="12" height="12"/><IconStar width="12" height="12"/><IconStar width="12" height="12"/>
-            </div>
-            <span className="label-caps">Loved by 1,200+ celebrations</span>
-          </div>
-        </div>
+
       </div>
 
       <div className="lp-hero-photo fade-up" style={{ animationDelay: '0.35s' }}>
@@ -109,14 +89,14 @@ function Hero() {
         <div className="lp-hero-stamp" aria-hidden="true">
           <svg viewBox="0 0 120 120">
             <defs>
-              <path id="lp-stamp-circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/>
+              <path id="lp-stamp-circ" d="M60,60 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
             </defs>
             <text className="lp-hero-stamp-text">
               <textPath href="#lp-stamp-circ">CRAFTED WITH LOVE · OVEN'LY · CRAFTED WITH LOVE · OVEN'LY · </textPath>
             </text>
-            <circle cx="60" cy="60" r="22" fill="#A51627"/>
-            <text x="60" y="65" textAnchor="middle" fontSize="11" fontFamily="Cormorant Garamond" fill="#FFCCD4" fontStyle="italic">since</text>
-            <text x="60" y="78" textAnchor="middle" fontSize="14" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4">'24</text>
+            <circle cx="60" cy="60" r="18" fill="#A51627"/>
+            <text x="60" y="62" textAnchor="middle" fontSize="10" fontFamily="Cormorant Garamond" fill="#FFCCD4" fontStyle="italic">since</text>
+            <text x="60" y="74" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4">'24</text>
           </svg>
         </div>
       </div>
@@ -147,60 +127,6 @@ function Marquee() {
   )
 }
 
-// ────────────────────────────────────────────────────────────
-// Story
-// ────────────────────────────────────────────────────────────
-function StorySection() {
-  return (
-    <section className="lp-story" aria-labelledby="lp-story-h">
-      <div className="container">
-        <div className="lp-section-head">
-          <div className="divider">
-            <div className="divider-line"></div>
-            <span className="label-caps lp-section-eyebrow">Our Story · 01</span>
-            <div className="divider-line"></div>
-          </div>
-          <h2 className="display-lg" id="lp-story-h">
-            Baked fresh.<br/><em>Crafted with care.</em>
-          </h2>
-        </div>
-
-        <div className="lp-story-photo">
-          <img src="/images/img8.jpg" alt="Tiramisu tubs with gold seal" loading="lazy"/>
-          <div className="lp-story-quote">
-            <span className="lp-quote-mark">"</span>
-            <p>Every bake is a labour of love — premium ingredients, strict hygiene, and one small kitchen that pours its whole heart into your celebration.</p>
-            <span className="label-caps">— The Oven'ly Kitchen</span>
-          </div>
-        </div>
-
-        <p className="lp-story-body">
-          We use only premium quality ingredients — from rich <em>Belgian chocolate</em> to house-made compotes and freshly whipped creams — because your celebrations deserve nothing less than extraordinary.
-        </p>
-        <p className="lp-story-body">
-          Birthday, anniversary, gifting moment, or a quiet self-treat — we make it sparkle.
-        </p>
-
-        <div className="lp-stats">
-          <div className="lp-stat">
-            <span className="lp-stat-num display-lg">15<span>+</span></span>
-            <span className="label-caps">Cake Flavours</span>
-          </div>
-          <div className="lp-stat">
-            <span className="lp-stat-num display-lg">100<span>%</span></span>
-            <span className="label-caps">In-House Made</span>
-          </div>
-          <div className="lp-stat">
-            <span className="lp-stat-num display-lg">GST</span>
-            <span className="label-caps">Inclusive Pricing</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-
 
 // ────────────────────────────────────────────────────────────
 // Who Are We — letter from the founders
@@ -212,7 +138,7 @@ function WhoAreWeSection() {
         <div className="lp-section-head">
           <div className="divider">
             <div className="divider-line"></div>
-            <span className="label-caps lp-section-eyebrow">Who Are We · 02</span>
+            <span className="label-caps lp-section-eyebrow">Who Are We</span>
             <div className="divider-line"></div>
           </div>
           <h2 className="display-lg" id="lp-who-h">
@@ -222,10 +148,6 @@ function WhoAreWeSection() {
 
         <div className="lp-who-photo">
           <img src="/images/founders.jpg" alt="Tarunika and Advika, founders of Oven'ly" loading="lazy"/>
-          <div className="lp-who-photo-caption">
-            <span className="label-caps">Tarunika &amp; Advika</span>
-            <span className="lp-who-photo-sub">Founders</span>
-          </div>
         </div>
 
         <div className="lp-who-letter">
@@ -270,7 +192,7 @@ function GallerySection() {
           <div>
             <div className="divider">
               <div className="divider-line"></div>
-              <span className="label-caps lp-section-eyebrow">Gallery · 03</span>
+              <span className="label-caps lp-section-eyebrow">Gallery</span>
               <div className="divider-line"></div>
             </div>
             <h2 className="display-lg" id="lp-gallery-h">
@@ -292,7 +214,6 @@ function GallerySection() {
         {galleryImages.map((img, i) => (
           <figure className="lp-gal-card" key={i}>
             <img src={img.src} alt={img.alt} loading="lazy"/>
-            <figcaption className="label-caps">No. {String(i + 1).padStart(2, '0')}</figcaption>
           </figure>
         ))}
       </div>
@@ -300,34 +221,6 @@ function GallerySection() {
   )
 }
 
-// ────────────────────────────────────────────────────────────
-// Occasions
-// ────────────────────────────────────────────────────────────
-function OccasionsStrip() {
-  const items = ['Birthdays', 'Anniversaries', 'Weddings', 'Baby Showers', 'Office Gifting', 'Just Because']
-  return (
-    <section className="lp-occasions">
-      <div className="container">
-        <div className="divider">
-          <div className="divider-line"></div>
-          <span className="label-caps lp-section-eyebrow">For the Occasion · 04</span>
-          <div className="divider-line"></div>
-        </div>
-        <h2 className="display-lg lp-occ-headline">
-          We bake for the moments that <em>matter.</em>
-        </h2>
-        <ul className="lp-occ-list">
-          {items.map((it, i) => (
-            <li key={i} className="lp-occ-pill">
-              <Sparkle size={9} color="#A51627"/>
-              <span>{it}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
 
 // ────────────────────────────────────────────────────────────
 // CTA
@@ -360,25 +253,10 @@ export default function LandingPage() {
     <main className="page landing-page" id="main-content">
       <Hero/>
       <Marquee/>
-      <StorySection/>
 
       <WhoAreWeSection/>
       <GallerySection/>
-      <OccasionsStrip/>
       <CTABanner/>
-
-      <footer className="footer">
-        <div className="container">
-          <img src="/Logo.png" alt="Oven'ly" className="footer-logo"/>
-          <p className="footer-tagline label-caps">Crafted with love</p>
-          <div className="footer-links">
-            <a href="tel:+919140223957" className="footer-link">+91 91402 23957</a>
-            <span className="footer-dot">·</span>
-            <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
-          </div>
-          <p className="footer-copy">© 2026 Oven'ly. All prices inclusive of GST.</p>
-        </div>
-      </footer>
     </main>
   )
 }
