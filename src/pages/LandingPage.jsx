@@ -1,10 +1,40 @@
-import { useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
 
 // ────────────────────────────────────────────────────────────
 // Data
 // ────────────────────────────────────────────────────────────
+const heroSlides = [
+  {
+    image: '/images/hero-cake.png',
+    alt: 'Chocolate ganache cake dripping with glossy ganache',
+    headline: <>Every bite, a little <em>celebration.</em></>,
+    sub: 'Handcrafted with the finest Belgian chocolate — our signature ganache cake is made for moments that matter.',
+  },
+  {
+    image: '/images/hero-macarons.png',
+    alt: 'Elegant macaron tower in pastel pink and cream',
+    headline: <>Desserts that <em>sparkle</em> like you.</>,
+    sub: 'From intimate gatherings to grand celebrations — our macaron towers make every table unforgettable.',
+  },
+  {
+    image: '/images/hero-brownie.png',
+    alt: 'Gooey fudgy brownie with molten centre',
+    headline: <>Made with love, <em>tasted with joy.</em></>,
+    sub: 'Rich, fudgy, and impossibly gooey — our brownies are baked fresh daily with premium cocoa.',
+  },
+]
+
+const bestSellers = [
+  { name: 'Chocolate Ganache', tag: 'Bestseller', price: '₹1,450', image: '/images/img3.jpg', alt: 'Belgian chocolate ganache cake' },
+  { name: 'Macaron Box', tag: 'Popular', price: '₹850', image: '/images/img11.jpg', alt: 'Assorted macarons box' },
+  { name: 'Red Velvet Cake', tag: 'Fan Favourite', price: '₹1,350', image: '/images/img5.jpg', alt: 'Red velvet cake with cream cheese' },
+  { name: 'Signature Brownie', tag: 'Classic', price: '₹125', image: '/images/img4.jpg', alt: 'Fudgy signature brownie' },
+  { name: 'Tiramisu Tub', tag: 'New', price: '₹450', image: '/images/img8.jpg', alt: 'Tiramisu in a glass tub' },
+  { name: 'Cupcake Box', tag: 'Gift Ready', price: '₹600', image: '/images/img10.jpg', alt: 'Decorated cupcakes in box' },
+]
+
 const galleryImages = [
   { src: '/images/gallery1.jpg',  alt: 'Oven\'ly creation' },
   { src: '/images/gallery2.jpg',  alt: 'Oven\'ly creation' },
@@ -20,6 +50,13 @@ const galleryImages = [
   { src: '/images/gallery12.jpg', alt: 'Oven\'ly creation' },
 ]
 
+const reviews = [
+  { name: 'Priya M.', occasion: 'Anniversary', rating: 5, text: 'The chocolate ganache cake was absolutely divine! My husband couldn\'t believe it was homemade. Every layer was perfect — moist, rich, and not too sweet. Will order again for every special occasion.' },
+  { name: 'Ananya S.', occasion: 'Birthday', rating: 5, text: 'Ordered the macaron tower for my daughter\'s 5th birthday and it was the showstopper! Everyone kept asking where we got it from. The flavours were incredible, especially the raspberry.' },
+  { name: 'Rahul K.', occasion: 'Corporate Event', rating: 5, text: 'We\'ve been ordering from Oven\'ly for all our office celebrations. The brownie boxes never disappoint — fudgy, fresh, and beautifully packaged. Best in Lucknow, hands down.' },
+  { name: 'Meera T.', occasion: 'Housewarming', rating: 5, text: 'The red velvet cake stole the show at our housewarming! So soft, so creamy, and that cream cheese frosting? Perfection. Thank you Tarunika and Advika! 💕' },
+  { name: 'Vikram D.', occasion: 'Date Night', rating: 5, text: 'Surprised my wife with the tiramisu tub and she was blown away. It tasted exactly like the one we had in Italy. Absolute game changer for dessert lovers.' },
+]
 
 
 // ────────────────────────────────────────────────────────────
@@ -50,50 +87,88 @@ const Sparkle = ({ size = 10, color = 'currentColor' }) => (
     <path d="M12 0 13.6 10.4 24 12 13.6 13.6 12 24 10.4 13.6 0 12 10.4 10.4Z"/>
   </svg>
 )
+const IconQuote = (p) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" {...p}>
+    <path d="M11.3 3.3C7 5.5 4.2 9 4.2 13c0 3.2 2.4 5.5 5 5.5 2.3 0 4.3-1.8 4.3-4.3 0-2.3-1.6-3.8-3.5-4.2.3-2.2 2-4.3 4.3-5.5L11.3 3.3zM22 3.3c-4.2 2.2-7 5.8-7 9.7 0 3.2 2.4 5.5 5 5.5 2.3 0 4.3-1.8 4.3-4.3 0-2.3-1.6-3.8-3.5-4.2.3-2.2 2-4.3 4.3-5.5L22 3.3z"/>
+  </svg>
+)
 
 // ────────────────────────────────────────────────────────────
-// Hero
+// Hero — Full-bleed clickable carousel
 // ────────────────────────────────────────────────────────────
 function Hero() {
+  const [current, setCurrent] = useState(0)
+  const timerRef = useRef(null)
+
+  const goTo = useCallback((idx) => {
+    setCurrent(idx)
+  }, [])
+
+  const next = useCallback(() => {
+    setCurrent(c => (c + 1) % heroSlides.length)
+  }, [])
+
+  // Auto-advance every 5s
+  useEffect(() => {
+    timerRef.current = setInterval(next, 5000)
+    return () => clearInterval(timerRef.current)
+  }, [next])
+
+  // Reset timer on manual navigation
+  const handleDot = (idx) => {
+    clearInterval(timerRef.current)
+    goTo(idx)
+    timerRef.current = setInterval(next, 5000)
+  }
+
+  const slide = heroSlides[current]
+
   return (
     <section className="lp-hero" aria-label="Hero">
-      <div className="lp-hero-decor" aria-hidden="true">
-        <div className="lp-hero-arc" />
+      {/* Background image */}
+      <div className="lp-hero-bg">
+        {heroSlides.map((s, i) => (
+          <div
+            key={i}
+            className={`lp-hero-bg-slide${i === current ? ' active' : ''}`}
+          >
+            <img src={s.image} alt={s.alt} />
+          </div>
+        ))}
+        <div className="lp-hero-bg-overlay" />
       </div>
 
-      <div className="container">
-        <h1 className="lp-hero-headline display-xl fade-up" style={{ animationDelay: '0.15s' }}>
-          Dazzling <em>desserts</em><br/>
-          for every occasion.
+      <div className="container lp-hero-content">
+        <div className="lp-hero-badge fade-up" style={{ animationDelay: '0.1s' }}>
+          <span className="lp-stars">
+            {[...Array(5)].map((_, i) => <IconStar key={i} width="12" height="12" />)}
+          </span>
+          <span>4.9 · 500+ happy customers</span>
+        </div>
+
+        <h1 className="lp-hero-headline display-xl fade-up" style={{ animationDelay: '0.2s' }} key={`h-${current}`}>
+          {slide.headline}
         </h1>
 
-        <p className="lp-hero-sub fade-up" style={{ animationDelay: '0.3s' }}>
-          Handcrafted desserts made with the finest ingredients and thoughtful details — designed to make every celebration truly special.
+        <p className="lp-hero-sub fade-up" style={{ animationDelay: '0.35s' }} key={`s-${current}`}>
+          {slide.sub}
         </p>
 
-        <div className="lp-hero-cta fade-up" style={{ animationDelay: '0.45s' }}>
+        <div className="lp-hero-cta fade-up" style={{ animationDelay: '0.5s' }}>
           <Link to="/menu" className="btn-primary">Order Now <IconArrow width="14" height="14"/></Link>
-          <a href="tel:+919140223957" className="btn-outline"><IconPhone width="14" height="14"/> Call Us</a>
+          <Link to="/menu" className="btn-outline btn-outline--light">Explore Menu</Link>
         </div>
 
-
-      </div>
-
-      <div className="lp-hero-photo fade-up" style={{ animationDelay: '0.35s' }}>
-        <div className="lp-hero-photo-frame">
-          <img src="/images/hero-cake.jpg" alt="Anniversary cake with pink roses" />
-        </div>
-        <div className="lp-hero-stamp" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs>
-              <path id="lp-stamp-circ" d="M60,60 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
-            </defs>
-            <text className="lp-hero-stamp-text">
-              <textPath href="#lp-stamp-circ">CRAFTED WITH LOVE · OVEN'LY · CRAFTED WITH LOVE · OVEN'LY · </textPath>
-            </text>
-            <circle cx="60" cy="60" r="18" fill="#A51627"/>
-            <text x="60" y="64" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4" fontStyle="italic">Est. '21</text>
-          </svg>
+        {/* Dot indicators */}
+        <div className="lp-hero-dots fade-up" style={{ animationDelay: '0.6s' }}>
+          {heroSlides.map((_, i) => (
+            <button
+              key={i}
+              className={`lp-hero-dot${i === current ? ' active' : ''}`}
+              onClick={() => handleDot(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -123,9 +198,64 @@ function Marquee() {
   )
 }
 
+// ────────────────────────────────────────────────────────────
+// Best Sellers
+// ────────────────────────────────────────────────────────────
+function BestSellersSection() {
+  const trackRef = useRef(null)
+  const scroll = (dir) => {
+    if (!trackRef.current) return
+    const card = trackRef.current.querySelector('.lp-bs-card')
+    const w = card ? card.offsetWidth + 16 : 240
+    trackRef.current.scrollBy({ left: dir * w, behavior: 'smooth' })
+  }
+
+  return (
+    <section className="lp-bestsellers" aria-labelledby="lp-bs-h">
+      <div className="container">
+        <div className="lp-section-head lp-section-head--row">
+          <div>
+            <div className="divider">
+              <div className="divider-line"></div>
+              <span className="label-caps lp-section-eyebrow">Most Loved</span>
+              <div className="divider-line"></div>
+            </div>
+            <h2 className="display-lg" id="lp-bs-h">
+              Our <em>best sellers.</em>
+            </h2>
+          </div>
+          <div className="lp-bs-nav">
+            <button className="lp-gal-arrow" aria-label="Previous" onClick={() => scroll(-1)}>
+              <IconArrow width="16" height="16" style={{ transform: 'rotate(180deg)' }}/>
+            </button>
+            <button className="lp-gal-arrow" aria-label="Next" onClick={() => scroll(1)}>
+              <IconArrow width="16" height="16"/>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="lp-bs-track" ref={trackRef}>
+        {bestSellers.map((item, i) => (
+          <Link to="/menu" className="lp-bs-card" key={i}>
+            <div className="lp-bs-img">
+              <img src={item.image} alt={item.alt} loading="lazy" />
+              <span className="lp-bs-tag">{item.tag}</span>
+            </div>
+            <div className="lp-bs-info">
+              <h3 className="lp-bs-name">{item.name}</h3>
+              <span className="lp-bs-price">{item.price}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 
 // ────────────────────────────────────────────────────────────
-// Who Are We — letter from the founders
+// Who Are We — condensed letter from the founders
 // ────────────────────────────────────────────────────────────
 function WhoAreWeSection() {
   return (
@@ -151,13 +281,7 @@ function WhoAreWeSection() {
             We didn't plan Oven'ly to become what it is today.
           </p>
           <p>
-            It started with the two of us — experimenting, figuring things out, and slowly finding our own rhythm in the middle of it all.
-          </p>
-          <p>
-            Over time, it became more than just desserts. It became about creating something people could <em>feel</em> — not just taste.
-          </p>
-          <p>
-            Every box that leaves our kitchen carries a piece of that — care, detail, and a lot of heart.
+            It started with the two of us — experimenting, figuring things out, and slowly finding our rhythm. Over time, it became more than just desserts. It became about creating something people could <em>feel</em> — not just taste. Every box that leaves our kitchen carries a piece of that — care, detail, and a lot of heart.
           </p>
 
           <div className="lp-who-sign">
@@ -217,6 +341,69 @@ function GallerySection() {
   )
 }
 
+// ────────────────────────────────────────────────────────────
+// Reviews / Social Proof
+// ────────────────────────────────────────────────────────────
+function ReviewsSection() {
+  const trackRef = useRef(null)
+  const scroll = (dir) => {
+    if (!trackRef.current) return
+    const card = trackRef.current.querySelector('.lp-review-card')
+    const w = card ? card.offsetWidth + 16 : 300
+    trackRef.current.scrollBy({ left: dir * w, behavior: 'smooth' })
+  }
+
+  return (
+    <section className="lp-reviews" aria-labelledby="lp-reviews-h">
+      <div className="container">
+        <div className="lp-section-head lp-section-head--row">
+          <div>
+            <div className="divider">
+              <div className="divider-line"></div>
+              <span className="label-caps lp-section-eyebrow">Customer Love</span>
+              <div className="divider-line"></div>
+            </div>
+            <h2 className="display-lg" id="lp-reviews-h">
+              What our <em>customers</em> say.
+            </h2>
+          </div>
+          <div className="lp-gal-nav">
+            <button className="lp-gal-arrow" aria-label="Previous reviews" onClick={() => scroll(-1)}>
+              <IconArrow width="16" height="16" style={{ transform: 'rotate(180deg)' }}/>
+            </button>
+            <button className="lp-gal-arrow" aria-label="Next reviews" onClick={() => scroll(1)}>
+              <IconArrow width="16" height="16"/>
+            </button>
+          </div>
+        </div>
+
+        {/* Overall rating badge */}
+        <div className="lp-reviews-badge">
+          <span className="lp-stars">
+            {[...Array(5)].map((_, i) => <IconStar key={i} width="14" height="14" />)}
+          </span>
+          <span>Rated <strong>4.9</strong> by 500+ customers</span>
+        </div>
+      </div>
+
+      <div className="lp-reviews-track" ref={trackRef}>
+        {reviews.map((review, i) => (
+          <div className="lp-review-card" key={i}>
+            <IconQuote width="24" height="24" className="lp-review-quote" />
+            <div className="lp-review-stars">
+              {[...Array(review.rating)].map((_, j) => <IconStar key={j} width="12" height="12" />)}
+            </div>
+            <p className="lp-review-text">{review.text}</p>
+            <div className="lp-review-meta">
+              <span className="lp-review-name">{review.name}</span>
+              <span className="lp-review-occasion">{review.occasion}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 // ────────────────────────────────────────────────────────────
 // CTA
@@ -249,9 +436,10 @@ export default function LandingPage() {
     <main className="page landing-page" id="main-content">
       <Hero/>
       <Marquee/>
-
+      <BestSellersSection/>
       <WhoAreWeSection/>
       <GallerySection/>
+      <ReviewsSection/>
       <CTABanner/>
     </main>
   )
