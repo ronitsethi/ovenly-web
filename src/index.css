@@ -61,7 +61,7 @@ body {
   font-family: var(--font-body);
   font-weight: 400;
   color: #2a1015;
-  background-color: #FFFBFA;
+  background-color: var(--icing-white);
   overflow-x: hidden;
   line-height: 1.6;
 }
@@ -74,25 +74,25 @@ body {
 /* ============ TYPOGRAPHY UTILITIES ============ */
 .display-xl {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: clamp(2.8rem, 10vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
 }
 
 .display-lg {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(2rem, 7vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.015em;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
 }
 
 .display-md {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 500;
   font-size: clamp(1.4rem, 5vw, 2rem);
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
 .label-caps {

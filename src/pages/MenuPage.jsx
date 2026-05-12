@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { shopifyFetch } from '../lib/shopify'
 import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY } from '../lib/queries'
@@ -6,36 +6,36 @@ import { useCart } from '../context/CartContext'
 import './MenuPage.css'
 
 /* ============================================================
-   FALLBACK MENU DATA — rich descriptions + image thumbnails
+   FALLBACK MENU DATA — used when Shopify catalog is empty/loading
    ============================================================ */
 const fallbackMenuData = [
   {
     id: 'cakes', category: 'Cakes', emoji: '🎂',
-    note: 'Signature standard designs. Customised cakes priced on complexity.',
+    note: 'Prices are for signature standard designs. Customised cakes are priced based on design complexity.',
     items: [
-      { name: 'Belgian Chocolate Ganache', image: '/images/img3.jpg', desc: 'Layers of moist Belgian chocolate sponge hugged by a luscious, glossy ganache — rich, indulgent, and perfect for chocolate lovers celebrating any milestone.', variants: [{ size: '750g', price: '₹1,450' }, { size: '1200g', price: '₹2,150' }] },
-      { name: 'Belgian Chocolate & Salted Caramel', image: '/images/img9.jpg', desc: 'A heavenly tango of deep cocoa and buttery salted caramel, finished with crisp chocolate pearls that add the perfect crunch to every bite.', variants: [{ size: '750g', price: '₹1,650' }, { size: '1200g', price: '₹2,350' }] },
-      { name: 'Ferrero Rocher', image: '/images/img6.jpg', desc: 'Inspired by the iconic chocolate — hazelnut nibs, crunchy Ferrero chunks, and swirls of Nutella nestled between layers of velvety chocolate sponge.', variants: [{ size: '750g', price: '₹1,950' }, { size: '1200g', price: '₹2,800' }] },
-      { name: 'Classic Vanilla', image: '/images/img5.jpg', desc: 'Pure, elegant, and timeless — fluffy vanilla sponge layered with silky white chocolate ganache cream and a smooth buttercream finish. A crowd-pleaser for every occasion.', variants: [{ size: '750g', price: '₹1,250' }, { size: '1200g', price: '₹1,700' }] },
-      { name: 'Red Velvet', image: '/images/img7.jpg', desc: 'That gorgeous crimson sponge with its signature velvety crumb, generously layered and enclosed in a cloud of tangy cream cheese frosting. Unforgettable.', variants: [{ size: '750g', price: '₹1,350' }, { size: '1200g', price: '₹1,900' }] },
+      { name: 'Belgian Chocolate Ganache', desc: 'Moist belgian chocolate sponge layered and coated with a luscious belgian chocolate ganache.', variants: [{ size: '750g', price: '₹1,450' }, { size: '1200g', price: '₹2,150' }] },
+      { name: 'Belgian Chocolate & Salted Caramel', desc: 'Moist belgian chocolate sponge layered with belgian chocolate ganache, in-house salted caramel & crisp pearls.', variants: [{ size: '750g', price: '₹1,650' }, { size: '1200g', price: '₹2,350' }] },
+      { name: 'Ferrero Rocher', desc: 'Moist belgian chocolate sponge layered with ferrero rocher chunks, hazelnut nibs and nutella.', variants: [{ size: '750g', price: '₹1,950' }, { size: '1200g', price: '₹2,800' }] },
+      { name: 'Classic Vanilla', desc: 'Moist vanilla sponge layered with white chocolate ganache cream, coated with buttercream.', variants: [{ size: '750g', price: '₹1,250' }, { size: '1200g', price: '₹1,700' }] },
+      { name: 'Red Velvet', desc: 'Velvety soft textured red velvet sponge, layered and enclosed with a smooth cream cheese frosting.', variants: [{ size: '750g', price: '₹1,350' }, { size: '1200g', price: '₹1,900' }] },
     ],
   },
   {
     id: 'cupcakes', category: 'Cupcakes', emoji: '🧁',
-    note: 'Available in Box of 4 and Box of 6 — perfect for gifting.',
+    note: 'Available in Box of 4 and Box of 6',
     items: [
-      { name: 'Belgian Chocolate', image: '/images/img10.jpg', desc: 'Miniature indulgences crowned with a swirl of rich chocolate buttercream — ideal for birthdays, office treats, or "just because" moments.', variants: [{ size: 'Box of 4', price: '₹600' }, { size: 'Box of 6', price: '₹900' }] },
-      { name: 'Vanilla', image: '/images/img12.jpg', desc: 'Light, fluffy, and topped with a cloud of vanilla frosting. Simple, sweet, and impossible to eat just one.', variants: [{ size: 'Box of 4', price: '₹500' }, { size: 'Box of 6', price: '₹750' }] },
-      { name: 'Mocha', image: '/images/img2.jpg', desc: 'For the coffee enthusiast — a hint of espresso swirled into chocolate batter, topped with mocha buttercream and a dusting of cocoa.', variants: [{ size: 'Box of 4', price: '₹600' }, { size: 'Box of 6', price: '₹900' }] },
+      { name: 'Belgian Chocolate', variants: [{ size: 'Box of 4', price: '₹600' }, { size: 'Box of 6', price: '₹900' }] },
+      { name: 'Vanilla', variants: [{ size: 'Box of 4', price: '₹500' }, { size: 'Box of 6', price: '₹750' }] },
+      { name: 'Mocha', variants: [{ size: 'Box of 4', price: '₹600' }, { size: 'Box of 6', price: '₹900' }] },
     ],
   },
   {
     id: 'brownies', category: 'Brownies', emoji: '🍫',
-    note: 'Rich, fudgy, and baked fresh daily with premium cocoa.',
+    note: 'Rich, fudgy, and baked fresh',
     items: [
-      { name: 'Signature', image: '/images/img4.jpg', desc: 'Our OG brownie — dense, fudgy, with a crackly top and a molten centre. The one that started it all.', variants: [{ size: 'per piece', price: '₹125' }] },
-      { name: 'Biscoff', image: '/images/img1.jpg', desc: 'A layer of caramelised Biscoff spread hiding inside our signature fudge — crunchy, spiced, and dangerously addictive.', variants: [{ size: 'per piece', price: '₹175' }] },
-      { name: 'Nutella', image: '/images/img8.jpg', desc: 'Swirled with creamy Nutella and studded with hazelnut pieces — one bite and you\'ll understand the obsession.', variants: [{ size: 'per piece', price: '₹175' }] },
+      { name: 'Signature', variants: [{ size: 'per piece', price: '₹125' }] },
+      { name: 'Biscoff', variants: [{ size: 'per piece', price: '₹175' }] },
+      { name: 'Nutella', variants: [{ size: 'per piece', price: '₹175' }] },
     ],
   },
 ]
@@ -59,44 +59,10 @@ export default function MenuPage() {
   const [selectedVariants, setSelectedVariants] = useState({})
   const [drawerProduct, setDrawerProduct] = useState(null)
   const { addToCart, isLoading: cartLoading } = useCart()
-  const sectionRefs = useRef({})
 
   useEffect(() => {
     loadCatalog()
   }, [])
-
-  // ── Scroll-spy: highlight active category tab on scroll ──
-  useEffect(() => {
-    const dataSource = usingFallback || collections.length === 0
-      ? fallbackMenuData.map(c => c.id)
-      : collections.map(c => c.handle)
-
-    if (dataSource.length === 0) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActiveCategory(entry.target.id)
-          }
-        }
-      },
-      { rootMargin: '-200px 0px -60% 0px', threshold: 0 }
-    )
-
-    // Wait a tick for refs to be attached
-    const timer = setTimeout(() => {
-      dataSource.forEach(id => {
-        const el = document.getElementById(id)
-        if (el) observer.observe(el)
-      })
-    }, 100)
-
-    return () => {
-      clearTimeout(timer)
-      observer.disconnect()
-    }
-  }, [collections, usingFallback, loading])
 
   async function loadCatalog() {
     try {
@@ -123,11 +89,7 @@ export default function MenuPage() {
         setCollections(Object.entries(grouped).map(([type, data]) => ({
           handle: type.toLowerCase().replace(/\s+/g, '-'),
           title: type,
-          products: data.products.sort((a, b) => {
-            const priceA = parseFloat(a.priceRange?.minVariantPrice?.amount || 0)
-            const priceB = parseFloat(b.priceRange?.minVariantPrice?.amount || 0)
-            return priceA - priceB
-          }),
+          products: data.products,
         })))
       } else {
         // Fetch products for each collection
@@ -136,11 +98,7 @@ export default function MenuPage() {
             const cpData = await shopifyFetch(COLLECTION_PRODUCTS_QUERY, { handle: col.handle })
             return {
               ...col,
-              products: (cpData?.collection?.products?.edges?.map(e => e.node) || []).sort((a, b) => {
-                const priceA = parseFloat(a.priceRange?.minVariantPrice?.amount || 0)
-                const priceB = parseFloat(b.priceRange?.minVariantPrice?.amount || 0)
-                return priceA - priceB
-              }),
+              products: cpData?.collection?.products?.edges?.map(e => e.node) || [],
             }
           })
         )
@@ -181,17 +139,6 @@ export default function MenuPage() {
     }
   }
 
-  // Scroll to section when tab is clicked
-  function scrollToSection(id) {
-    setActiveCategory(id)
-    const el = document.getElementById(id)
-    if (el) {
-      const offset = 180 // navbar + sticky tabs height
-      const top = el.getBoundingClientRect().top + window.scrollY - offset
-      window.scrollTo({ top, behavior: 'smooth' })
-    }
-  }
-
   // Render Shopify products
   function renderShopifyContent() {
     const filtered = activeCategory === 'all'
@@ -205,7 +152,7 @@ export default function MenuPage() {
           <div className="category-tabs" role="tablist" aria-label="Menu categories">
             <button
               className={`cat-tab${activeCategory === 'all' ? ' active' : ''}`}
-              onClick={() => { setActiveCategory('all'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+              onClick={() => setActiveCategory('all')}
               role="tab"
               aria-selected={activeCategory === 'all'}
               id="tab-all"
@@ -216,12 +163,12 @@ export default function MenuPage() {
               <button
                 key={col.handle}
                 className={`cat-tab${activeCategory === col.handle ? ' active' : ''}`}
-                onClick={() => scrollToSection(col.handle)}
+                onClick={() => setActiveCategory(col.handle)}
                 role="tab"
                 aria-selected={activeCategory === col.handle}
                 id={`tab-${col.handle}`}
               >
-            {col.title}
+          {col.title}
               </button>
             ))}
           </div>
@@ -300,7 +247,7 @@ export default function MenuPage() {
     )
   }
 
-  // Render fallback hardcoded content — now with images + rich descriptions
+  // Render fallback hardcoded content
   function renderFallbackContent() {
     const filtered = activeCategory === 'all'
       ? fallbackMenuData
@@ -318,7 +265,7 @@ export default function MenuPage() {
           <div className="category-tabs" role="tablist" aria-label="Menu categories">
             <button
               className={`cat-tab${activeCategory === 'all' ? ' active' : ''}`}
-              onClick={() => { setActiveCategory('all'); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+              onClick={() => setActiveCategory('all')}
               role="tab"
               aria-selected={activeCategory === 'all'}
             >
@@ -328,7 +275,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 className={`cat-tab${activeCategory === cat.id ? ' active' : ''}`}
-                onClick={() => scrollToSection(cat.id)}
+                onClick={() => setActiveCategory(cat.id)}
                 role="tab"
                 aria-selected={activeCategory === cat.id}
               >
@@ -352,36 +299,28 @@ export default function MenuPage() {
                 <div className="menu-items-list">
                   {cat.items.map((item, i) => (
                     <div className="menu-item-card" key={i}>
-                      {/* Thumbnail image */}
-                      {item.image && (
-                        <div className="menu-item-thumb">
-                          <img src={item.image} alt={item.name} loading="lazy" />
+                      <div className="menu-item-top">
+                        <div className="menu-item-name-wrap">
+                          <h3 className="menu-item-name">{item.name}</h3>
+                          {item.desc && <p className="menu-item-desc">{item.desc}</p>}
                         </div>
-                      )}
-                      <div className="menu-item-body">
-                        <div className="menu-item-top">
-                          <div className="menu-item-name-wrap">
-                            <h3 className="menu-item-name">{item.name}</h3>
-                            {item.desc && <p className="menu-item-desc">{item.desc}</p>}
-                          </div>
-                          {item.variants.length === 1 && (
-                            <div className="menu-item-price-solo">
-                              <span className="price-tag">{item.variants[0].price}</span>
-                              <span className="price-size">{item.variants[0].size}</span>
-                            </div>
-                          )}
-                        </div>
-                        {item.variants.length > 1 && (
-                          <div className="menu-item-variants">
-                            {item.variants.map((v, vi) => (
-                              <div className="variant-pill" key={vi}>
-                                <span className="variant-size">{v.size}</span>
-                                <span className="variant-price">{v.price}</span>
-                              </div>
-                            ))}
+                        {item.variants.length === 1 && (
+                          <div className="menu-item-price-solo">
+                            <span className="price-tag">{item.variants[0].price}</span>
+                            <span className="price-size">{item.variants[0].size}</span>
                           </div>
                         )}
                       </div>
+                      {item.variants.length > 1 && (
+                        <div className="menu-item-variants">
+                          {item.variants.map((v, vi) => (
+                            <div className="variant-pill" key={vi}>
+                              <span className="variant-size">{v.size}</span>
+                              <span className="variant-price">{v.price}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
@@ -440,7 +379,19 @@ export default function MenuPage() {
         </div>
       </section>
 
-
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <img src="/Logo.png" alt="Oven'ly" className="footer-logo" />
+          <p className="footer-tagline label-caps">Crafted with love</p>
+          <div className="footer-links">
+            <a href="tel:+919140223957" className="footer-link">+91 91402 23957</a>
+            <span className="footer-dot">·</span>
+            <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
+          </div>
+          <p className="footer-copy">© 2026 Oven'ly. All prices inclusive of GST.</p>
+        </div>
+      </footer>
 
       {/* ── PRODUCT BOTTOM DRAWER ────────────── */}
       {drawerProduct && (() => {
