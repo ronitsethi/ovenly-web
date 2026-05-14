@@ -74,7 +74,10 @@ const carouselSlides = [
   { src: '/images/hero-carousel-1.jpg', title: 'Craving something sweet?', subtitle: 'Baked from scratch, just for you.' },
   { src: '/images/hero-carousel-2.jpg', title: 'Indulge a little.', subtitle: 'Handcrafted with love.' },
   { src: '/images/hero-carousel-3.jpg', title: 'Freshly baked happiness.', subtitle: 'Every bite tells a story.' },
-  { src: '/images/hero-carousel-4.jpg', title: 'Made to celebrate.', subtitle: 'Desserts as special as the occasion.' },
+  { src: '/images/hero-carousel-4.jpg', title: 'Made with love.', subtitle: 'Premium ingredients, always.' },
+  { src: '/images/hero-carousel-5.jpg', title: 'Celebrate sweetly.', subtitle: 'Desserts for every occasion.' },
+  { src: '/images/hero-carousel-6.jpg', title: 'A touch of magic.', subtitle: 'In every single bite.' },
+  { src: '/images/hero-carousel-7.jpg', title: 'Pure indulgence.', subtitle: 'Crafted to perfection.' },
 ]
 
 function Hero() {
