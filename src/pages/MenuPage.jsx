@@ -206,17 +206,6 @@ export default function MenuPage() {
                         tabIndex={0}
                         onKeyDown={e => e.key === 'Enter' && openProductDrawer(product)}
                       >
-                        {/* Product image */}
-                        {mainImage && (
-                          <div className="menu-item-img">
-                            <img
-                              src={mainImage.url}
-                              alt={mainImage.altText || product.title}
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
-
                         <div className="menu-item-top">
                           <div className="menu-item-name-wrap">
                             <h3 className="menu-item-name">{product.title}</h3>
@@ -227,13 +216,24 @@ export default function MenuPage() {
                                   : product.description}
                               </p>
                             )}
+                            <div className="menu-item-price-inline">
+                              <span className="price-tag">{formatPrice(variants[0]?.price?.amount || 0)}</span>
+                              {variants.length > 1 && (
+                                <span className="price-size">from</span>
+                              )}
+                            </div>
                           </div>
-                          <div className="menu-item-price-solo">
-                            <span className="price-tag">{formatPrice(variants[0]?.price?.amount || 0)}</span>
-                            {variants.length > 1 && (
-                              <span className="price-size">from</span>
-                            )}
-                          </div>
+
+                          {/* Small product thumbnail */}
+                          {mainImage && (
+                            <div className="menu-item-thumb">
+                              <img
+                                src={mainImage.url}
+                                alt={mainImage.altText || product.title}
+                                loading="lazy"
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
                     )
