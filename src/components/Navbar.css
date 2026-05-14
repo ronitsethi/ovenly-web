@@ -22,6 +22,15 @@
   color: var(--cherry-red);
 }
 
+.nav--transparent .nav-icon-btn {
+  color: #fff;
+}
+
+.nav--transparent .nav-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
 .nav-logged-dot {
   position: absolute;
   bottom: 5px;

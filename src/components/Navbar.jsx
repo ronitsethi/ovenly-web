@@ -9,9 +9,7 @@ export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false)
   const { totalQuantity, setIsCartOpen, notification } = useCart()
   const location = useLocation()
-
   const isLandingPage = location.pathname === '/'
-  const isTransparent = isLandingPage && !scrolled
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -19,9 +17,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  const navClass = `nav${scrolled ? ' scrolled' : ''}${isLandingPage && !scrolled ? ' nav--transparent' : ''}`
+
   return (
     <>
-      <nav className={`nav${scrolled ? ' scrolled' : ''}${isTransparent ? ' transparent' : ''}`} role="navigation" aria-label="Main navigation">
+      <nav className={navClass} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
           <Link to="/menu" className="nav-logo-link" aria-label="Oven'ly Menu">
             <img src="/Logo.png" alt="Oven'ly Logo" className="nav-logo" />

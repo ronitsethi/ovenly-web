@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './LandingPage.css'
 
@@ -51,30 +51,44 @@ const Sparkle = ({ size = 10, color = 'currentColor' }) => (
   </svg>
 )
 
-// ────────────────────────────────────────────────────────────
-// Hero
-// ────────────────────────────────────────────────────────────
+const carouselSlides = [
+  { src: '/images/hero-carousel-1.jpg', title: 'Craving something sweet?', subtitle: 'Baked from scratch, just for you.' },
+  { src: '/images/hero-carousel-2.jpg', title: 'Indulge a little.', subtitle: 'Handcrafted with love.' },
+]
+
 function Hero() {
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselSlides.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <section className="lp-cinematic-hero" aria-label="Hero">
-      {/* Background Crossfade Layers */}
-      <div className="lp-cinematic-bg bg-1" style={{ backgroundImage: 'url(/images/bg-tiramisu.png)' }}></div>
-      <div className="lp-cinematic-bg bg-2" style={{ backgroundImage: 'url(/images/bg-macarons.png)' }}></div>
-      <div className="lp-cinematic-bg bg-3" style={{ backgroundImage: 'url(/images/bg-tarts.png)' }}></div>
-      <div className="lp-cinematic-overlay"></div>
-
-      <div className="container lp-cinematic-content">
-        <h1 className="lp-cinematic-headline fade-up" style={{ animationDelay: '0.15s' }}>
-          Baked fresh this morning,<br/>
-          <em>just for you.</em>
-        </h1>
-
-        <p className="lp-cinematic-sub fade-up" style={{ animationDelay: '0.3s' }}>
-          Your daily moment of indulgence.
-        </p>
-
-        <div className="lp-cinematic-cta fade-up" style={{ animationDelay: '0.45s' }}>
-          <Link to="/menu" className="btn-primary">Order Now <IconArrow width="14" height="14"/></Link>
+    <section className="lp-fullscreen-carousel" aria-label="Hero Carousel">
+      {carouselSlides.map((slide, i) => (
+        <div 
+          key={i} 
+          className={`lp-carousel-slide ${i === currentSlide ? 'active' : ''}`}
+          style={{ backgroundImage: `url(${slide.src})` }}
+        >
+        </div>
+      ))}
+      <div className="lp-carousel-overlay"></div>
+      
+      <div className="lp-carousel-content-wrapper">
+        <div className="lp-carousel-content" key={currentSlide}>
+          <h1 className="lp-carousel-headline fade-up">
+            {carouselSlides[currentSlide].title}
+          </h1>
+          <p className="lp-carousel-sub fade-up" style={{ animationDelay: '0.15s' }}>
+            {carouselSlides[currentSlide].subtitle}
+          </p>
+          <div className="lp-carousel-cta-wrap fade-up" style={{ animationDelay: '0.3s' }}>
+            <Link to="/menu" className="btn-primary lp-carousel-cta">Order Now <IconArrow width="14" height="14"/></Link>
+          </div>
         </div>
       </div>
     </section>

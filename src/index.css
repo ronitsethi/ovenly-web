@@ -231,27 +231,29 @@ body {
   height: 75px;
   z-index: 100;
   background: var(--blush-pink);
-  transition: background var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), filter var(--dur-med) var(--ease-out);
+  transition: background var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
 }
 
-.nav.transparent {
+.nav.scrolled {
+  box-shadow: 0 4px 24px rgba(207, 29, 45, 0.1);
+}
+
+.nav.nav--transparent {
   background: transparent;
   box-shadow: none;
 }
 
-.nav.scrolled {
-  background: var(--blush-pink);
-  box-shadow: 0 4px 24px rgba(207, 29, 45, 0.1);
+.nav.nav--transparent .nav-link {
+  color: #fff;
 }
 
-.nav.transparent .nav-link,
-.nav.transparent .nav-icon-btn {
-  color: var(--icing-white);
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+.nav.nav--transparent .nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
 }
 
-.nav.transparent .nav-logo {
-  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+.nav.nav--transparent .nav-logo {
+  filter: brightness(0) invert(1); /* Makes the logo white */
 }
 
 .nav-inner {
