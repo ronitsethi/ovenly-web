@@ -34,7 +34,7 @@
 
 .menu-headline em {
   font-style: italic;
-  color: var(--cocoa-brown);
+  color: inherit;
 }
 
 .menu-sub {
