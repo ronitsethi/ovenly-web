@@ -54,6 +54,7 @@ const Sparkle = ({ size = 10, color = 'currentColor' }) => (
 const carouselSlides = [
   { src: '/images/hero-carousel-1.jpg', title: 'Craving something sweet?', subtitle: 'Baked from scratch, just for you.' },
   { src: '/images/hero-carousel-2.jpg', title: 'Indulge a little.', subtitle: 'Handcrafted with love.' },
+  { src: '/images/hero-carousel-3.jpg', title: 'Freshly baked happiness.', subtitle: 'Every bite tells a story.' },
 ]
 
 function Hero() {
