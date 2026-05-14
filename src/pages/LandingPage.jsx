@@ -7,18 +7,15 @@ import './LandingPage.css'
 // Data
 // ────────────────────────────────────────────────────────────
 const galleryImages = [
-  { src: '/images/img1.jpg',  alt: 'Boxed cookies' },
-  { src: '/images/img2.jpg',  alt: 'Branded packaging' },
-  { src: '/images/img3.jpg',  alt: 'Premium cake' },
-  { src: '/images/img4.jpg',  alt: 'Artisan confection' },
-  { src: '/images/img5.jpg',  alt: 'Anniversary cake' },
-  { src: '/images/img6.jpg',  alt: 'Beautiful dessert' },
-  { src: '/images/img7.jpg',  alt: 'Fresh bakery' },
-  { src: '/images/img8.jpg',  alt: 'Tiramisu tubs' },
-  { src: '/images/img9.jpg',  alt: 'Custom cake' },
-  { src: '/images/img10.jpg', alt: 'Cupcakes' },
-  { src: '/images/img11.jpg', alt: 'Macarons' },
-  { src: '/images/img12.jpg', alt: 'Signature bakes' },
+  { src: '/images/gallery/Cover-image.jpg',  alt: 'Oven\'ly signature spread' },
+  { src: '/images/gallery/gallery-2.jpg',    alt: 'Artisan dessert' },
+  { src: '/images/gallery/gallery-4.jpg',    alt: 'Premium bake' },
+  { src: '/images/gallery/gallery-5.jpg',    alt: 'Handcrafted treat' },
+  { src: '/images/gallery/gallery-7.jpg',    alt: 'Fresh from the oven' },
+  { src: '/images/gallery/gallery-8.jpg',    alt: 'Beautifully plated' },
+  { src: '/images/gallery/gallery-9.jpg',    alt: 'Custom creation' },
+  { src: '/images/gallery/gallery-11.jpg',   alt: 'Sweet indulgence' },
+  { src: '/images/gallery/gallery-12.jpg',   alt: 'Signature bake' },
 ]
 
 const reviewsData = [
