@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
 import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY } from '../lib/queries'
 import { useCart } from '../context/CartContext'
@@ -361,46 +362,7 @@ export default function MenuPage() {
         : renderShopifyContent()
       )}
 
-      {/* Order CTA */}
-      <section className="menu-order-cta">
-        <div className="container">
-          <p className="label-caps" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '0.5rem' }}>
-            Ready to celebrate?
-          </p>
-          <p className="menu-cta-text">
-            {usingFallback
-              ? 'Call us to place your order or enquire about custom cakes'
-              : 'Add items to your cart or call us for custom orders'}
-          </p>
-          <a href="tel:+919140223957" className="btn-primary menu-cta-btn" id="menu-call-btn">
-            +91 91402 23957
-          </a>
-          <p className="menu-note">All prices are for signature standard designs. Custom cakes priced on request.</p>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <img src="/Logo.png" alt="Oven'ly" className="footer-logo" />
-          <p className="footer-tagline label-caps">Crafted with love</p>
-          <div className="footer-links">
-            <a href="tel:+919140223957" className="footer-link">+91 91402 23957</a>
-            <span className="footer-dot">·</span>
-            <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
-          </div>
-          <div className="footer-links">
-            <Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/contact" className="footer-link">Contact</Link>
-          </div>
-          <p className="footer-copy">© 2026 Oven'ly. All prices inclusive of GST.</p>
-        </div>
-      </footer>
+      <Footer/>
 
       {/* ── PRODUCT BOTTOM DRAWER ────────────── */}
       {drawerProduct && (() => {

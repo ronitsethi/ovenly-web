@@ -1,0 +1,160 @@
+/* ════════════════════════════════════════════════════
+   OVEN'LY — UNIFIED SITE FOOTER
+   Red CTA + policy links. Replaces old dark footer.
+   ════════════════════════════════════════════════════ */
+
+.site-footer {
+  width: 100%;
+}
+
+/* ── RED CTA AREA ────────────────────────────────── */
+.site-footer-cta {
+  position: relative;
+  overflow: hidden;
+  background: var(--cherry-red);
+  color: #fff;
+  padding: var(--section-pad) 0 calc(var(--section-pad) - 1rem);
+  text-align: center;
+}
+
+.site-footer-eyebrow {
+  color: var(--blush-pink);
+  margin-bottom: 0.85rem;
+}
+
+.site-footer-headline {
+  color: #fff;
+  margin-bottom: 1.75rem;
+  position: relative;
+}
+
+.site-footer-headline em {
+  color: #fff;
+  font-style: italic;
+}
+
+/* ── ACTION BUTTONS ──────────────────────────────── */
+.site-footer-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 1.5rem;
+}
+
+.site-footer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: #fff;
+  color: var(--cherry-red);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 1rem 1.85rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  transition: transform var(--dur-fast) var(--ease-spring),
+              box-shadow var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+
+.site-footer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.site-footer-btn--outline {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.site-footer-btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: none;
+}
+
+/* ── SOCIAL LINKS ────────────────────────────────── */
+.site-footer-social {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.site-footer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  transition: color var(--dur-fast);
+}
+
+.site-footer-link:hover {
+  color: var(--blush-pink);
+}
+
+.site-footer-dot {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── POLICY LINKS STRIP ──────────────────────────── */
+.site-footer-bottom {
+  background: var(--cherry-red);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.25rem 0 1.5rem;
+  text-align: center;
+}
+
+.site-footer-policies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.65rem;
+}
+
+.site-footer-policies a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color var(--dur-fast);
+}
+
+.site-footer-policies a:hover {
+  color: #fff;
+}
+
+.site-footer-policies span {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.7rem;
+}
+
+.site-footer-copy {
+  color: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  letter-spacing: 0.05em;
+}

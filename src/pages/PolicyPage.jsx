@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import Footer from '../components/Footer'
 import './PolicyPage.css'
 
 // ────────────────────────────────────────────────────────────
@@ -504,23 +505,7 @@ export default function PolicyPage() {
         </article>
       </div>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <img src="/Logo.png" alt="Oven'ly" className="footer-logo" />
-          <p className="footer-tagline label-caps">Crafted with love</p>
-          <div className="footer-links">
-            <Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link>
-            <span className="footer-dot">·</span>
-            <Link to="/policies/contact" className="footer-link">Contact</Link>
-          </div>
-          <p className="footer-copy">© 2026 Oven'ly. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer/>
     </main>
   )
 }

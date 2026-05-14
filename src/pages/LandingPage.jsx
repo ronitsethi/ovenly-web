@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../components/Footer'
 import './LandingPage.css'
 
 // ────────────────────────────────────────────────────────────
@@ -229,27 +230,7 @@ function GallerySection() {
 }
 
 
-// ────────────────────────────────────────────────────────────
-// CTA
-// ────────────────────────────────────────────────────────────
-function CTABanner() {
-  return (
-    <section className="lp-cta" aria-labelledby="lp-cta-h">
-      <div className="container">
-        <p className="label-caps lp-cta-eyebrow">Ready to order?</p>
-        <h2 className="display-lg lp-cta-headline" id="lp-cta-h">
-          Desserts that<br/><em>sparkle just like you!</em>
-        </h2>
-        <Link to="/menu" className="lp-cta-btn">Browse the Menu <IconArrow width="14" height="14"/></Link>
-        <div className="lp-cta-meta">
-          <a href="tel:+919140223957" className="lp-cta-link"><IconPhone width="13" height="13"/> +91 91402 23957</a>
-          <span className="lp-cta-dot">·</span>
-          <a href="https://www.instagram.com/o.v.e.n.ly" className="lp-cta-link" target="_blank" rel="noreferrer"><IconInsta width="13" height="13"/> @o.v.e.n.ly</a>
-        </div>
-      </div>
-    </section>
-  )
-}
+
 
 // ────────────────────────────────────────────────────────────
 // Reviews
@@ -305,34 +286,7 @@ function ReviewsSection() {
   )
 }
 
-// ────────────────────────────────────────────────────────────
-// Footer
-// ────────────────────────────────────────────────────────────
-function Footer() {
-  return (
-    <footer className="footer">
-      <div className="container">
-        <img src="/Logo.png" alt="Oven'ly" className="footer-logo" />
-        <p className="footer-tagline label-caps">Crafted with love</p>
-        <div className="footer-links">
-          <a href="tel:+919140223957" className="footer-link">+91 91402 23957</a>
-          <span className="footer-dot">·</span>
-          <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
-        </div>
-        <div className="footer-links">
-          <Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link>
-          <span className="footer-dot">·</span>
-          <Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link>
-          <span className="footer-dot">·</span>
-          <Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link>
-          <span className="footer-dot">·</span>
-          <Link to="/policies/contact" className="footer-link">Contact</Link>
-        </div>
-        <p className="footer-copy">© 2026 Oven'ly. All rights reserved.</p>
-      </div>
-    </footer>
-  )
-}
+
 
 // ────────────────────────────────────────────────────────────
 // Page
@@ -346,7 +300,6 @@ export default function LandingPage() {
       <GallerySection/>
       <WhoAreWeSection/>
       <ReviewsSection/>
-      <CTABanner/>
       <Footer/>
     </main>
   )
