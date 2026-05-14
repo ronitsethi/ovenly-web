@@ -5,7 +5,7 @@
 /* ── MENU HERO ────────────────────────────── */
 .menu-hero {
   background: var(--blush-pink);
-  padding: 2.5rem 0 2rem;
+  padding: 1.5rem 0 1.25rem;
   position: relative;
   overflow: hidden;
 }
