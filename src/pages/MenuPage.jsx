@@ -52,6 +52,14 @@ function formatPrice(amount) {
   return `₹${parseFloat(amount).toLocaleString('en-IN')}`
 }
 
+function sortByPrice(products) {
+  return [...products].sort((a, b) => {
+    const priceA = parseFloat(a.variants?.edges?.[0]?.node?.price?.amount || 0)
+    const priceB = parseFloat(b.variants?.edges?.[0]?.node?.price?.amount || 0)
+    return priceA - priceB
+  })
+}
+
 export default function MenuPage() {
   const [collections, setCollections] = useState([])
   const [activeCategory, setActiveCategory] = useState('all')
@@ -90,7 +98,7 @@ export default function MenuPage() {
         setCollections(Object.entries(grouped).map(([type, data]) => ({
           handle: type.toLowerCase().replace(/\s+/g, '-'),
           title: type,
-          products: data.products,
+          products: sortByPrice(data.products),
         })))
       } else {
         // Fetch products for each collection
@@ -99,7 +107,7 @@ export default function MenuPage() {
             const cpData = await shopifyFetch(COLLECTION_PRODUCTS_QUERY, { handle: col.handle })
             return {
               ...col,
-              products: cpData?.collection?.products?.edges?.map(e => e.node) || [],
+              products: sortByPrice(cpData?.collection?.products?.edges?.map(e => e.node) || []),
             }
           })
         )
