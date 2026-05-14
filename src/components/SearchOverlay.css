@@ -33,7 +33,7 @@
   margin-top: max(12vh, 80px);
   background: var(--icing-white);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 80px rgba(165, 22, 39, 0.2);
+  box-shadow: 0 24px 80px rgba(207, 29, 45, 0.2);
   overflow: hidden;
   animation: slideDown 0.35s var(--ease-spring);
   max-height: 75vh;
@@ -52,7 +52,7 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgba(165, 22, 39, 0.08);
+  border-bottom: 1px solid rgba(207, 29, 45, 0.08);
 }
 
 .search-icon-input {
@@ -227,7 +227,7 @@
 
 .search-hint-tag {
   background: var(--sugar-cream);
-  border: 1px solid rgba(165, 22, 39, 0.1);
+  border: 1px solid rgba(207, 29, 45, 0.1);
   border-radius: var(--radius-pill);
   padding: 0.4rem 0.85rem;
   font-family: var(--font-body);

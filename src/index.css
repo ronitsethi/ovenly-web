@@ -1,7 +1,7 @@
 /* ============================================
    OVEN'LY — GLOBAL DESIGN SYSTEM
-   Brand Colors: Cherry Berry Red #A51627
-   Blush Pink #FFCCD4 · Cream #FCECEB
+   Brand Colors: Cherry Red #CF1D2D
+   Blush Pink #FDA1B0 · Cream #FEE8EC
    Fonts: Cormorant Garamond (display) + Montserrat (body)
    ============================================ */
 
@@ -13,17 +13,17 @@
 
 :root {
   /* Brand Colors */
-  --cherry-red:     #A51627;
-  --cherry-red-dark: #8B1220;
-  --cherry-red-light: #C41E34;
-  --blush-pink:     #FFCCD4;
-  --powder-pink:    #FFDEE5;
-  --sugar-cream:    #FCECEB;
+  --cherry-red:     #CF1D2D;
+  --cherry-red-dark: #B01826;
+  --cherry-red-light: #D93545;
+  --blush-pink:     #FDA1B0;
+  --powder-pink:    #FDB5C0;
+  --sugar-cream:    #FEE8EC;
   --icing-white:    #FFFFFF;
-  --cocoa-brown:    #754015;
+  --cocoa-brown:    #822433;
   --caramel-brown:  #A56A3A;
   --pastry-gold:    #F9E2B1;
-  --raspberry-pink: #EE5483;
+  --raspberry-pink: #CF1D2D;
   --apricot-gold:   #FFCF83;
   
   /* Typography */
@@ -39,9 +39,9 @@
   --radius-pill: 100px;
 
   /* Elevation */
-  --shadow-soft: 0 4px 24px rgba(165, 22, 39, 0.08);
-  --shadow-card: 0 8px 40px rgba(165, 22, 39, 0.12);
-  --shadow-pop:  0 16px 64px rgba(165, 22, 39, 0.18);
+  --shadow-soft: 0 4px 24px rgba(207, 29, 45, 0.08);
+  --shadow-card: 0 8px 40px rgba(207, 29, 45, 0.12);
+  --shadow-pop:  0 16px 64px rgba(207, 29, 45, 0.18);
 
   /* Transitions */
   --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -60,7 +60,7 @@ html {
 body {
   font-family: var(--font-body);
   font-weight: 400;
-  color: #2a1015;
+  color: #4A1A22;
   background-color: var(--icing-white);
   overflow-x: hidden;
   line-height: 1.6;
@@ -131,14 +131,14 @@ body {
   transition: background var(--dur-fast) var(--ease-out),
               transform var(--dur-fast) var(--ease-spring),
               box-shadow var(--dur-fast) var(--ease-out);
-  box-shadow: 0 4px 20px rgba(165, 22, 39, 0.3);
+  box-shadow: 0 4px 20px rgba(207, 29, 45, 0.3);
   white-space: nowrap;
 }
 
 .btn-primary:hover {
   background: var(--cherry-red-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(165, 22, 39, 0.4);
+  box-shadow: 0 8px 32px rgba(207, 29, 45, 0.4);
 }
 
 .btn-primary:active {
@@ -192,8 +192,8 @@ body {
 .divider-line {
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--cherry-red), transparent);
-  opacity: 0.3;
+  background: var(--cherry-red);
+  opacity: 0.2;
 }
 
 /* ============ FADE-IN ANIMATION ============ */
@@ -228,23 +228,22 @@ body {
   top: 0;
   left: 0;
   right: 0;
+  height: 75px;
   z-index: 100;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(165, 22, 39, 0.08);
+  background: var(--blush-pink);
   transition: box-shadow var(--dur-med) var(--ease-out);
 }
 
 .nav.scrolled {
-  box-shadow: 0 4px 24px rgba(165, 22, 39, 0.1);
+  box-shadow: 0 4px 24px rgba(207, 29, 45, 0.1);
 }
 
 .nav-inner {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.55rem 1.25rem;
+  padding: 0 1.25rem;
   max-width: var(--container-max);
   margin: 0 auto;
 }
@@ -267,7 +266,7 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #2a1015;
+  color: #52111D;
   text-decoration: none;
   padding: 0.4rem 0.75rem;
   border-radius: var(--radius-pill);
@@ -289,7 +288,7 @@ body {
   color: white !important;
   padding: 0.45rem 1rem !important;
   border-radius: var(--radius-pill) !important;
-  box-shadow: 0 2px 12px rgba(165, 22, 39, 0.25);
+  box-shadow: 0 2px 12px rgba(207, 29, 45, 0.25);
 }
 
 .nav-order-btn:hover {

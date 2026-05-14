@@ -41,7 +41,7 @@
 }
 .login-divider::before, .login-divider::after {
   content: ''; flex: 1; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(165,22,39,0.15), transparent);
+  background: rgba(207, 29, 45, 0.15);
 }
 .login-divider span {
   font-size: 0.7rem; font-weight: 600; text-transform: uppercase;

@@ -57,44 +57,48 @@ const Sparkle = ({ size = 10, color = 'currentColor' }) => (
 function Hero() {
   return (
     <section className="lp-hero" aria-label="Hero">
-      <div className="lp-hero-decor" aria-hidden="true">
-        <div className="lp-hero-arc" />
-      </div>
+      <div className="container lp-hero-grid">
+        
+        {/* Left Column: Content */}
+        <div className="lp-hero-content">
+          <h1 className="lp-hero-headline display-xl fade-up" style={{ animationDelay: '0.15s' }}>
+            Artisanal <em>cakes</em><br/>
+            that taste even better than they look.
+          </h1>
 
-      <div className="container">
-        <h1 className="lp-hero-headline display-xl fade-up" style={{ animationDelay: '0.15s' }}>
-          Dazzling <em>desserts</em><br/>
-          for every occasion.
-        </h1>
+          <p className="lp-hero-sub fade-up" style={{ animationDelay: '0.3s' }}>
+            Handcrafted with premium ingredients, our velvety cakes and rich desserts are baked fresh to make every moment unforgettable.
+          </p>
 
-        <p className="lp-hero-sub fade-up" style={{ animationDelay: '0.3s' }}>
-          Handcrafted desserts made with the finest ingredients and thoughtful details — designed to make every celebration truly special.
-        </p>
-
-        <div className="lp-hero-cta fade-up" style={{ animationDelay: '0.45s' }}>
-          <Link to="/menu" className="btn-primary">Order Now <IconArrow width="14" height="14"/></Link>
-          <a href="tel:+919140223957" className="btn-outline"><IconPhone width="14" height="14"/> Call Us</a>
+          <div className="lp-hero-cta fade-up" style={{ animationDelay: '0.45s' }}>
+            <Link to="/menu" className="btn-primary">Order Now <IconArrow width="14" height="14"/></Link>
+            <a href="tel:+919140223957" className="btn-outline"><IconPhone width="14" height="14"/> Call Us</a>
+          </div>
         </div>
 
+        {/* Right Column: Dynamic Visual */}
+        <div className="lp-hero-visual fade-up" style={{ animationDelay: '0.35s' }}>
+          <div className="lp-hero-cake-wrap">
+            <img src="/images/hero-cake.png" alt="Premium Oven'ly cake" className="lp-hero-cake-img" />
+            
+            <div className="lp-hero-float-element lp-hero-sparkle-1"><Sparkle size={20} color="#CF1D2D"/></div>
+            <div className="lp-hero-float-element lp-hero-sparkle-2"><Sparkle size={14} color="#822433"/></div>
 
-      </div>
+            <div className="lp-hero-stamp" aria-hidden="true">
+              <svg viewBox="0 0 120 120">
+                <defs>
+                  <path id="lp-stamp-circ" d="M60,60 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
+                </defs>
+                <text className="lp-hero-stamp-text">
+                  <textPath href="#lp-stamp-circ">CRAFTED WITH LOVE · OVEN'LY · CRAFTED WITH LOVE · OVEN'LY · </textPath>
+                </text>
+                <circle cx="60" cy="60" r="18" fill="#CF1D2D"/>
+                <text x="60" y="64" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FDA1B0" fontStyle="italic">Est. '21</text>
+              </svg>
+            </div>
+          </div>
+        </div>
 
-      <div className="lp-hero-photo fade-up" style={{ animationDelay: '0.35s' }}>
-        <div className="lp-hero-photo-frame">
-          <img src="/images/img5.jpg" alt="Anniversary cake with pink roses" />
-        </div>
-        <div className="lp-hero-stamp" aria-hidden="true">
-          <svg viewBox="0 0 120 120">
-            <defs>
-              <path id="lp-stamp-circ" d="M60,60 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/>
-            </defs>
-            <text className="lp-hero-stamp-text">
-              <textPath href="#lp-stamp-circ">CRAFTED WITH LOVE · OVEN'LY · CRAFTED WITH LOVE · OVEN'LY · </textPath>
-            </text>
-            <circle cx="60" cy="60" r="18" fill="#A51627"/>
-            <text x="60" y="64" textAnchor="middle" fontSize="12" fontFamily="Cormorant Garamond" fontWeight="600" fill="#FFCCD4" fontStyle="italic">Est. '21</text>
-          </svg>
-        </div>
       </div>
     </section>
   )
@@ -113,7 +117,7 @@ function Marquee() {
             {items.map((it, i) => (
               <span className="lp-marquee-item" key={i}>
                 <span>{it}</span>
-                <Sparkle size={10} color="#FFCCD4"/>
+                <Sparkle size={10} color="#FDA1B0"/>
               </span>
             ))}
           </div>
@@ -224,7 +228,6 @@ function GallerySection() {
 function CTABanner() {
   return (
     <section className="lp-cta" aria-labelledby="lp-cta-h">
-      <span className="lp-cta-glyph" aria-hidden="true">✦</span>
       <div className="container">
         <p className="label-caps lp-cta-eyebrow">Ready to order?</p>
         <h2 className="display-lg lp-cta-headline" id="lp-cta-h">

@@ -28,7 +28,7 @@ export default function AuthCallback() {
   return (
     <main className="page" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
       <div style={{ textAlign: 'center' }}>
-        <div className="product-spinner" style={{ margin: '0 auto 1rem', width: 28, height: 28, border: '3px solid #FFCCD4', borderTopColor: '#A51627', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
+        <div className="product-spinner" style={{ margin: '0 auto 1rem', width: 28, height: 28, border: '3px solid #FDA1B0', borderTopColor: '#CF1D2D', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }} />
         <p style={{ fontSize: '0.85rem', color: '#8a6a6a' }}>Signing you in…</p>
       </div>
     </main>

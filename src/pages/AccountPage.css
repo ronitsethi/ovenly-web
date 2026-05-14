@@ -17,7 +17,7 @@
 
 .account-header {
   display: flex; align-items: center; gap: 1rem;
-  padding-bottom: 1.5rem; border-bottom: 1px solid rgba(165,22,39,0.08);
+  padding-bottom: 1.5rem; border-bottom: 1px solid rgba(207,29,45,0.08);
   margin-bottom: 2rem; flex-wrap: wrap;
 }
 
@@ -50,7 +50,7 @@
 
 .order-card {
   padding: 1rem 1.25rem; background: white; border-radius: var(--radius-md);
-  border: 1px solid rgba(165,22,39,0.08); transition: box-shadow 0.2s;
+  border: 1px solid rgba(207,29,45,0.08); transition: box-shadow 0.2s;
 }
 .order-card:hover { box-shadow: var(--shadow-soft); }
 
