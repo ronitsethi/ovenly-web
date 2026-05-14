@@ -245,8 +245,8 @@ export default function LandingPage() {
       <Hero/>
       <Marquee/>
 
-      <WhoAreWeSection/>
       <GallerySection/>
+      <WhoAreWeSection/>
       <CTABanner/>
     </main>
   )

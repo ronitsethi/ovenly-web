@@ -288,7 +288,7 @@
   display: flex; gap: 12px;
   overflow-x: auto; overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  padding: 1.5rem 1.25rem 1rem;
+  padding: 1.5rem 1.25rem 1rem calc(1.25rem + 5px);
   margin: 0 auto;
   max-width: var(--container-max);
   scrollbar-width: none;
