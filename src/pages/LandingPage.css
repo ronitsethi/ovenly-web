@@ -207,10 +207,12 @@
    ════════════════════════════════════════════════════ */
 .lp-who { padding: var(--section-pad) 0; background: var(--sugar-cream); }
 
+.lp-who .lp-section-head { margin-bottom: 0.5rem; }
+
 .lp-who-photo {
   position: relative;
   aspect-ratio: 4 / 5;
-  max-width: 360px;
+  max-width: 300px;
   margin: 1.5rem auto 1.75rem;
   border-radius: 240px 240px var(--radius-lg) var(--radius-lg);
   overflow: hidden;
@@ -236,28 +238,23 @@
 .lp-who-letter {
   background: #fff;
   border: 1px solid rgba(207, 29, 45, 0.1);
+  border-left: 3px solid var(--cherry-red);
   border-radius: var(--radius-lg);
   padding: 1.75rem 1.5rem 2rem;
   box-shadow: var(--shadow-soft);
   position: relative;
 }
-.lp-who-letter::before {
-  content: "\201C";
-  position: absolute; top: -24px; left: 22px;
-  font-family: var(--font-display); font-size: 5rem; line-height: 1;
-  color: var(--cherry-red);
-}
 .lp-who-lead {
   font-family: var(--font-display); font-style: italic;
-  font-size: 1.5rem; line-height: 1.3; color: var(--cocoa-brown);
-  margin-bottom: 1rem;
+  font-size: 1.15rem; line-height: 1.3; color: var(--cocoa-brown);
+  margin-bottom: 0.75rem;
 }
 .lp-who-letter p {
-  font-family: var(--font-body); font-size: 0.98rem; line-height: 1.75;
-  color: rgba(42, 16, 21, 0.82); margin-bottom: 0.9rem;
+  font-family: var(--font-body); font-size: 0.85rem; line-height: 1.7;
+  color: rgba(42, 16, 21, 0.82); margin-bottom: 0.7rem;
 }
 .lp-who-sign {
-  margin-top: 1.5rem; padding-top: 1.25rem;
+  margin-top: 1rem; padding-top: 1rem;
   border-top: 1px dashed rgba(207, 29, 45, 0.25);
   display: flex; flex-direction: column; gap: 0.25rem;
 }
@@ -266,7 +263,7 @@
 }
 .lp-who-sign-names {
   font-family: var(--font-display); font-style: italic; font-weight: 600;
-  font-size: 1.85rem; color: var(--cherry-red); line-height: 1;
+  font-size: 1.4rem; color: var(--cherry-red); line-height: 1;
 }
 
 /* ════════════════════════════════════════════════════
@@ -334,6 +331,84 @@
 .lp-occ-pill:hover {
   background: var(--cherry-red); color: #fff;
   border-color: var(--cherry-red); transform: translateY(-2px);
+}
+
+/* ════════════════════════════════════════════════════
+   REVIEWS CAROUSEL
+   ════════════════════════════════════════════════════ */
+.lp-reviews { padding: var(--section-pad) 0 calc(var(--section-pad) - 1rem); background: #fff; }
+
+.lp-reviews-track {
+  display: flex; gap: 16px;
+  overflow-x: auto; overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  padding: 1.5rem 1.25rem 1rem;
+  margin: 0 auto;
+  max-width: var(--container-max);
+  scrollbar-width: none;
+}
+.lp-reviews-track::-webkit-scrollbar { display: none; }
+
+.lp-review-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--sugar-cream);
+  border: 1px solid rgba(207, 29, 45, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform var(--dur-med) var(--ease-out),
+              box-shadow var(--dur-med) var(--ease-out);
+}
+.lp-review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-pop);
+}
+
+.lp-review-quote-mark {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--cherry-red);
+  opacity: 0.3;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  pointer-events: none;
+}
+
+.lp-review-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--cocoa-brown);
+  flex: 1;
+}
+
+.lp-review-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed rgba(207, 29, 45, 0.2);
+}
+
+.lp-review-stars {
+  display: flex;
+  gap: 2px;
+  color: var(--cherry-red);
+}
+
+.lp-review-name {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(42, 16, 21, 0.6);
+  letter-spacing: 0.03em;
 }
 
 /* ════════════════════════════════════════════════════

@@ -20,6 +20,25 @@ const galleryImages = [
   { src: '/images/img12.jpg', alt: 'Signature bakes' },
 ]
 
+const reviewsData = [
+  {
+    quote: "Just wanted to say a big thank you \u2014 from chocolates to cheesecakes to my fav belgium choc cake, you've always made every occasion extra special for us. Love the taste, the designs, the effort & how you're always there even at the last minute. Super grateful for you & your magic bakes.",
+    author: 'A Sweet Someone',
+  },
+  {
+    quote: "Absolutely loved it. The texture was just right \u2014 creamy and decadent without being too heavy. Every bite felt like a little treat. Definitely something I'd come back for!",
+    author: 'A Happy Customer',
+  },
+  {
+    quote: "Heyyy IT WAS ALL SUPER YUMMY! Especially the berry belgian chocolate one that he had ordered. Omg that was insane! And even the belgian chocolate cake was insane. Tysmmm!",
+    author: 'A Kind Soul',
+  },
+  {
+    quote: "Your cakes are as delicious as ever. Everybody loved the cake. Thank you so much. Last year on the same day I ordered a cake and this cake was as delicious as the previous one. I lovee your cakes. More power to you.",
+    author: 'A Happy Customer',
+  },
+]
+
 
 
 // ────────────────────────────────────────────────────────────
@@ -140,17 +159,18 @@ function WhoAreWeSection() {
 
         <div className="lp-who-photo">
           <img src="/images/founders.jpg" alt="Tarunika and Advika, founders of Oven'ly" loading="lazy"/>
+          <div className="lp-who-photo-caption">
+            <span className="label-caps">Founders</span>
+            <span className="lp-who-photo-sub">Tarunika & Advika</span>
+          </div>
         </div>
 
         <div className="lp-who-letter">
           <p className="lp-who-lead">
-            We didn't plan Oven'ly to become what it is today.
+            We didn't plan Oven'ly — it just happened.
           </p>
           <p>
-            It started with the two of us — experimenting, figuring things out, and slowly finding our own rhythm in the middle of it all.
-          </p>
-          <p>
-            Over time, it became more than just desserts. It became about creating something people could <em>feel</em> — not just taste.
+            Two of us, experimenting in a kitchen, slowly turning a little dream into something people could <em>feel</em> — not just taste.
           </p>
           <p>
             Every box that leaves our kitchen carries a piece of that — care, detail, and a lot of heart.
@@ -237,6 +257,60 @@ function CTABanner() {
 }
 
 // ────────────────────────────────────────────────────────────
+// Reviews
+// ────────────────────────────────────────────────────────────
+function ReviewsSection() {
+  const trackRef = useRef(null)
+  const scroll = (dir) => {
+    if (!trackRef.current) return
+    const card = trackRef.current.querySelector('.lp-review-card')
+    const w = card ? card.offsetWidth + 16 : 300
+    trackRef.current.scrollBy({ left: dir * w, behavior: 'smooth' })
+  }
+  return (
+    <section className="lp-reviews" aria-labelledby="lp-reviews-h">
+      <div className="container">
+        <div className="lp-section-head lp-section-head--row">
+          <div>
+            <div className="divider">
+              <div className="divider-line"></div>
+              <span className="label-caps lp-section-eyebrow">Reviews</span>
+              <div className="divider-line"></div>
+            </div>
+            <h2 className="display-lg" id="lp-reviews-h">
+              What people <em>say.</em>
+            </h2>
+          </div>
+          <div className="lp-gal-nav">
+            <button className="lp-gal-arrow" aria-label="Previous review" onClick={() => scroll(-1)}>
+              <IconArrow width="16" height="16" style={{ transform: 'rotate(180deg)' }}/>
+            </button>
+            <button className="lp-gal-arrow" aria-label="Next review" onClick={() => scroll(1)}>
+              <IconArrow width="16" height="16"/>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="lp-reviews-track" ref={trackRef}>
+        {reviewsData.map((r, i) => (
+          <div className="lp-review-card" key={i}>
+            <div className="lp-review-quote-mark">&ldquo;</div>
+            <p className="lp-review-text">{r.quote}</p>
+            <div className="lp-review-author">
+              <div className="lp-review-stars">
+                {Array(5).fill(null).map((_, si) => <IconStar key={si} width="12" height="12"/>)}
+              </div>
+              <span className="lp-review-name">&mdash; {r.author}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ────────────────────────────────────────────────────────────
 // Page
 // ────────────────────────────────────────────────────────────
 export default function LandingPage() {
@@ -247,6 +321,7 @@ export default function LandingPage() {
 
       <GallerySection/>
       <WhoAreWeSection/>
+      <ReviewsSection/>
       <CTABanner/>
     </main>
   )
