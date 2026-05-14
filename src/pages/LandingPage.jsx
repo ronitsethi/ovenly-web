@@ -7,15 +7,15 @@ import './LandingPage.css'
 // Data
 // ────────────────────────────────────────────────────────────
 const galleryImages = [
-  { src: '/images/gallery/gallery-7.jpg',    alt: 'Fresh from the oven' },
-  { src: '/images/gallery/gallery-12.jpg',   alt: 'Signature bake' },
-  { src: '/images/gallery/Cover-image.jpg',  alt: 'Oven\'ly signature spread' },
-  { src: '/images/gallery/gallery-5.jpg',    alt: 'Handcrafted treat' },
-  { src: '/images/gallery/gallery-9.jpg',    alt: 'Custom creation' },
-  { src: '/images/gallery/gallery-2.jpg',    alt: 'Artisan dessert' },
-  { src: '/images/gallery/gallery-11.jpg',   alt: 'Sweet indulgence' },
-  { src: '/images/gallery/gallery-4.jpg',    alt: 'Premium bake' },
-  { src: '/images/gallery/gallery-8.jpg',    alt: 'Beautifully plated' },
+  { src: '/images/gallery/1.jpg', alt: 'Oven\'ly gallery 1' },
+  { src: '/images/gallery/2.jpg', alt: 'Oven\'ly gallery 2' },
+  { src: '/images/gallery/3.jpg', alt: 'Oven\'ly gallery 3' },
+  { src: '/images/gallery/4.jpg', alt: 'Oven\'ly gallery 4' },
+  { src: '/images/gallery/5.jpg', alt: 'Oven\'ly gallery 5' },
+  { src: '/images/gallery/6.jpg', alt: 'Oven\'ly gallery 6' },
+  { src: '/images/gallery/7.jpg', alt: 'Oven\'ly gallery 7' },
+  { src: '/images/gallery/8.jpg', alt: 'Oven\'ly gallery 8' },
+  { src: '/images/gallery/9.jpg', alt: 'Oven\'ly gallery 9' },
 ]
 
 const reviewsData = [
