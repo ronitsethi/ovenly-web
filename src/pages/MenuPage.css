@@ -290,8 +290,8 @@
 
 /* Small product thumbnail */
 .menu-item-thumb {
-  width: 86px;
-  height: 86px;
+  width: 72px;
+  height: 72px;
   border-radius: var(--radius-md);
   overflow: hidden;
   flex-shrink: 0;
