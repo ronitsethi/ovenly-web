@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 import SearchOverlay from './SearchOverlay'
 import './Navbar.css'
@@ -8,6 +8,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const { totalQuantity, setIsCartOpen, notification } = useCart()
+  const location = useLocation()
+
+  const isLandingPage = location.pathname === '/'
+  const isTransparent = isLandingPage && !scrolled
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10)
@@ -17,7 +21,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`nav${scrolled ? ' scrolled' : ''}`} role="navigation" aria-label="Main navigation">
+      <nav className={`nav${scrolled ? ' scrolled' : ''}${isTransparent ? ' transparent' : ''}`} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
           <Link to="/menu" className="nav-logo-link" aria-label="Oven'ly Menu">
             <img src="/Logo.png" alt="Oven'ly Logo" className="nav-logo" />

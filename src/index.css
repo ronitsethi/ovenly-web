@@ -231,11 +231,27 @@ body {
   height: 75px;
   z-index: 100;
   background: var(--blush-pink);
-  transition: box-shadow var(--dur-med) var(--ease-out);
+  transition: background var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), filter var(--dur-med) var(--ease-out);
+}
+
+.nav.transparent {
+  background: transparent;
+  box-shadow: none;
 }
 
 .nav.scrolled {
+  background: var(--blush-pink);
   box-shadow: 0 4px 24px rgba(207, 29, 45, 0.1);
+}
+
+.nav.transparent .nav-link,
+.nav.transparent .nav-icon-btn {
+  color: var(--icing-white);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.nav.transparent .nav-logo {
+  filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.5));
 }
 
 .nav-inner {
@@ -249,7 +265,7 @@ body {
 }
 
 .nav-logo {
-  height: 50px;
+  height: 66px;
   width: auto;
   object-fit: contain;
 }
