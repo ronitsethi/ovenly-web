@@ -111,7 +111,7 @@ function Hero() {
             {carouselSlides[currentSlide].subtitle}
           </p>
           <div className="lp-carousel-cta-wrap fade-up" style={{ animationDelay: '0.3s' }}>
-            <Link to="/menu" className="btn-primary lp-carousel-cta">Order Now <IconArrow width="14" height="14"/></Link>
+            <Link to="/menu" className="lp-carousel-cta">Order Now <IconArrow width="14" height="14"/></Link>
           </div>
         </div>
       </div>
@@ -171,10 +171,7 @@ function WhoAreWeSection() {
 
         <div className="lp-who-letter">
           <p className="lp-who-lead">
-            We didn't plan Oven'ly — it just happened.
-          </p>
-          <p>
-            Two of us, experimenting in a kitchen, slowly turning a little dream into something people could <em>feel</em> — not just taste.
+            Two sisters, one kitchen, and a dream that quietly turned into Oven'ly.
           </p>
           <p>
             Every box that leaves our kitchen carries a piece of that — care, detail, and a lot of heart.
