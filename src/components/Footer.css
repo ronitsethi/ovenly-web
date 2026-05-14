@@ -29,8 +29,9 @@
 }
 
 .site-footer-headline em {
-  color: #fff;
+  color: #fff !important;
   font-style: italic;
+  opacity: 1;
 }
 
 /* ── ACTION BUTTONS ──────────────────────────────── */

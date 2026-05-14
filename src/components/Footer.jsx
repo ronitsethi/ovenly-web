@@ -37,16 +37,13 @@ export default function Footer() {
             )}
           </h2>
 
-          <div className="site-footer-actions">
-            {!isMenuPage && (
+          {!isMenuPage && (
+            <div className="site-footer-actions">
               <Link to="/menu" className="site-footer-btn">
                 Browse the Menu <IconArrow width="14" height="14"/>
               </Link>
-            )}
-            <a href="tel:+919140223957" className={`site-footer-btn${isMenuPage ? '' : ' site-footer-btn--outline'}`}>
-              <IconPhone width="14" height="14"/> +91 91402 23957
-            </a>
-          </div>
+            </div>
+          )}
 
           <div className="site-footer-social">
             <a href="tel:+919140223957" className="site-footer-link"><IconPhone width="13" height="13"/> +91 91402 23957</a>
