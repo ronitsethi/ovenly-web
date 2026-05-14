@@ -76,8 +76,7 @@ const carouselSlides = [
   { src: '/images/hero-carousel-3.jpg', title: 'Freshly baked happiness.', subtitle: 'Every bite tells a story.' },
   { src: '/images/hero-carousel-4.jpg', title: 'Made with love.', subtitle: 'Premium ingredients, always.' },
   { src: '/images/hero-carousel-5.jpg', title: 'Celebrate sweetly.', subtitle: 'Desserts for every occasion.' },
-  { src: '/images/hero-carousel-6.jpg', title: 'A touch of magic.', subtitle: 'In every single bite.' },
-  { src: '/images/hero-carousel-7.jpg', title: 'Pure indulgence.', subtitle: 'Crafted to perfection.' },
+  { src: '/images/hero-carousel-6.jpg', title: 'Pure indulgence.', subtitle: 'Crafted to perfection.' },
 ]
 
 function Hero() {
@@ -163,10 +162,6 @@ function WhoAreWeSection() {
 
         <div className="lp-who-photo">
           <img src="/images/founders.jpg" alt="Tarunika and Advika, founders of Oven'ly" loading="lazy"/>
-          <div className="lp-who-photo-caption">
-            <span className="label-caps">Founders</span>
-            <span className="lp-who-photo-sub">Tarunika & Advika</span>
-          </div>
         </div>
 
         <div className="lp-who-letter">
