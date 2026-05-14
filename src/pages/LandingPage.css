@@ -251,7 +251,7 @@
 }
 .lp-who-lead {
   font-family: var(--font-body);
-  font-size: 0.9rem; font-weight: 600; line-height: 1.65; color: var(--cocoa-brown);
+  font-size: 0.85rem; line-height: 1.7; color: rgba(42, 16, 21, 0.82);
   margin-bottom: 0.75rem;
 }
 .lp-who-letter p {
