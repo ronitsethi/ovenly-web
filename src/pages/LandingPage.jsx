@@ -7,15 +7,15 @@ import './LandingPage.css'
 // Data
 // ────────────────────────────────────────────────────────────
 const galleryImages = [
-  { src: '/images/gallery/Cover-image.jpg',  alt: 'Oven\'ly signature spread' },
-  { src: '/images/gallery/gallery-2.jpg',    alt: 'Artisan dessert' },
-  { src: '/images/gallery/gallery-4.jpg',    alt: 'Premium bake' },
-  { src: '/images/gallery/gallery-5.jpg',    alt: 'Handcrafted treat' },
   { src: '/images/gallery/gallery-7.jpg',    alt: 'Fresh from the oven' },
-  { src: '/images/gallery/gallery-8.jpg',    alt: 'Beautifully plated' },
-  { src: '/images/gallery/gallery-9.jpg',    alt: 'Custom creation' },
-  { src: '/images/gallery/gallery-11.jpg',   alt: 'Sweet indulgence' },
   { src: '/images/gallery/gallery-12.jpg',   alt: 'Signature bake' },
+  { src: '/images/gallery/Cover-image.jpg',  alt: 'Oven\'ly signature spread' },
+  { src: '/images/gallery/gallery-5.jpg',    alt: 'Handcrafted treat' },
+  { src: '/images/gallery/gallery-9.jpg',    alt: 'Custom creation' },
+  { src: '/images/gallery/gallery-2.jpg',    alt: 'Artisan dessert' },
+  { src: '/images/gallery/gallery-11.jpg',   alt: 'Sweet indulgence' },
+  { src: '/images/gallery/gallery-4.jpg',    alt: 'Premium bake' },
+  { src: '/images/gallery/gallery-8.jpg',    alt: 'Beautifully plated' },
 ]
 
 const reviewsData = [
