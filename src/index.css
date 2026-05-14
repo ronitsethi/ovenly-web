@@ -2,7 +2,7 @@
    OVEN'LY — GLOBAL DESIGN SYSTEM
    Brand Colors: Cherry Red #CF1D2D
    Blush Pink #FDA1B0 · Cream #FEE8EC
-   Fonts: EB Garamond (display) + Jost (body)
+   Fonts: Fraunces (display) + Outfit (body)
    ============================================ */
 
 *, *::before, *::after {
@@ -27,8 +27,8 @@
   --apricot-gold:   #FFCF83;
   
   /* Typography */
-  --font-display:   'EB Garamond', Georgia, serif;
-  --font-body:      'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --font-display:   'Fraunces', Georgia, serif;
+  --font-body:      'Outfit', 'Helvetica Neue', Arial, sans-serif;
 
   /* Spacing */
   --section-pad: clamp(3rem, 8vw, 6rem);
