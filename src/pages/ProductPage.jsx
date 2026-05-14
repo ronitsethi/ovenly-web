@@ -65,7 +65,7 @@ export default function ProductPage() {
           {product.tags?.length > 0 && <div className="product-tags">{product.tags.map(t => <span key={t} className="product-tag">{t}</span>)}</div>}
         </div>
       </div></div></div>
-      <footer className="footer"><div className="container"><img src="/Logo.png" alt="Oven'ly" className="footer-logo"/><p className="footer-tagline label-caps">Crafted with love</p><div className="footer-links"><a href="tel:+919140223957" className="footer-link">+91 91402 23957</a><span className="footer-dot">·</span><a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a></div><p className="footer-copy">© 2026 Oven'ly</p></div></footer>
+      <footer className="footer"><div className="container"><img src="/Logo.png" alt="Oven'ly" className="footer-logo"/><p className="footer-tagline label-caps">Crafted with love</p><div className="footer-links"><a href="tel:+919140223957" className="footer-link">+91 91402 23957</a><span className="footer-dot">·</span><a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a></div><div className="footer-links"><Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link><span className="footer-dot">·</span><Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link><span className="footer-dot">·</span><Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link><span className="footer-dot">·</span><Link to="/policies/contact" className="footer-link">Contact</Link></div><p className="footer-copy">© 2026 Oven'ly</p></div></footer>
     </main>
   )
 }

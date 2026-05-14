@@ -63,7 +63,7 @@ export default function AccountPage() {
           </section>
         </div>
       </div>
-      <footer className="footer"><div className="container"><img src="/Logo.png" alt="Oven'ly" className="footer-logo"/><p className="footer-copy">© 2026 Oven'ly</p></div></footer>
+      <footer className="footer"><div className="container"><img src="/Logo.png" alt="Oven'ly" className="footer-logo"/><p className="footer-tagline label-caps">Crafted with love</p><div className="footer-links"><Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link><span className="footer-dot">·</span><Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link><span className="footer-dot">·</span><Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link><span className="footer-dot">·</span><Link to="/policies/contact" className="footer-link">Contact</Link></div><p className="footer-copy">© 2026 Oven'ly</p></div></footer>
     </main>
   )
 }

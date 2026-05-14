@@ -389,6 +389,15 @@ export default function MenuPage() {
             <span className="footer-dot">·</span>
             <a href="https://www.instagram.com/o.v.e.n.ly" className="footer-link" target="_blank" rel="noreferrer">@o.v.e.n.ly</a>
           </div>
+          <div className="footer-links">
+            <Link to="/policies/refund-policy" className="footer-link">Refund Policy</Link>
+            <span className="footer-dot">·</span>
+            <Link to="/policies/privacy-policy" className="footer-link">Privacy Policy</Link>
+            <span className="footer-dot">·</span>
+            <Link to="/policies/terms-of-service" className="footer-link">Terms of Service</Link>
+            <span className="footer-dot">·</span>
+            <Link to="/policies/contact" className="footer-link">Contact</Link>
+          </div>
           <p className="footer-copy">© 2026 Oven'ly. All prices inclusive of GST.</p>
         </div>
       </footer>

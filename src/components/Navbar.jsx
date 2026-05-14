@@ -23,7 +23,7 @@ export default function Navbar() {
     <>
       <nav className={navClass} role="navigation" aria-label="Main navigation">
         <div className="nav-inner">
-          <Link to="/menu" className="nav-logo-link" aria-label="Oven'ly Menu">
+          <Link to="/" className="nav-logo-link" aria-label="Oven'ly Home">
             <img src="/Logo.png" alt="Oven'ly Logo" className="nav-logo" />
           </Link>
           <div className="nav-links">

@@ -1,0 +1,304 @@
+/* ════════════════════════════════════════════════════
+   OVEN'LY — POLICY PAGES
+   Clean, readable layout with sidebar navigation
+   ════════════════════════════════════════════════════ */
+
+.policy-page {
+  background: var(--icing-white);
+  min-height: 100vh;
+}
+
+/* ── LAYOUT ──────────────────────────────────────── */
+.policy-layout {
+  display: flex;
+  gap: 0;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  min-height: calc(100vh - 75px);
+}
+
+/* ── SIDEBAR ─────────────────────────────────────── */
+.policy-sidebar {
+  flex-shrink: 0;
+  width: 200px;
+  padding-right: 2rem;
+  border-right: 1px solid rgba(207, 29, 45, 0.1);
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+  height: fit-content;
+}
+
+.policy-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.policy-nav-label {
+  color: var(--cherry-red);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.policy-nav-link {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 450;
+  color: #6a3040;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--dur-fast) var(--ease-out);
+  line-height: 1.3;
+}
+
+.policy-nav-link:hover {
+  color: var(--cherry-red);
+  background: var(--sugar-cream);
+}
+
+.policy-nav-link.active {
+  color: var(--cherry-red);
+  background: var(--sugar-cream);
+  font-weight: 600;
+  border-left: 2px solid var(--cherry-red);
+  padding-left: calc(0.75rem - 2px);
+}
+
+/* ── CONTENT ─────────────────────────────────────── */
+.policy-content {
+  flex: 1;
+  min-width: 0;
+  padding-left: 2.5rem;
+}
+
+.policy-header {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(207, 29, 45, 0.1);
+}
+
+.policy-title {
+  color: #2a1015;
+  margin-bottom: 0.5rem;
+}
+
+.policy-date {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(42, 16, 21, 0.5);
+  letter-spacing: 0.02em;
+}
+
+.policy-intro {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed rgba(207, 29, 45, 0.15);
+}
+
+.policy-intro p {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: rgba(42, 16, 21, 0.8);
+  margin-bottom: 0.75rem;
+}
+
+/* ── SECTIONS ────────────────────────────────────── */
+.policy-section {
+  margin-bottom: 1.75rem;
+}
+
+.policy-section-heading {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #2a1015;
+  margin-bottom: 0.65rem;
+  line-height: 1.3;
+}
+
+.policy-text {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  line-height: 1.75;
+  color: rgba(42, 16, 21, 0.78);
+  margin-bottom: 0.5rem;
+}
+
+.policy-text--strong {
+  font-weight: 600;
+  color: rgba(42, 16, 21, 0.9);
+}
+
+.policy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.policy-list li {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: rgba(42, 16, 21, 0.75);
+  padding: 0.3rem 0 0.3rem 1.25rem;
+  position: relative;
+}
+
+.policy-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7rem;
+  width: 5px;
+  height: 5px;
+  background: var(--cherry-red);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+/* ── CONTACT BLOCK ───────────────────────────────── */
+.policy-contact {
+  background: var(--sugar-cream);
+  border: 1px solid rgba(207, 29, 45, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1.25rem 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.policy-contact-row {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.45rem 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(42, 16, 21, 0.85);
+  border-bottom: 1px solid rgba(207, 29, 45, 0.06);
+}
+
+.policy-contact-row:last-child {
+  border-bottom: none;
+}
+
+.policy-contact-label {
+  font-weight: 600;
+  color: rgba(42, 16, 21, 0.6);
+  min-width: 90px;
+  flex-shrink: 0;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding-top: 0.1rem;
+}
+
+.policy-contact a {
+  color: var(--cherry-red);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity var(--dur-fast);
+}
+
+.policy-contact a:hover {
+  opacity: 0.7;
+}
+
+/* ── BACK LINK ───────────────────────────────────── */
+.policy-back {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(207, 29, 45, 0.1);
+}
+
+.policy-back-link {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cherry-red);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: opacity var(--dur-fast);
+}
+
+.policy-back-link:hover {
+  opacity: 0.7;
+}
+
+/* ── NOT FOUND ───────────────────────────────────── */
+.policy-not-found {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.policy-not-found h1 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: #2a1015;
+  margin-bottom: 0.75rem;
+}
+
+.policy-not-found p {
+  font-size: 0.85rem;
+  color: #6a3040;
+  margin-bottom: 1.5rem;
+}
+
+/* ── MOBILE ──────────────────────────────────────── */
+@media (max-width: 680px) {
+  .policy-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 1.25rem 3rem;
+  }
+
+  .policy-sidebar {
+    width: 100%;
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(207, 29, 45, 0.1);
+    padding-bottom: 1rem;
+    position: static;
+  }
+
+  .policy-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .policy-nav-label {
+    width: 100%;
+    margin-bottom: 0.35rem;
+  }
+
+  .policy-nav-link {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.65rem;
+    background: var(--sugar-cream);
+    border-radius: var(--radius-pill);
+  }
+
+  .policy-nav-link.active {
+    border-left: none;
+    padding-left: 0.65rem;
+    background: var(--cherry-red);
+    color: white;
+  }
+
+  .policy-content {
+    padding-left: 0;
+  }
+
+  .policy-contact-row {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .policy-contact-label {
+    min-width: auto;
+  }
+}
