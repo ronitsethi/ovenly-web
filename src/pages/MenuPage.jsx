@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
 import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY } from '../lib/queries'
@@ -69,6 +69,7 @@ export default function MenuPage() {
   const [drawerProduct, setDrawerProduct] = useState(null)
   const { addToCart, isLoading: cartLoading } = useCart()
   const location = useLocation()
+  const navigate = useNavigate()
   const pendingScrollRestore = useRef(false)
 
   // Restore saved category + scroll when returning from product page
@@ -258,7 +259,12 @@ export default function MenuPage() {
 
                           {/* Small product thumbnail */}
                           {mainImage && (
-                            <div className="menu-item-thumb">
+                            <div className="menu-item-thumb" onClick={(e) => {
+                              e.stopPropagation()
+                              sessionStorage.setItem('menu_activeCategory', activeCategory)
+                              sessionStorage.setItem('menu_scrollY', String(window.scrollY))
+                              navigate(`/product/${product.handle}`)
+                            }}>
                               <img
                                 src={mainImage.url}
                                 alt={mainImage.altText || product.title}

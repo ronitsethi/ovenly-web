@@ -184,12 +184,34 @@ function WhoAreWeSection() {
 // ────────────────────────────────────────────────────────────
 function GallerySection() {
   const trackRef = useRef(null)
+  const [lightboxIndex, setLightboxIndex] = useState(null)
+
   const scroll = (dir) => {
-    if (!trackRef.current) return
-    const card = trackRef.current.querySelector('.lp-gal-card')
+    const track = trackRef.current
+    if (!track) return
+    const card = track.querySelector('.lp-gal-card')
     const w = card ? card.offsetWidth + 12 : 240
-    trackRef.current.scrollBy({ left: dir * w, behavior: 'smooth' })
+    const maxScroll = track.scrollWidth - track.clientWidth
+    const target = Math.max(0, Math.min(track.scrollLeft + dir * w, maxScroll))
+    track.scrollTo({ left: target, behavior: 'smooth' })
   }
+
+  // Close on Escape key
+  useEffect(() => {
+    if (lightboxIndex === null) return
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setLightboxIndex(null)
+      if (e.key === 'ArrowRight') setLightboxIndex(prev => Math.min(prev + 1, galleryImages.length - 1))
+      if (e.key === 'ArrowLeft') setLightboxIndex(prev => Math.max(prev - 1, 0))
+    }
+    document.addEventListener('keydown', handleKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = ''
+    }
+  }, [lightboxIndex])
+
   return (
     <section className="lp-gallery" aria-labelledby="lp-gallery-h">
       <div className="container">
@@ -217,11 +239,37 @@ function GallerySection() {
 
       <div className="lp-gal-track" ref={trackRef}>
         {galleryImages.map((img, i) => (
-          <figure className="lp-gal-card" key={i}>
+          <figure className="lp-gal-card" key={i} onClick={() => setLightboxIndex(i)} style={{ cursor: 'pointer' }}>
             <img src={img.src} alt={img.alt} loading="lazy"/>
           </figure>
         ))}
       </div>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div className="lp-lightbox" onClick={() => setLightboxIndex(null)}>
+          <button className="lp-lightbox-close" onClick={() => setLightboxIndex(null)} aria-label="Close">✕</button>
+          {lightboxIndex > 0 && (
+            <button className="lp-lightbox-arrow lp-lightbox-prev" aria-label="Previous image" onClick={(e) => { e.stopPropagation(); setLightboxIndex(i => i - 1) }}>
+              <IconArrow width="20" height="20" style={{ transform: 'rotate(180deg)' }}/>
+            </button>
+          )}
+          <img
+            src={galleryImages[lightboxIndex].src}
+            alt={galleryImages[lightboxIndex].alt}
+            className="lp-lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+          {lightboxIndex < galleryImages.length - 1 && (
+            <button className="lp-lightbox-arrow lp-lightbox-next" aria-label="Next image" onClick={(e) => { e.stopPropagation(); setLightboxIndex(i => i + 1) }}>
+              <IconArrow width="20" height="20"/>
+            </button>
+          )}
+          <div className="lp-lightbox-counter" onClick={(e) => e.stopPropagation()}>
+            {lightboxIndex + 1} / {galleryImages.length}
+          </div>
+        </div>
+      )}
     </section>
   )
 }
