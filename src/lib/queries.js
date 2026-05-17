@@ -456,6 +456,25 @@ export const CART_NOTE_UPDATE_MUTATION = `
   }
 `
 
+/** Update cart attributes (e.g. pickup date) */
+export const CART_ATTRIBUTES_UPDATE_MUTATION = `
+  mutation CartAttributesUpdate($cartId: ID!, $attributes: [AttributeInput!]!) {
+    cartAttributesUpdate(cartId: $cartId, attributes: $attributes) {
+      cart {
+        id
+        attributes {
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`
+
 /* ============================================================
    SEARCH QUERY
    ============================================================ */

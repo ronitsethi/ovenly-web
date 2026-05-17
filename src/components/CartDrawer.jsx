@@ -11,13 +11,27 @@ export default function CartDrawer() {
     updateQuantity,
     removeItem,
     updateNote,
+    updateAttributes,
     checkout,
     totalQuantity,
   } = useCart()
 
   const [noteOpen, setNoteOpen] = useState(false)
   const [noteValue, setNoteValue] = useState('')
+  const [pickupDate, setPickupDate] = useState('')
   const noteInitialized = useRef(false)
+
+  // Minimum pickup date = today
+  const getMinDate = () => {
+    return new Date().toISOString().split('T')[0]
+  }
+
+  const handlePickupDateChange = (date) => {
+    setPickupDate(date)
+    if (date) {
+      updateAttributes([{ key: 'Pickup Date', value: date }])
+    }
+  }
 
   // Sync note from cart on first load
   if (cart?.note && !noteInitialized.current) {
@@ -154,6 +168,25 @@ export default function CartDrawer() {
               )}
             </div>
 
+            {/* Pickup Date Selector */}
+            <div className="cart-pickup-date">
+              <label className="cart-pickup-label" htmlFor="pickup-date">
+                <span className="cart-pickup-icon">📅</span>
+                <span>Pickup Date</span>
+              </label>
+              <input
+                type="date"
+                id="pickup-date"
+                className="cart-pickup-input"
+                value={pickupDate}
+                min={getMinDate()}
+                onChange={(e) => handlePickupDateChange(e.target.value)}
+              />
+              {!pickupDate && (
+                <p className="cart-pickup-hint">Please select a pickup date</p>
+              )}
+            </div>
+
             <div className="cart-totals">
               {subtotal && (
                 <div className="cart-total-row">
@@ -172,9 +205,9 @@ export default function CartDrawer() {
             <button
               className="btn-primary cart-checkout-btn"
               onClick={checkout}
-              disabled={isLoading}
+              disabled={isLoading || !pickupDate}
             >
-              {isLoading ? 'Processing…' : 'Checkout'}
+              {isLoading ? 'Processing…' : !pickupDate ? 'Select Pickup Date' : 'Checkout'}
             </button>
           </div>
         )}

@@ -401,3 +401,50 @@
 .cart-si-textarea:focus {
   border-color: var(--cherry-red);
 }
+
+/* Pickup Date */
+.cart-pickup-date {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(207, 29, 45, 0.1);
+  padding-bottom: 0.85rem;
+}
+
+.cart-pickup-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #2a1015;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.cart-pickup-icon {
+  font-size: 1rem;
+}
+
+.cart-pickup-input {
+  width: 100%;
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #2a1015;
+  background: white;
+  outline: none;
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+.cart-pickup-input:focus {
+  border-color: var(--cherry-red);
+}
+
+.cart-pickup-hint {
+  font-size: 0.68rem;
+  color: var(--cherry-red);
+  margin-top: 0.35rem;
+  font-style: italic;
+}

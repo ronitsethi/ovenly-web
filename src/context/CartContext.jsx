@@ -10,6 +10,7 @@ import {
   CART_LINES_UPDATE_MUTATION,
   CART_LINES_REMOVE_MUTATION,
   CART_NOTE_UPDATE_MUTATION,
+  CART_ATTRIBUTES_UPDATE_MUTATION,
 } from '../lib/queries'
 
 const CartContext = createContext(null)
@@ -190,6 +191,18 @@ export function CartProvider({ children }) {
     }
   }, [cart])
 
+  const updateAttributes = useCallback(async (attributes) => {
+    if (!cart) return
+    try {
+      await shopifyFetch(CART_ATTRIBUTES_UPDATE_MUTATION, {
+        cartId: cart.id,
+        attributes,
+      })
+    } catch (err) {
+      console.error('Update attributes error:', err)
+    }
+  }, [cart])
+
   const checkout = useCallback(() => {
     if (cart?.checkoutUrl) {
       window.location.href = cart.checkoutUrl
@@ -209,6 +222,7 @@ export function CartProvider({ children }) {
         updateQuantity,
         removeItem,
         updateNote,
+        updateAttributes,
         checkout,
         totalQuantity,
         notification,
