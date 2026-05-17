@@ -82,7 +82,7 @@ function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % carouselSlides.length)
-    }, 5000)
+    }, 3750)
     return () => clearInterval(timer)
   }, [])
 
