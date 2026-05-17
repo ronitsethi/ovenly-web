@@ -448,3 +448,36 @@
   margin-top: 0.35rem;
   font-style: italic;
 }
+
+/* Phone number input */
+.cart-phone-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.cart-phone-wrap:focus-within {
+  border-color: var(--cherry-red);
+}
+
+.cart-phone-prefix {
+  padding: 0.65rem 0.6rem 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5a3a3a;
+  background: var(--sugar-cream);
+  border-right: 1px solid rgba(207, 29, 45, 0.1);
+  flex-shrink: 0;
+}
+
+.cart-phone-input {
+  border: none !important;
+  border-radius: 0 !important;
+  padding-left: 0.6rem !important;
+}
+.cart-phone-input:focus {
+  border: none !important;
+}

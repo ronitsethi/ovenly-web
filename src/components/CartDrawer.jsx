@@ -19,6 +19,7 @@ export default function CartDrawer() {
   const [noteOpen, setNoteOpen] = useState(false)
   const [noteValue, setNoteValue] = useState('')
   const [pickupDate, setPickupDate] = useState('')
+  const [phone, setPhone] = useState('')
   const noteInitialized = useRef(false)
 
   // Minimum pickup date = today
@@ -32,6 +33,20 @@ export default function CartDrawer() {
       updateAttributes([{ key: 'Pickup Date', value: date }])
     }
   }
+
+  const handlePhoneChange = (value) => {
+    // Allow only digits
+    const digits = value.replace(/\D/g, '').slice(0, 10)
+    setPhone(digits)
+  }
+
+  const handlePhoneBlur = () => {
+    if (phone.length === 10) {
+      updateAttributes([{ key: 'Phone Number', value: `+91${phone}` }])
+    }
+  }
+
+  const isPhoneValid = phone.length === 10
 
   // Sync note from cart on first load
   if (cart?.note && !noteInitialized.current) {
@@ -187,6 +202,30 @@ export default function CartDrawer() {
               )}
             </div>
 
+            {/* Phone Number */}
+            <div className="cart-pickup-date">
+              <label className="cart-pickup-label" htmlFor="cart-phone">
+                <span className="cart-pickup-icon">📞</span>
+                <span>Phone Number</span>
+              </label>
+              <div className="cart-phone-wrap">
+                <span className="cart-phone-prefix">+91</span>
+                <input
+                  type="tel"
+                  id="cart-phone"
+                  className="cart-pickup-input cart-phone-input"
+                  placeholder="10-digit mobile number"
+                  value={phone}
+                  onChange={(e) => handlePhoneChange(e.target.value)}
+                  onBlur={handlePhoneBlur}
+                  inputMode="numeric"
+                />
+              </div>
+              {phone.length > 0 && !isPhoneValid && (
+                <p className="cart-pickup-hint">Enter a valid 10-digit number</p>
+              )}
+            </div>
+
             <div className="cart-totals">
               {subtotal && (
                 <div className="cart-total-row">
@@ -201,13 +240,13 @@ export default function CartDrawer() {
                 </div>
               )}
             </div>
-            <p className="cart-note">Shipping & taxes calculated at checkout</p>
+            <p className="cart-note">Taxes calculated at checkout</p>
             <button
               className="btn-primary cart-checkout-btn"
               onClick={checkout}
-              disabled={isLoading || !pickupDate}
+              disabled={isLoading || !pickupDate || !isPhoneValid}
             >
-              {isLoading ? 'Processing…' : !pickupDate ? 'Select Pickup Date' : 'Checkout'}
+              {isLoading ? 'Processing…' : !pickupDate ? 'Select Pickup Date' : !isPhoneValid ? 'Enter Phone Number' : 'Checkout'}
             </button>
           </div>
         )}
