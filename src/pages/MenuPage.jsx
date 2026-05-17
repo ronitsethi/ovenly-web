@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
 import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY } from '../lib/queries'
@@ -68,6 +68,17 @@ export default function MenuPage() {
   const [selectedVariants, setSelectedVariants] = useState({})
   const [drawerProduct, setDrawerProduct] = useState(null)
   const { addToCart, isLoading: cartLoading } = useCart()
+  const location = useLocation()
+  const pendingScrollRestore = useRef(false)
+
+  // Restore saved category + scroll when returning from product page
+  useEffect(() => {
+    const savedCategory = sessionStorage.getItem('menu_activeCategory')
+    if (savedCategory) {
+      setActiveCategory(savedCategory)
+      pendingScrollRestore.current = true
+    }
+  }, [])
 
   useEffect(() => {
     loadCatalog()
@@ -124,6 +135,18 @@ export default function MenuPage() {
       setUsingFallback(true)
     } finally {
       setLoading(false)
+      // Restore scroll position after data loads
+      if (pendingScrollRestore.current) {
+        pendingScrollRestore.current = false
+        requestAnimationFrame(() => {
+          const savedScroll = sessionStorage.getItem('menu_scrollY')
+          if (savedScroll) {
+            window.scrollTo(0, parseInt(savedScroll, 10))
+          }
+          sessionStorage.removeItem('menu_activeCategory')
+          sessionStorage.removeItem('menu_scrollY')
+        })
+      }
     }
   }
 
@@ -435,7 +458,11 @@ export default function MenuPage() {
                 >
                   {!dp.availableForSale ? 'Sold Out' : cartLoading ? 'Adding…' : 'Add to Cart'}
                 </button>
-                <Link to={`/product/${dp.handle}`} className="pdrawer-detail-link" onClick={() => setDrawerProduct(null)}>
+                <Link to={`/product/${dp.handle}`} className="pdrawer-detail-link" onClick={() => {
+                  sessionStorage.setItem('menu_activeCategory', activeCategory)
+                  sessionStorage.setItem('menu_scrollY', String(window.scrollY))
+                  setDrawerProduct(null)
+                }}>
                   View full details →
                 </Link>
               </div>
