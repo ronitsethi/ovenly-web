@@ -221,8 +221,8 @@ export default function CartDrawer() {
                   inputMode="numeric"
                 />
               </div>
-              {phone.length > 0 && !isPhoneValid && (
-                <p className="cart-pickup-hint">Enter a valid 10-digit number</p>
+              {!isPhoneValid && (
+                <p className="cart-pickup-hint">{phone.length === 0 ? 'Phone number is required' : 'Enter a valid 10-digit number'}</p>
               )}
             </div>
 

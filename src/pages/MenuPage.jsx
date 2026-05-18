@@ -241,7 +241,15 @@ export default function MenuPage() {
                       >
                         <div className="menu-item-top">
                           <div className="menu-item-name-wrap">
-                            <h3 className="menu-item-name">{product.title}</h3>
+                            <h3 className="menu-item-name">
+                              {product.title}
+                              <span 
+                                className={`diet-indicator ${product.tags?.some(t => t.toLowerCase() === 'egg') ? 'egg' : 'eggless'}`} 
+                                title={product.tags?.some(t => t.toLowerCase() === 'egg') ? 'Contains Egg' : 'Eggless'}
+                              >
+                                <span className="diet-dot"></span>
+                              </span>
+                            </h3>
                             {product.description && (
                               <p className="menu-item-desc">
                                 {product.description.length > 100
@@ -426,7 +434,15 @@ export default function MenuPage() {
                 )}
 
                 <div className="pdrawer-info">
-                  <h3 className="pdrawer-title">{dp.title}</h3>
+                  <h3 className="pdrawer-title">
+                    {dp.title}
+                    <span 
+                      className={`diet-indicator ${dp.tags?.some(t => t.toLowerCase() === 'egg') ? 'egg' : 'eggless'}`} 
+                      title={dp.tags?.some(t => t.toLowerCase() === 'egg') ? 'Contains Egg' : 'Eggless'}
+                    >
+                      <span className="diet-dot"></span>
+                    </span>
+                  </h3>
                   {dp.description && (
                     <p className="pdrawer-desc">{dp.description}</p>
                   )}

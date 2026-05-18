@@ -174,6 +174,41 @@
   color: #2a1015;
   line-height: 1.25;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.diet-indicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  border: 1px solid;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.diet-indicator .diet-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.diet-indicator.eggless {
+  border-color: #3b823e;
+}
+.diet-indicator.eggless .diet-dot {
+  background-color: #3b823e;
+}
+
+.diet-indicator.egg {
+  border-color: #8b4513;
+}
+.diet-indicator.egg .diet-dot {
+  background-color: #8b4513;
 }
 
 .menu-item-desc {
@@ -490,6 +525,9 @@ button.variant-pill:hover:not(:disabled):not(.selected) {
   color: #2a1015;
   line-height: 1.2;
   margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .pdrawer-desc {

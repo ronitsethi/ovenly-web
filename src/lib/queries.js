@@ -178,6 +178,7 @@ export const COLLECTION_PRODUCTS_QUERY = `
             handle
             description
             productType
+            tags
             availableForSale
             priceRange {
               minVariantPrice {
