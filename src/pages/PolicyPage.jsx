@@ -394,6 +394,10 @@ function ContactBlock({ full }) {
             <span className="policy-contact-label">GST number</span>
             <span>09ADUPG7894D1ZV</span>
           </div>
+          <div className="policy-contact-row">
+            <span className="policy-contact-label">FSSAI Registration Number</span>
+            <span>22725662000226</span>
+          </div>
         </>
       )}
       <div className="policy-contact-row">
