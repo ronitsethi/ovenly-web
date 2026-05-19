@@ -48,6 +48,8 @@ export default function Footer() {
           <div className="site-footer-social">
             <a href="tel:+919140223957" className="site-footer-link"><IconPhone width="13" height="13" /> +91 91402 23957</a>
             <span className="site-footer-dot">·</span>
+            <a href="tel:+919277071602" className="site-footer-link"><IconPhone width="13" height="13" /> +91 92770 71602</a>
+            <span className="site-footer-dot">·</span>
             <a href="https://www.instagram.com/o.v.e.n.ly" className="site-footer-link" target="_blank" rel="noreferrer"><IconInsta width="13" height="13" /> @o.v.e.n.ly</a>
           </div>
         </div>

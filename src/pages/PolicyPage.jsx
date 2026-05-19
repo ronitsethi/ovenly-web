@@ -406,7 +406,11 @@ function ContactBlock({ full }) {
       </div>
       <div className="policy-contact-row">
         <span className="policy-contact-label">Phone</span>
-        <a href="tel:+919140223957">+91 91402 23957</a>
+        <span>
+          <a href="tel:+919140223957">+91 91402 23957</a>
+          <br />
+          <a href="tel:+919277071602">+91 92770 71602</a>
+        </span>
       </div>
       <div className="policy-contact-row">
         <span className="policy-contact-label">Address</span>
