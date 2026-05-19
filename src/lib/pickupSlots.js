@@ -5,7 +5,6 @@
  *  - Pickup hours: 2:00 PM – 7:00 PM IST
  *  - Lead time: 2 hours from now (minimum)
  *  - Same-day cutoff: orders placed at/after 5:00 PM → no same-day pickup
- *  - Slot interval: 30 minutes
  *  - Max advance booking: 14 days
  */
 
@@ -20,9 +19,6 @@ const LEAD_TIME_HOURS = 2
 
 // If ordering at or after this hour, no same-day pickup
 const SAME_DAY_CUTOFF_HOUR = 17 // 5:00 PM
-
-// Time between each slot
-const SLOT_INTERVAL_MINUTES = 30
 
 // How many days ahead customers can book
 const MAX_ADVANCE_DAYS = 14
@@ -98,12 +94,12 @@ function isToday(dateString) {
  * Generate available time slots for a given date.
  *
  * For today:
- *   - Slots start at (now + 2 hours), rounded UP to next 30-min mark
+ *   - Slots start at (now + 2 hours), rounded UP to next full hour
  *   - Slots end at store close (7:00 PM)
  *   - If no valid slots remain, returns empty array
  *
  * For future dates:
- *   - Full range: 2:00 PM → 7:00 PM in 30-min intervals
+ *   - Full range: 2-3 PM, 3-4 PM, 4-5 PM, 5-6 PM, 6-7 PM
  *
  * @param {string} dateString — YYYY-MM-DD
  * @returns {Array<{value: string, label: string}>}
@@ -114,57 +110,36 @@ export function getAvailableTimeSlots(dateString) {
   const slots = []
 
   let startHour = STORE_OPEN_HOUR
-  let startMinute = 0
 
   if (isToday(dateString)) {
     const now = getNowIST()
 
-    // Earliest possible time = now + lead time
+    // Earliest possible hour = now + lead time, rounded up to next full hour
     let earliestHour = now.hours + LEAD_TIME_HOURS
-    let earliestMinute = now.minutes
-
-    // Round up to next 30-min mark
-    if (earliestMinute > 0 && earliestMinute <= 30) {
-      earliestMinute = 30
-    } else if (earliestMinute > 30) {
-      earliestMinute = 0
+    if (now.minutes > 0) {
       earliestHour += 1
     }
 
     // Clamp to store open
     if (earliestHour < STORE_OPEN_HOUR) {
       earliestHour = STORE_OPEN_HOUR
-      earliestMinute = 0
     }
 
     startHour = earliestHour
-    startMinute = earliestMinute
   }
 
-  // Generate slots from start to store close
-  let h = startHour
-  let m = startMinute
+  // Generate 1-hour range slots from start to store close
+  for (let h = startHour; h < STORE_CLOSE_HOUR; h++) {
+    const startPeriod = h >= 12 ? 'PM' : 'AM'
+    const endH = h + 1
+    const endPeriod = endH >= 12 ? 'PM' : 'AM'
+    const displayStart = h > 12 ? h - 12 : h === 0 ? 12 : h
+    const displayEnd = endH > 12 ? endH - 12 : endH === 0 ? 12 : endH
 
-  while (h < STORE_CLOSE_HOUR || (h === STORE_CLOSE_HOUR && m === 0)) {
-    const totalMinutes = h * 60 + m
-    const closeMinutes = STORE_CLOSE_HOUR * 60
-
-    if (totalMinutes > closeMinutes) break
-
-    const period = h >= 12 ? 'PM' : 'AM'
-    const displayHour = h > 12 ? h - 12 : h === 0 ? 12 : h
-    const displayMin = String(m).padStart(2, '0')
-    const label = `${displayHour}:${displayMin} ${period}`
-    const value = `${String(h).padStart(2, '0')}:${displayMin}`
+    const label = `${displayStart} ${startPeriod} – ${displayEnd} ${endPeriod}`
+    const value = `${String(h).padStart(2, '0')}:00-${String(endH).padStart(2, '0')}:00`
 
     slots.push({ value, label })
-
-    // Advance by interval
-    m += SLOT_INTERVAL_MINUTES
-    if (m >= 60) {
-      m -= 60
-      h += 1
-    }
   }
 
   return slots
