@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
-import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY } from '../lib/queries'
+import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY, ADDONS_QUERY } from '../lib/queries'
 import { useCart } from '../context/CartContext'
 import './MenuPage.css'
 
@@ -67,6 +67,8 @@ export default function MenuPage() {
   const [usingFallback, setUsingFallback] = useState(false)
   const [selectedVariants, setSelectedVariants] = useState({})
   const [drawerProduct, setDrawerProduct] = useState(null)
+  const [addons, setAddons] = useState([])
+  const [selectedAddons, setSelectedAddons] = useState({})
   const { addToCart, isLoading: cartLoading } = useCart()
   const location = useLocation()
   const navigate = useNavigate()
@@ -87,6 +89,14 @@ export default function MenuPage() {
 
   async function loadCatalog() {
     try {
+      // Fetch add-on products (tagged "addon") in parallel
+      shopifyFetch(ADDONS_QUERY)
+        .then(data => {
+          const addonProducts = data?.products?.edges?.map(e => e.node) || []
+          setAddons(addonProducts.filter(p => p.availableForSale && p.variants?.edges?.[0]?.node?.availableForSale))
+        })
+        .catch(err => console.warn('Could not load add-ons:', err))
+
       // First, fetch all collections
       const collData = await shopifyFetch(ALL_COLLECTIONS_QUERY)
       const colls = collData?.collections?.edges?.map(e => e.node) || []
@@ -157,6 +167,17 @@ export default function MenuPage() {
 
   function openProductDrawer(product) {
     setDrawerProduct(product)
+    setSelectedAddons({})
+  }
+
+  function isCakeProduct(product) {
+    const type = (product?.productType || '').toLowerCase()
+    const tags = (product?.tags || []).map(t => t.toLowerCase())
+    return type.includes('cake') || tags.includes('cake') || tags.includes('cakes')
+  }
+
+  function toggleAddon(addonId) {
+    setSelectedAddons(prev => ({ ...prev, [addonId]: !prev[addonId] }))
   }
 
   function handleDrawerAddToCart() {
@@ -167,7 +188,16 @@ export default function MenuPage() {
       ? variants.find(v => v.id === selectedId)
       : variants[0]
     if (variantToAdd) {
-      addToCart(variantToAdd.id)
+      // Collect checked add-on variant IDs
+      const addonVariantIds = Object.entries(selectedAddons)
+        .filter(([, checked]) => checked)
+        .map(([addonProductId]) => {
+          const addon = addons.find(a => a.id === addonProductId)
+          return addon?.variants?.edges?.[0]?.node?.id
+        })
+        .filter(Boolean)
+
+      addToCart(variantToAdd.id, 1, addonVariantIds)
       setDrawerProduct(null)
     }
   }
@@ -467,6 +497,29 @@ export default function MenuPage() {
                           <span className="pdrawer-v-price">{formatPrice(v.price.amount)}</span>
                         </button>
                       ))}
+                    </div>
+                  )}
+
+                  {/* Add-on checkboxes (cakes only) */}
+                  {isCakeProduct(dp) && addons.length > 0 && (
+                    <div className="pdrawer-addons">
+                      <h4 className="pdrawer-addons-title">Add-ons</h4>
+                      {addons.map(addon => {
+                        const addonVariant = addon.variants?.edges?.[0]?.node
+                        const addonPrice = addonVariant?.price?.amount
+                        return (
+                          <label key={addon.id} className="pdrawer-addon-row">
+                            <input
+                              type="checkbox"
+                              className="pdrawer-addon-check"
+                              checked={!!selectedAddons[addon.id]}
+                              onChange={() => toggleAddon(addon.id)}
+                            />
+                            <span className="pdrawer-addon-name">{addon.title}</span>
+                            <span className="pdrawer-addon-price">+ {formatPrice(addonPrice)}</span>
+                          </label>
+                        )
+                      })}
                     </div>
                   )}
                 </div>

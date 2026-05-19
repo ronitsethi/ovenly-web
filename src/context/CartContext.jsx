@@ -95,15 +95,19 @@ export function CartProvider({ children }) {
     setTimeout(() => setNotification(null), 2500)
   }, [])
 
-  const addToCart = useCallback(async (variantId, quantity = 1) => {
+  const addToCart = useCallback(async (variantId, quantity = 1, addonVariantIds = []) => {
     setIsLoading(true)
     try {
+      // Build lines: main product + any add-ons
+      const lines = [{ merchandiseId: variantId, quantity }]
+      addonVariantIds.forEach(addonId => {
+        lines.push({ merchandiseId: addonId, quantity: 1 })
+      })
+
       if (!cart) {
         // Create new cart
         const data = await shopifyFetch(CART_CREATE_MUTATION, {
-          input: {
-            lines: [{ merchandiseId: variantId, quantity }],
-          },
+          input: { lines },
         })
         const newCart = data?.cartCreate?.cart
         if (newCart) {
@@ -116,7 +120,7 @@ export function CartProvider({ children }) {
         // Add to existing cart
         const data = await shopifyFetch(CART_LINES_ADD_MUTATION, {
           cartId: cart.id,
-          lines: [{ merchandiseId: variantId, quantity }],
+          lines,
         })
         const updatedCart = data?.cartLinesAdd?.cart
         if (updatedCart) {

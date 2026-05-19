@@ -115,3 +115,63 @@
   background: var(--sugar-cream); padding: 0.25rem 0.65rem;
   border-radius: var(--radius-pill);
 }
+
+/* Add-ons */
+.product-addons {
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.15rem;
+  background: var(--sugar-cream, #fef6f5);
+  border-radius: var(--radius-md, 12px);
+  border: 1px solid rgba(207, 29, 45, 0.06);
+}
+
+.product-addons-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2a1015;
+  margin-bottom: 0.75rem;
+}
+
+.product-addon-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(207, 29, 45, 0.06);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.product-addon-row:last-child {
+  border-bottom: none;
+}
+.product-addon-row:hover {
+  background: rgba(207, 29, 45, 0.03);
+  border-radius: 6px;
+}
+
+.product-addon-check {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(42, 16, 21, 0.3);
+  border-radius: 4px;
+  cursor: pointer;
+  accent-color: var(--cherry-red);
+  flex-shrink: 0;
+}
+
+.product-addon-name {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #2a1015;
+}
+
+.product-addon-price {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5a3a3a;
+  white-space: nowrap;
+}

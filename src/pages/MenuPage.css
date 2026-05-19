@@ -630,3 +630,61 @@ button.variant-pill:hover:not(:disabled):not(.selected) {
 .pdrawer-detail-link:hover {
   opacity: 0.7;
 }
+
+/* ── DRAWER ADD-ONS ──────────────────────── */
+.pdrawer-addons {
+  margin-top: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(207, 29, 45, 0.08);
+}
+
+.pdrawer-addons-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #2a1015;
+  margin-bottom: 0.5rem;
+}
+
+.pdrawer-addon-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(207, 29, 45, 0.05);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.pdrawer-addon-row:last-child {
+  border-bottom: none;
+}
+.pdrawer-addon-row:hover {
+  background: rgba(207, 29, 45, 0.03);
+  border-radius: 6px;
+}
+
+.pdrawer-addon-check {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(42, 16, 21, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  accent-color: var(--cherry-red);
+  flex-shrink: 0;
+}
+
+.pdrawer-addon-name {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #2a1015;
+}
+
+.pdrawer-addon-price {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #5a3a3a;
+  white-space: nowrap;
+}

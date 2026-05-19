@@ -481,6 +481,35 @@ export const CART_ATTRIBUTES_UPDATE_MUTATION = `
    ============================================================ */
 
 /** Predictive search */
+/** Fetch add-on products (toppers, gift wrap, etc.) tagged "addon" */
+export const ADDONS_QUERY = `
+  query Addons {
+    products(first: 20, query: "tag:addon") {
+      edges {
+        node {
+          id
+          title
+          handle
+          availableForSale
+          variants(first: 1) {
+            edges {
+              node {
+                id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                availableForSale
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export const PREDICTIVE_SEARCH_QUERY = `
   query PredictiveSearch($query: String!, $first: Int = 10) {
     products(first: $first, query: $query) {
