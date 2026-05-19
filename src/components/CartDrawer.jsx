@@ -213,7 +213,6 @@ export default function CartDrawer() {
               {/* ─── Pickup Details Section ─── */}
               <div className="cart-pickup-section">
                 <div className="cart-section-header">
-                  <span className="cart-section-icon">🧁</span>
                   <h3 className="cart-section-title">Pickup Details</h3>
                 </div>
 
