@@ -2,7 +2,7 @@
  * Pickup Slot Utilities — Ovenly Bakery
  *
  * Business rules:
- *  - Store hours: 10:00 AM – 7:00 PM IST
+ *  - Pickup hours: 2:00 PM – 7:00 PM IST
  *  - Lead time: 2 hours from now (minimum)
  *  - Same-day cutoff: orders placed at/after 5:00 PM → no same-day pickup
  *  - Slot interval: 30 minutes
@@ -12,7 +12,7 @@
 const TIMEZONE = 'Asia/Kolkata'
 
 // Store hours (24h format)
-const STORE_OPEN_HOUR = 10    // 10:00 AM
+const STORE_OPEN_HOUR = 14    // 2:00 PM
 const STORE_CLOSE_HOUR = 19   // 7:00 PM
 
 // Lead time before first available slot
@@ -103,7 +103,7 @@ function isToday(dateString) {
  *   - If no valid slots remain, returns empty array
  *
  * For future dates:
- *   - Full range: 10:00 AM → 7:00 PM in 30-min intervals
+ *   - Full range: 2:00 PM → 7:00 PM in 30-min intervals
  *
  * @param {string} dateString — YYYY-MM-DD
  * @returns {Array<{value: string, label: string}>}
