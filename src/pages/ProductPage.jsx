@@ -57,7 +57,7 @@ export default function ProductPage() {
 
     shopifyFetch(MESSAGE_CARD_QUERY)
       .then(data => {
-        const mc = data?.products?.edges?.[0]?.node
+        const mc = data?.product
         if (mc?.availableForSale && mc?.variants?.edges?.[0]?.node?.availableForSale) {
           setMessageCardProduct(mc)
         }

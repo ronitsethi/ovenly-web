@@ -510,28 +510,24 @@ export const ADDONS_QUERY = `
   }
 `
 
-/** Fetch message card product tagged "message-card" */
+/** Fetch message card product by handle */
 export const MESSAGE_CARD_QUERY = `
   query MessageCard {
-    products(first: 1, query: "tag:message-card") {
-      edges {
-        node {
-          id
-          title
-          handle
-          availableForSale
-          variants(first: 1) {
-            edges {
-              node {
-                id
-                title
-                price {
-                  amount
-                  currencyCode
-                }
-                availableForSale
-              }
+    product(handle: "message-card") {
+      id
+      title
+      handle
+      availableForSale
+      variants(first: 1) {
+        edges {
+          node {
+            id
+            title
+            price {
+              amount
+              currencyCode
             }
+            availableForSale
           }
         }
       }
