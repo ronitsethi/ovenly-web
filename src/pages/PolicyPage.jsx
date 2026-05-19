@@ -388,7 +388,7 @@ function ContactBlock({ full }) {
         <>
           <div className="policy-contact-row">
             <span className="policy-contact-label">Trade name</span>
-            <span>Oven'ly</span>
+            <span>Oven'ly <em>(Unit of Springfields)</em></span>
           </div>
           <div className="policy-contact-row">
             <span className="policy-contact-label">GST number</span>
