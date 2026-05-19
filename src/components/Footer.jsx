@@ -3,17 +3,17 @@ import './Footer.css'
 
 const IconArrow = (p) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>
+    <path d="M5 12h14" /><path d="m13 6 6 6-6 6" />
   </svg>
 )
 const IconPhone = (p) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" {...p}>
-    <path d="M5 4h4l1.6 4-2 1.4a13 13 0 0 0 6 6L16 13.4l4 1.6v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>
+    <path d="M5 4h4l1.6 4-2 1.4a13 13 0 0 0 6 6L16 13.4l4 1.6v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" />
   </svg>
 )
 const IconInsta = (p) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" {...p}>
-    <rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor"/>
+    <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
   </svg>
 )
 
@@ -31,24 +31,24 @@ export default function Footer() {
           </p>
           <h2 className="display-lg site-footer-headline">
             {isMenuPage ? (
-              <>Call us for custom orders<br/><em>& celebrations!</em></>
+              <>Call us for custom orders<br /><em>& celebrations!</em></>
             ) : (
-              <>Desserts that<br/><em>sparkle just like you!</em></>
+              <>Desserts that<br /><em>sparkle just like you!</em></>
             )}
           </h2>
 
           {!isMenuPage && (
             <div className="site-footer-actions">
               <Link to="/menu" className="site-footer-btn">
-                Browse the Menu <IconArrow width="14" height="14"/>
+                Browse the Menu <IconArrow width="14" height="14" />
               </Link>
             </div>
           )}
 
           <div className="site-footer-social">
-            <a href="tel:+919140223957" className="site-footer-link"><IconPhone width="13" height="13"/> +91 91402 23957</a>
+            <a href="tel:+919140223957" className="site-footer-link"><IconPhone width="13" height="13" /> +91 91402 23957</a>
             <span className="site-footer-dot">·</span>
-            <a href="https://www.instagram.com/o.v.e.n.ly" className="site-footer-link" target="_blank" rel="noreferrer"><IconInsta width="13" height="13"/> @o.v.e.n.ly</a>
+            <a href="https://www.instagram.com/o.v.e.n.ly" className="site-footer-link" target="_blank" rel="noreferrer"><IconInsta width="13" height="13" /> @o.v.e.n.ly</a>
           </div>
         </div>
       </div>

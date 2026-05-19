@@ -44,6 +44,7 @@
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
   border-bottom: 1px solid rgba(207, 29, 45, 0.08);
+  flex-shrink: 0;
 }
 
 .cart-title {
@@ -273,11 +274,264 @@
   color: var(--cherry-red);
 }
 
+/* ============================================
+   PICKUP DETAILS SECTION
+   ============================================ */
+
+.cart-pickup-section {
+  padding: 0.5rem 1.5rem 1rem;
+  border-top: 1px solid rgba(207, 29, 45, 0.08);
+}
+
+.cart-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0 0.75rem;
+}
+
+.cart-section-icon {
+  font-size: 1.1rem;
+}
+
+.cart-section-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2a1015;
+  letter-spacing: 0.01em;
+}
+
+/* Individual fields */
+.cart-field {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(207, 29, 45, 0.06);
+}
+
+.cart-field-last {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cart-field-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2a1015;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.03em;
+}
+
+.cart-field-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.cart-field-input {
+  width: 100%;
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #2a1015;
+  background: white;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+.cart-field-input:focus {
+  border-color: var(--cherry-red);
+  box-shadow: 0 0 0 3px rgba(207, 29, 45, 0.08);
+}
+.cart-field-input::placeholder {
+  color: #b09090;
+}
+
+.cart-field-hint {
+  font-size: 0.68rem;
+  color: var(--cherry-red);
+  margin-top: 0.35rem;
+  font-style: italic;
+}
+
+.cart-field-hint-muted {
+  font-size: 0.75rem;
+  color: #a08080;
+  font-style: italic;
+  padding: 0.5rem 0 0.15rem;
+}
+
+.cart-field-selected {
+  font-size: 0.72rem;
+  color: #5a3a3a;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* ── Time Slot Grid ── */
+.cart-time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+}
+
+.cart-time-chip {
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  background: white;
+  border-radius: var(--radius-pill, 100px);
+  padding: 0.45rem 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #2a1015;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.cart-time-chip:hover {
+  border-color: var(--cherry-red);
+  color: var(--cherry-red);
+  background: rgba(207, 29, 45, 0.04);
+}
+
+.cart-time-chip.active {
+  background: var(--cherry-red);
+  border-color: var(--cherry-red);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(207, 29, 45, 0.25);
+}
+
+/* ── Pickup Address Card ── */
+.cart-address-card {
+  background: var(--sugar-cream, #fef6f5);
+  border: 1px solid rgba(207, 29, 45, 0.08);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.75rem 0.85rem;
+}
+
+.cart-address-line {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #5a3a3a;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.cart-address-bold {
+  font-weight: 600;
+  color: #2a1015;
+}
+
+.cart-address-pin {
+  font-weight: 600;
+  color: var(--cherry-red);
+  margin-top: 0.15rem;
+}
+
+/* ── Phone number input (within new field system) ── */
+.cart-phone-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cart-phone-wrap:focus-within {
+  border-color: var(--cherry-red);
+  box-shadow: 0 0 0 3px rgba(207, 29, 45, 0.08);
+}
+
+.cart-phone-prefix {
+  padding: 0.65rem 0.6rem 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #5a3a3a;
+  background: var(--sugar-cream);
+  border-right: 1px solid rgba(207, 29, 45, 0.1);
+  flex-shrink: 0;
+}
+
+.cart-phone-input {
+  border: none !important;
+  border-radius: 0 !important;
+  padding-left: 0.6rem !important;
+  box-shadow: none !important;
+}
+.cart-phone-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Special Instructions (within pickup section) ── */
+.cart-si-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem 0;
+  transition: color 0.2s;
+}
+.cart-si-toggle:hover {
+  color: var(--cherry-red);
+}
+
+.cart-si-chevron {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #2a1015;
+  transition: transform 0.25s ease;
+}
+.cart-si-chevron.open {
+  transform: rotate(45deg);
+}
+
+.cart-si-body {
+  padding-top: 0.6rem;
+}
+
+.cart-si-textarea {
+  width: 100%;
+  border: 1px solid rgba(207, 29, 45, 0.15);
+  border-radius: var(--radius-sm, 8px);
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #2a1015;
+  background: white;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+.cart-si-textarea::placeholder {
+  color: #b09090;
+  font-style: italic;
+}
+.cart-si-textarea:focus {
+  border-color: var(--cherry-red);
+}
+
 /* Footer */
 .cart-footer {
   border-top: 1px solid rgba(207, 29, 45, 0.1);
   padding: 1.25rem 1.5rem;
   background: rgba(252, 236, 235, 0.3);
+  flex-shrink: 0;
 }
 
 .cart-totals {
@@ -316,6 +570,11 @@
   padding: 0.95rem 2rem;
 }
 
+.cart-checkout-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
 /* Loading overlay */
 .cart-loading {
   position: absolute;
@@ -340,144 +599,21 @@
   to { transform: rotate(360deg); }
 }
 
-/* Special Instructions */
-.cart-special-instructions {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(207, 29, 45, 0.1);
-  padding-bottom: 0.85rem;
-}
+/* ============================================
+   RESPONSIVE — Smaller screens
+   ============================================ */
 
-.cart-si-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  background: none;
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #2a1015;
-  cursor: pointer;
-  padding: 0.35rem 0;
-  letter-spacing: 0.03em;
-  transition: color 0.2s;
-}
-.cart-si-toggle:hover {
-  color: var(--cherry-red);
-}
+@media (max-width: 480px) {
+  .cart-time-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-.cart-si-chevron {
-  font-size: 1.1rem;
-  font-weight: 400;
-  transition: transform 0.25s ease;
-}
-.cart-si-chevron.open {
-  transform: rotate(45deg);
-}
+  .cart-pickup-section {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
 
-.cart-si-body {
-  padding-top: 0.6rem;
-}
-
-.cart-si-textarea {
-  width: 100%;
-  border: 1px solid rgba(207, 29, 45, 0.15);
-  border-radius: var(--radius-sm, 8px);
-  padding: 0.65rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  color: #2a1015;
-  background: white;
-  resize: vertical;
-  min-height: 60px;
-  outline: none;
-  transition: border-color 0.2s;
-}
-.cart-si-textarea::placeholder {
-  color: #b09090;
-  font-style: italic;
-}
-.cart-si-textarea:focus {
-  border-color: var(--cherry-red);
-}
-
-/* Pickup Date */
-.cart-pickup-date {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid rgba(207, 29, 45, 0.1);
-  padding-bottom: 0.85rem;
-}
-
-.cart-pickup-label {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #2a1015;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.03em;
-}
-
-.cart-pickup-icon {
-  font-size: 1rem;
-}
-
-.cart-pickup-input {
-  width: 100%;
-  border: 1px solid rgba(207, 29, 45, 0.15);
-  border-radius: var(--radius-sm, 8px);
-  padding: 0.65rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: #2a1015;
-  background: white;
-  outline: none;
-  transition: border-color 0.2s;
-  cursor: pointer;
-}
-.cart-pickup-input:focus {
-  border-color: var(--cherry-red);
-}
-
-.cart-pickup-hint {
-  font-size: 0.68rem;
-  color: var(--cherry-red);
-  margin-top: 0.35rem;
-  font-style: italic;
-}
-
-/* Phone number input */
-.cart-phone-wrap {
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(207, 29, 45, 0.15);
-  border-radius: var(--radius-sm, 8px);
-  overflow: hidden;
-  transition: border-color 0.2s;
-}
-.cart-phone-wrap:focus-within {
-  border-color: var(--cherry-red);
-}
-
-.cart-phone-prefix {
-  padding: 0.65rem 0.6rem 0.65rem 0.75rem;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #5a3a3a;
-  background: var(--sugar-cream);
-  border-right: 1px solid rgba(207, 29, 45, 0.1);
-  flex-shrink: 0;
-}
-
-.cart-phone-input {
-  border: none !important;
-  border-radius: 0 !important;
-  padding-left: 0.6rem !important;
-}
-.cart-phone-input:focus {
-  border: none !important;
+  .cart-item {
+    padding: 0.85rem 1.1rem;
+  }
 }
