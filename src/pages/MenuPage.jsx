@@ -104,7 +104,7 @@ export default function MenuPage() {
       // Fetch message card product (tagged "message-card") in parallel
       shopifyFetch(MESSAGE_CARD_QUERY)
         .then(data => {
-          const mc = data?.product
+          const mc = data?.products?.edges?.[0]?.node
           if (mc?.availableForSale && mc?.variants?.edges?.[0]?.node?.availableForSale) {
             setMessageCardProduct(mc)
           }
