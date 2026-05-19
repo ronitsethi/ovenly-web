@@ -410,7 +410,7 @@ function ContactBlock({ full }) {
       </div>
       <div className="policy-contact-row">
         <span className="policy-contact-label">Address</span>
-        <span>9/72 D Santushti, Santushti, Kanpur, Uttar Pradesh, 208002, India</span>
+        <span>9/72 D, 'Santushti'<br/>Opposite Benajhabar Telephone Exchange<br/>Arya Nagar<br/>Kanpur<br/>208002</span>
       </div>
     </div>
   )
