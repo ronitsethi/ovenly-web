@@ -69,6 +69,7 @@ export default function MenuPage() {
   const [drawerProduct, setDrawerProduct] = useState(null)
   const [addons, setAddons] = useState([])
   const [selectedAddons, setSelectedAddons] = useState({})
+  const [drawerCollection, setDrawerCollection] = useState(null)
   const { addToCart, isLoading: cartLoading } = useCart()
   const location = useLocation()
   const navigate = useNavigate()
@@ -165,15 +166,17 @@ export default function MenuPage() {
     setSelectedVariants(prev => ({ ...prev, [productId]: variantId }))
   }
 
-  function openProductDrawer(product) {
+  function openProductDrawer(product, collectionHandle) {
     setDrawerProduct(product)
     setSelectedAddons({})
+    setDrawerCollection(collectionHandle || null)
   }
 
   function isCakeProduct(product) {
     const type = (product?.productType || '').toLowerCase()
     const tags = (product?.tags || []).map(t => t.toLowerCase())
-    return type.includes('cake') || tags.includes('cake') || tags.includes('cakes')
+    const colHandle = (drawerCollection || '').toLowerCase()
+    return type.includes('cake') || tags.includes('cake') || tags.includes('cakes') || colHandle.includes('cake')
   }
 
   function toggleAddon(addonId) {
@@ -264,10 +267,10 @@ export default function MenuPage() {
                       <div
                         className="menu-item-card shopify-card"
                         key={product.id}
-                        onClick={() => openProductDrawer(product)}
+                        onClick={() => openProductDrawer(product, col.handle)}
                         role="button"
                         tabIndex={0}
-                        onKeyDown={e => e.key === 'Enter' && openProductDrawer(product)}
+                        onKeyDown={e => e.key === 'Enter' && openProductDrawer(product, col.handle)}
                       >
                         <div className="menu-item-top">
                           <div className="menu-item-name-wrap">
