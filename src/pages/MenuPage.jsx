@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
-import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY, ADDONS_QUERY } from '../lib/queries'
+import { ALL_COLLECTIONS_QUERY, COLLECTION_PRODUCTS_QUERY, ALL_PRODUCTS_QUERY, ADDONS_QUERY, MESSAGE_CARD_QUERY } from '../lib/queries'
 import { useCart } from '../context/CartContext'
 import './MenuPage.css'
 
@@ -70,6 +70,9 @@ export default function MenuPage() {
   const [addons, setAddons] = useState([])
   const [selectedAddons, setSelectedAddons] = useState({})
   const [drawerCollection, setDrawerCollection] = useState(null)
+  const [messageCardProduct, setMessageCardProduct] = useState(null)
+  const [wantMessageCard, setWantMessageCard] = useState(false)
+  const [messageText, setMessageText] = useState('')
   const { addToCart, isLoading: cartLoading } = useCart()
   const location = useLocation()
   const navigate = useNavigate()
@@ -97,6 +100,16 @@ export default function MenuPage() {
           setAddons(addonProducts.filter(p => p.availableForSale && p.variants?.edges?.[0]?.node?.availableForSale))
         })
         .catch(err => console.warn('Could not load add-ons:', err))
+
+      // Fetch message card product (tagged "message-card") in parallel
+      shopifyFetch(MESSAGE_CARD_QUERY)
+        .then(data => {
+          const mc = data?.products?.edges?.[0]?.node
+          if (mc?.availableForSale && mc?.variants?.edges?.[0]?.node?.availableForSale) {
+            setMessageCardProduct(mc)
+          }
+        })
+        .catch(err => console.warn('Could not load message card:', err))
 
       // First, fetch all collections
       const collData = await shopifyFetch(ALL_COLLECTIONS_QUERY)
@@ -170,6 +183,8 @@ export default function MenuPage() {
     setDrawerProduct(product)
     setSelectedAddons({})
     setDrawerCollection(collectionHandle || null)
+    setWantMessageCard(false)
+    setMessageText('')
   }
 
   function isCakeProduct(product) {
@@ -200,7 +215,15 @@ export default function MenuPage() {
         })
         .filter(Boolean)
 
-      addToCart(variantToAdd.id, 1, addonVariantIds)
+      // Build message card payload
+      const messageCard = wantMessageCard && messageCardProduct
+        ? {
+            variantId: messageCardProduct.variants?.edges?.[0]?.node?.id,
+            message: messageText,
+          }
+        : null
+
+      addToCart(variantToAdd.id, 1, addonVariantIds, messageCard)
       setDrawerProduct(null)
     }
   }
@@ -523,6 +546,31 @@ export default function MenuPage() {
                           </label>
                         )
                       })}
+                    </div>
+                  )}
+                  {/* Message card (all products) */}
+                  {messageCardProduct && (
+                    <div className="pdrawer-message-card">
+                      <label className="pdrawer-addon-row">
+                        <input
+                          type="checkbox"
+                          className="pdrawer-addon-check"
+                          checked={wantMessageCard}
+                          onChange={() => setWantMessageCard(prev => !prev)}
+                        />
+                        <span className="pdrawer-addon-name">Add a message card</span>
+                        <span className="pdrawer-addon-price">+ {formatPrice(messageCardProduct.variants?.edges?.[0]?.node?.price?.amount)}</span>
+                      </label>
+                      {wantMessageCard && (
+                        <textarea
+                          className="pdrawer-message-input"
+                          placeholder="Write your message here…"
+                          value={messageText}
+                          onChange={e => setMessageText(e.target.value)}
+                          maxLength={200}
+                          rows={3}
+                        />
+                      )}
                     </div>
                   )}
                 </div>

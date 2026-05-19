@@ -510,6 +510,35 @@ export const ADDONS_QUERY = `
   }
 `
 
+/** Fetch message card product tagged "message-card" */
+export const MESSAGE_CARD_QUERY = `
+  query MessageCard {
+    products(first: 1, query: "tag:message-card") {
+      edges {
+        node {
+          id
+          title
+          handle
+          availableForSale
+          variants(first: 1) {
+            edges {
+              node {
+                id
+                title
+                price {
+                  amount
+                  currencyCode
+                }
+                availableForSale
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
 export const PREDICTIVE_SEARCH_QUERY = `
   query PredictiveSearch($query: String!, $first: Int = 10) {
     products(first: $first, query: $query) {

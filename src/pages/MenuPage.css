@@ -688,3 +688,32 @@ button.variant-pill:hover:not(:disabled):not(.selected) {
   color: #5a3a3a;
   white-space: nowrap;
 }
+
+/* ── DRAWER MESSAGE CARD ─────────────────── */
+.pdrawer-message-card {
+  margin-top: 0.65rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(207, 29, 45, 0.08);
+}
+
+.pdrawer-message-input {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.55rem 0.65rem;
+  border: 1.5px solid rgba(207, 29, 45, 0.15);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #2a1015;
+  background: white;
+  resize: vertical;
+  min-height: 52px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.pdrawer-message-input:focus {
+  border-color: var(--cherry-red);
+}
+.pdrawer-message-input::placeholder {
+  color: #b09090;
+}

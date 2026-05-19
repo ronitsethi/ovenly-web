@@ -175,3 +175,26 @@
   color: #5a3a3a;
   white-space: nowrap;
 }
+
+/* Message card textarea */
+.product-message-input {
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  border: 1.5px solid rgba(207, 29, 45, 0.15);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: #2a1015;
+  background: white;
+  resize: vertical;
+  min-height: 60px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.product-message-input:focus {
+  border-color: var(--cherry-red);
+}
+.product-message-input::placeholder {
+  color: #b09090;
+}

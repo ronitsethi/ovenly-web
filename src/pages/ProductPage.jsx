@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Footer from '../components/Footer'
 import { shopifyFetch } from '../lib/shopify'
-import { PRODUCT_BY_HANDLE_QUERY, ADDONS_QUERY } from '../lib/queries'
+import { PRODUCT_BY_HANDLE_QUERY, ADDONS_QUERY, MESSAGE_CARD_QUERY } from '../lib/queries'
 import { useCart } from '../context/CartContext'
 import './ProductPage.css'
 
@@ -24,6 +24,9 @@ export default function ProductPage() {
   const [activeImage, setActiveImage] = useState(0)
   const [addons, setAddons] = useState([])
   const [selectedAddons, setSelectedAddons] = useState({})
+  const [messageCardProduct, setMessageCardProduct] = useState(null)
+  const [wantMessageCard, setWantMessageCard] = useState(false)
+  const [messageText, setMessageText] = useState('')
   const { addToCart, isLoading: cartLoading } = useCart()
 
   useEffect(() => {
@@ -43,7 +46,7 @@ export default function ProductPage() {
     window.scrollTo(0, 0)
   }, [handle])
 
-  // Fetch add-ons
+  // Fetch add-ons and message card
   useEffect(() => {
     shopifyFetch(ADDONS_QUERY)
       .then(data => {
@@ -51,6 +54,15 @@ export default function ProductPage() {
         setAddons(addonProducts.filter(p => p.availableForSale && p.variants?.edges?.[0]?.node?.availableForSale))
       })
       .catch(err => console.warn('Could not load add-ons:', err))
+
+    shopifyFetch(MESSAGE_CARD_QUERY)
+      .then(data => {
+        const mc = data?.products?.edges?.[0]?.node
+        if (mc?.availableForSale && mc?.variants?.edges?.[0]?.node?.availableForSale) {
+          setMessageCardProduct(mc)
+        }
+      })
+      .catch(err => console.warn('Could not load message card:', err))
   }, [])
 
   function toggleAddon(addonId) {
@@ -66,7 +78,15 @@ export default function ProductPage() {
         return addon?.variants?.edges?.[0]?.node?.id
       })
       .filter(Boolean)
-    addToCart(selectedVariant.id, 1, addonVariantIds)
+
+    const messageCard = wantMessageCard && messageCardProduct
+      ? {
+          variantId: messageCardProduct.variants?.edges?.[0]?.node?.id,
+          message: messageText,
+        }
+      : null
+
+    addToCart(selectedVariant.id, 1, addonVariantIds, messageCard)
   }
 
   if (loading) return <main className="page product-page"><div className="product-loading"><div className="product-spinner"/><p>Loading…</p></div></main>
@@ -118,6 +138,32 @@ export default function ProductPage() {
                   </label>
                 )
               })}
+            </div>
+          )}
+
+          {/* Message card (all products) */}
+          {messageCardProduct && (
+            <div className="product-addons product-message-card">
+              <label className="product-addon-row">
+                <input
+                  type="checkbox"
+                  className="product-addon-check"
+                  checked={wantMessageCard}
+                  onChange={() => setWantMessageCard(prev => !prev)}
+                />
+                <span className="product-addon-name">Add a message card</span>
+                <span className="product-addon-price">+ {formatPrice(messageCardProduct.variants?.edges?.[0]?.node?.price?.amount)}</span>
+              </label>
+              {wantMessageCard && (
+                <textarea
+                  className="product-message-input"
+                  placeholder="Write your message here…"
+                  value={messageText}
+                  onChange={e => setMessageText(e.target.value)}
+                  maxLength={200}
+                  rows={3}
+                />
+              )}
             </div>
           )}
 

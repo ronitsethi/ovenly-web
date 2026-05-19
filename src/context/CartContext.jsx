@@ -95,7 +95,7 @@ export function CartProvider({ children }) {
     setTimeout(() => setNotification(null), 2500)
   }, [])
 
-  const addToCart = useCallback(async (variantId, quantity = 1, addonVariantIds = []) => {
+  const addToCart = useCallback(async (variantId, quantity = 1, addonVariantIds = [], messageCard = null) => {
     setIsLoading(true)
     try {
       // Build lines: main product + any add-ons
@@ -103,6 +103,16 @@ export function CartProvider({ children }) {
       addonVariantIds.forEach(addonId => {
         lines.push({ merchandiseId: addonId, quantity: 1 })
       })
+
+      // Message card with custom text as line item attribute
+      if (messageCard && messageCard.variantId) {
+        const messageLine = {
+          merchandiseId: messageCard.variantId,
+          quantity: 1,
+          attributes: [{ key: 'Message', value: messageCard.message || '' }],
+        }
+        lines.push(messageLine)
+      }
 
       if (!cart) {
         // Create new cart
