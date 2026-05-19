@@ -33,7 +33,7 @@ export default function Footer() {
             {isMenuPage ? (
               <>Call us for custom orders<br /><em>& celebrations!</em></>
             ) : (
-              <>Desserts that<br /><em>sparkle just like you!</em></>
+              <>Desserts that sparkle<br /><em>just like you!</em></>
             )}
           </h2>
 
