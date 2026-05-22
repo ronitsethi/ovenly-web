@@ -163,11 +163,29 @@ export function formatDateDisplay(dateString) {
 }
 
 /**
- * Format a time value (HH:MM) to friendly display.
- * e.g. "14:30" → "2:30 PM"
+ * Format a time value to friendly display.
+ * Supports range format "HH:MM-HH:MM" → "2 PM – 3 PM"
+ * and simple format "HH:MM" → "2:00 PM"
  */
 export function formatTimeDisplay(timeValue) {
   if (!timeValue) return ''
+
+  // Handle range format from getAvailableTimeSlots: "14:00-15:00"
+  if (timeValue.includes('-')) {
+    const [startStr, endStr] = timeValue.split('-')
+    const startH = parseInt(startStr.split(':')[0], 10)
+    const endH = parseInt(endStr.split(':')[0], 10)
+
+    const fmt = (h) => {
+      const period = h >= 12 ? 'PM' : 'AM'
+      const display = h > 12 ? h - 12 : h === 0 ? 12 : h
+      return `${display} ${period}`
+    }
+
+    return `${fmt(startH)} – ${fmt(endH)}`
+  }
+
+  // Simple "HH:MM" format
   const [h, m] = timeValue.split(':').map(Number)
   const period = h >= 12 ? 'PM' : 'AM'
   const displayHour = h > 12 ? h - 12 : h === 0 ? 12 : h
