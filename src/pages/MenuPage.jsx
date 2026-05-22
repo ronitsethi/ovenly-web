@@ -316,7 +316,7 @@ export default function MenuPage() {
                             <div className="menu-item-price-inline">
                               <span className="price-tag">{formatPrice(variants[0]?.price?.amount || 0)}</span>
                               {variants.length > 1 && (
-                                <span className="price-size">from</span>
+                                <span className="price-size">onwards</span>
                               )}
                             </div>
                           </div>
