@@ -147,12 +147,17 @@ export default function MenuPage() {
             }
           })
         )
-        // Filter out empty collections, then pin Bestsellers to the front
+        // Filter out empty collections, then pin Bestsellers → Father's Day → Mango to the front
         const nonempty = withProducts.filter(c => c.products.length > 0)
         const isBestsellers = c => c.handle === 'bestsellers' || c.title.toLowerCase() === 'bestsellers'
+        const isFathersDay = c => c.handle.includes('father') || c.title.toLowerCase().includes('father')
+        const isMango = c => c.handle.includes('mango') || c.title.toLowerCase().includes('mango')
+        const isPinned = c => isBestsellers(c) || isFathersDay(c) || isMango(c)
         setCollections([
           ...nonempty.filter(isBestsellers),
-          ...nonempty.filter(c => !isBestsellers(c)),
+          ...nonempty.filter(isFathersDay),
+          ...nonempty.filter(isMango),
+          ...nonempty.filter(c => !isPinned(c)),
         ])
       }
     } catch (err) {
