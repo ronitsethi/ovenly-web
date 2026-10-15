@@ -53,7 +53,7 @@ const PINNED_COLLECTIONS = [
 ]
 
 // Where the "All" tab sits among the category tabs (0 = very first).
-const ALL_TAB_INDEX = 1
+const ALL_TAB_INDEX = 0
 
 // Category emoji map for Shopify collections
 const categoryEmojis = {}
