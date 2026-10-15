@@ -41,6 +41,20 @@ const fallbackMenuData = [
   },
 ]
 
+// Collections pinned to the front of the menu, in this order. Each entry is
+// matched (case-insensitively) against the collection handle and title, so a
+// fragment like 'raksha' is enough. Anything not listed keeps its Shopify order.
+const PINNED_COLLECTIONS = [
+  'shubhlakshmi',
+  'bestsellers',
+  'raksha',
+  'father',
+  'mango',
+]
+
+// Where the "All" tab sits among the category tabs (0 = very first).
+const ALL_TAB_INDEX = 1
+
 // Category emoji map for Shopify collections
 const categoryEmojis = {}
 
@@ -147,20 +161,16 @@ export default function MenuPage() {
             }
           })
         )
-        // Filter out empty collections, then pin Bestsellers → Rakshabandhan → Father's Day → Mango to the front
+        // Filter out empty collections, then order them by PINNED_COLLECTIONS
         const nonempty = withProducts.filter(c => c.products.length > 0)
-        const isBestsellers = c => c.handle === 'bestsellers' || c.title.toLowerCase() === 'bestsellers'
-        const isRakshabandhan = c => c.handle.includes('raksha') || c.title.toLowerCase().includes('raksha')
-        const isFathersDay = c => c.handle.includes('father') || c.title.toLowerCase().includes('father')
-        const isMango = c => c.handle.includes('mango') || c.title.toLowerCase().includes('mango')
-        const isPinned = c => isBestsellers(c) || isRakshabandhan(c) || isFathersDay(c) || isMango(c)
-        setCollections([
-          ...nonempty.filter(isBestsellers),
-          ...nonempty.filter(isRakshabandhan),
-          ...nonempty.filter(isFathersDay),
-          ...nonempty.filter(isMango),
-          ...nonempty.filter(c => !isPinned(c)),
-        ])
+        const pinRank = (c) => {
+          const handle = c.handle.toLowerCase()
+          const title = c.title.toLowerCase()
+          const i = PINNED_COLLECTIONS.findIndex(k => handle.includes(k) || title.includes(k))
+          return i === -1 ? PINNED_COLLECTIONS.length : i
+        }
+        // Array.sort is stable, so unpinned collections keep their Shopify order
+        setCollections([...nonempty].sort((a, b) => pinRank(a) - pinRank(b)))
       }
     } catch (err) {
       console.error('Failed to load catalog:', err)
@@ -241,30 +251,25 @@ export default function MenuPage() {
       ? collections
       : collections.filter(c => c.handle === activeCategory)
 
+    // "All" is a tab like any other, slotted in at ALL_TAB_INDEX
+    const tabs = [...collections]
+    tabs.splice(Math.min(ALL_TAB_INDEX, tabs.length), 0, { handle: 'all', title: 'All' })
+
     return (
       <>
         {/* Category Filter Tabs */}
         <div className="category-tabs-wrap">
           <div className="category-tabs" role="tablist" aria-label="Menu categories">
-            <button
-              className={`cat-tab${activeCategory === 'all' ? ' active' : ''}`}
-              onClick={() => setActiveCategory('all')}
-              role="tab"
-              aria-selected={activeCategory === 'all'}
-              id="tab-all"
-            >
-              All
-            </button>
-            {collections.map(col => (
+            {tabs.map(tab => (
               <button
-                key={col.handle}
-                className={`cat-tab${activeCategory === col.handle ? ' active' : ''}`}
-                onClick={() => setActiveCategory(col.handle)}
+                key={tab.handle}
+                className={`cat-tab${activeCategory === tab.handle ? ' active' : ''}`}
+                onClick={() => setActiveCategory(tab.handle)}
                 role="tab"
-                aria-selected={activeCategory === col.handle}
-                id={`tab-${col.handle}`}
+                aria-selected={activeCategory === tab.handle}
+                id={`tab-${tab.handle}`}
               >
-          {col.title}
+                {tab.title}
               </button>
             ))}
           </div>
