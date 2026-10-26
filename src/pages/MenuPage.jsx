@@ -46,6 +46,7 @@ const fallbackMenuData = [
 // fragment like 'raksha' is enough. Anything not listed keeps its Shopify order.
 const PINNED_COLLECTIONS = [
   'shubhlakshmi',
+  'strawberry',
   'bestsellers',
   'raksha',
   'father',
